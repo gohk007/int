@@ -1,0 +1,3224 @@
+ Link:https://www.interviewbit.com/web-api-interview-questions/
+Link:https://www.mygreatlearning.com/blog/web-api-interview-questions/
+
+GRE-yMhn-TYcK-AYo2i
+Angular
+1.How we can pass data to parent to child in angular
+   1.by using @Input decorator we will send parent to child
+   2.by using @Output decorator and Event emitter we will send child to parent
+   3.by using @ViewChild we can acces the child component in parnet component and uses the child component data and function
+   4.without parent and child realtion we can share data between component using services,we can import one service in parent and child components and by using that 
+   service we can transfer data
+Explain about Angular ?
+
+  Angular is a development platform, built on TypeScript. As a platform, Angular includes: A component-based framework for building scalable web applications. 
+ A collection of well-integrated libraries that cover a wide variety of features, including routing, forms management, client-server communication, and more.
+
+
+
+2.which version ur using in angular
+
+   8.3.8 - @angular/cli - npm
+  Angular 8 supports the TypeScript 3.4 or above version
+  The latest version of RxJS is v6. It is version 6
+  Node.js 12
+
+
+Latest version:
+ Angular 14, the latest version of the Google-developed, TypeScript-based web application framework, made its way on 2nd June 2022,
+ CLI 14
+ TypeScript 4.7
+
+.NET Latest versions
+
+ .NET Framework 4.8
+
+  Net 6 is the latest version of . Net Core with the latest APIs
+
+3.Explain about promise and observables
+  Link:https://stackoverflow.com/questions/37364973/what-is-the-difference-between-promises-and-observables
+
+  Both observables and promises help us work with asynchronous functionality in JavaScript. Promises deal with one asynchronous event at a time,
+  while observables handle a sequence of asynchronous events over a period of time.
+
+ Here are the differences in concept between Observables and Promises.
+  Observables	                                                 Promises
+  Emit multiple values over a period of time.                 Emit a single value at a time.
+
+  Are lazy: they’re not executed until we subscribe          Are not lazy: execute immediately after creation.
+   to them using the subscribe() method.      
+               
+  Have subscriptions that are cancellable using the
+  unsubscribe() method, which stops the listener from         Are not cancellable.
+
+  Provide the map, filter, reduce, retry, retryWhen,
+  and so many other RxJS operators, that makes it easy        Don’t provide any operations.
+  to deal with Observables.  
+  Deliver errors to the subscribers.                          Push errors to the child promises.
+
+  receiving further values.	
+
+4.explain about angular hook cycle?
+ Link : https://www.cuelogic.com/blog/angular-lifecycle
+ https://indepth.dev/posts/1494/complete-guide-angular-lifecycle-hooks
+ Each Angular component goes through 8 phases in its lifecycle. When it is initialized, it creates and presents its root components. It is designed and it produces its heirs. 
+ For the components that get loaded during application development, it keeps checking when the data binding properties are getting changed and updated. When the component is not 
+ used anymore, it approaches the death phase and is decimated and expelled from the DOM.
+  1.Constructor
+ 
+  ngOnChanges − When the value of a data bound property changes, then this method is called.
+
+  ngOnInit − This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
+
+  ngDoCheck − This is for the detection and to act on changes that Angular can't or won't detect on its own.
+
+  ngAfterContentInit − This is called in response after Angular projects external content into the component's view.
+
+  ngAfterContentChecked − This is called in response after Angular checks the content projected into the component.
+
+  ngAfterViewInit − This is called in response after Angular initializes the component's views and child views.
+
+  ngAfterViewChecked − This is called in response after Angular checks the component's views and child views.
+
+  ngOnDestroy − This is the cleanup phase just before Angular destroys the directive/component.
+
+5.Explain abount ng destroy in angular
+  What is the use of ngOnDestroy?
+    When should you use ngOnDestroy? Using ngOnDestroy makes sense when you want to implement customized behavior when a component is destroyed.
+   ngOnDestroy can be helpful when you need to unsubscribe from observables or perform any other clean up when destroying a component
+
+6.How the Application works in Angular ?
+  main.ts ->App Module (bootstrap Module)->AppComponent->index.html
+  Main.ts is main Entry point of angular compiler, When we fire Command ng serve , the execution comes to main.ts file. and there angular bootstrap or loads default app.module.ts. 
+    Then in app.module.ts we bootstrap app.component using bootstrap : [AppComponent] in @NgModule.
+
+  index.html, Now comes to this part. in app.component.ts see selector have app-root and that is first component defined in body tag of index.html like this <app-root> </app-root> . 
+  This way every other Components and Modules are loaded in app-root in index.html. When request fires to angular app from browser after angular compiler finishes execution,
+ first index.html response comes to client from server with all component files are downloaed to client side , and when user clicks any of the part of the page all content loaded from 
+  already downloaded content rather than to download each time, thats the nature of Single Page Application.
+
+
+7.Http Interceptor and work flow?
+   Link:https://www.c-sharpcorner.com/article/using-http-interceptor-service-in-angular-app/#:~:text=HTTP%20Interceptors%20is%20a%20special,interceptor%20wants%20only%20HTTP%20requests.
+ 
+  HTTP Interceptors is a special type of angular service that we can implement. It's used to apply custom logic to the central point between the client-side and 
+  server-side outgoing/incoming HTTP request and response. Keep in mind that the interceptor wants only HTTP requests.
+  Command :Execute this CLI command to add an interceptor service: ng generate interceptor headers
+
+  Note
+  This HTTP interceptor is most used when authentication and authorization are applied in the application.
+
+  ExampleLink:https://medium.com/javarevisited/what-are-http-interceptors-and-how-to-use-them-in-angular-59fcb4efc235
+   this.token = this.facadeService.getUserToken();
+    if (this.token || this.skipInterceptor) {
+      const tokenizedReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.token) });
+      return next.handle(tokenizedReq).pipe(map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          if (event.status === 401) {
+            this.facadeService.userLoggedOut();
+            this.router.navigateByUrl('core/login');
+          }
+        }
+        return event;
+      }));
+8..Map,.Filter,Index Of ,Examples 
+   https://www.c-sharpcorner.com/article/simplify-map-reduce-and-filter-in-typescript/
+
+  map():
+ Link:https://www.tektutorialshub.com/angular/angular-observable-map-operator/
+  It is an array function that transforms the array according to the applied function and returns the updated array. It works on each element of an array.
+  Syntax
+ 
+   array.map(callback[,object])
+  EX:
+  calculate cube of each element with the help of map. 
+    function cube(n){  
+      return n*n*n;  
+   }  
+   var arr=new Array(1,2,3,4)  
+   var newArr=arr.map(cube); 
+
+Ex2:
+
+srcArray = from([1, 2, 3, 4]); from is used to convert array to observble
+ multiplyBy2() {
+    this.srcArray
+    .pipe(map(val => { return val * 2}))
+    .subscribe(val => { console.log(val)})
+  }
+ 
+  console.log(newArr)  // Output : [1,8,27,64]
+
+   filter()
+      As the name suggests it can filter out the data/array elements on the basis of condition and return the result as a list.
+     Basically, this function pushes the current element into a new array when the callback functions return true.
+ 
+   Syntax
+     array.map(callback[,object])
+
+  Examples
+   //Calculate a list of even elements from an array :    
+   arr = new Array(1, 2, 3, 6, 5, 4)  
+   var newArr = arr.filter(function(record) {  
+      return record % 2 == 0;  
+   }); // output => [2,6,4]    
+ 
+  
+  
+9.Directives and Component differnces ?
+  directive used to Mainpulate DOM Content while Component used is used to Bindings,functions etc
+
+    Components                                                                                          Directives
+  The Component is used to break up the application into smaller components.             The Directive is used to design reusable components, which are more behavior-oriented
+  That is why components are widely used in later versions of Angular to make 
+  things easy and build a total component-based model.
+
+  Although the Components make it easier to write simple, effective code,                The directives can be utilized for manipulating DOM objects.
+  it has a simpler configuration than plain directives, it is optimized for 
+  component-based architecture. A Component does not support “compile” and
+  “pre-link” functions.
+
+  Only one component can be present per DOM element.                                     There can be more than one directive in a DOM element,
+
+  Components should never modify any data or DOM that is out of their                    Directives have isolated scopes, by default the child inherits the scope from its parent.
+  own scope.
+
+  To register components, we use @Component meta-data annotation.                        For directive, we use @Directive meta-data annotation. 
+
+ 
+10.Differences bettween ng serve and ng build
+
+  ng build command builds the angular application and generates the build artifacts which are saved under the /dist folder in the application directory.
+  ng serve command builds the angular application in the memory, without saving the artifacts to any external folder and runs the application on the web server.
+
+           ng serve                                                                                      	ng build
+   The ng serve command is intentionally for fast, local and iterative developments                The ng build command is intentionally for building the apps and deploying the                                                     
+   and also for builds, watches and serves the application from a local CLI development            build artifacts
+   server.
+
+   The command does not generate an output folder.                                                  The output folder is – dist/.
+
+   The ng serve builds artifacts from memory instead for a faster development experience            The ng build command generates output files just once and doesn’t serve them.
+
+11.AOT and JIT Compiler differnces?
+           JIT                                                                                           AOT
+
+   JIT downloads the compiler and compiles code exactly before Displaying                   AOT has already complied with the code while building your application, 
+    in the browser.                                                                         so it doesn’t have to compile at runtime
+
+   Loading in JIT is slower than the AOT because it needs to compile your                  Loading in AOT is much quicker than the JIT because it already has compiled 
+   application at runtime                                                                   your code at build time.
+
+   JIT is more suitable for development mode                                               Bundle size optimized in AOT, in results AOT bundle size is half the size of JIT bundles.
+
+
+   You can run your app in JIT with this command:                                          To run your app in AOT you have to provide –aot at the end like:
+   ng build OR ng serve                                                                     ng build --aot OR ng serve --aot
+
+   You can catch template binding error at display time.                                   You can catch the template error at building your application.
+
+12.What is pipes in angular ?
+ https://stackoverflow.com/questions/39285550/what-is-an-impure-pipe-in-angular
+ https://www.geeksforgeeks.org/explain-pure-and-impure-pipe-in-angular/
+   Pipes are simple functions to use in template expressions to accept an input value and return a transformed value.
+   Pipes are useful because you can use them throughout your application, while only declaring each pipe once.
+
+    A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe. 
+    An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes.
+
+13.What is lazy loading in Angular?
+   Lazy loading is a technique in Angular that allows you to load JavaScript components asynchronously when a specific route is activated. It improves 
+   the speed of the application load time by splitting the application into several bundles. When the user navigates through the app, the bundles are loaded as required.
+
+14. In angular how drop down list value assign and selecting
+        <kendo-dropdownlist style="width:100%" name="txtAccessInformationSelectMonth"
+            id='txtAccessInformationSelectMonth'
+            [data]="dataAccessInformationMonthList" [valuePrimitive]="true"
+            [textField]="'MonthDesc'" [valueField]="'MonthID'"
+            tabindex="03" [(ngModel)]='AccessInformationMonthsList'
+            [defaultItem]="defaultAccessInformationMonthsList">
+
+15.Ag grid declartion?
+
+ <ag-grid-angular #AccessInformationGrid tabindex="03"
+        style="width: 100%;height: 130px !important;font-size: 14px;"
+        class="ag-theme-balham UncustomizedGrigHeightClass" [enableSorting]="true" [rowData]="AccessInformationrowData"
+        [columnDefs]="AccessInformationColumnDefs" rowSelection="multiple" [gridOptions]="AccessInformationGridOptions"
+        [overlayNoRowsTemplate]="overlayNoRowsTemplate" [enableColResize]="true">
+      </ag-grid-angular>
+
+15.Explain how ajax and http request works ?
+    AJAX Request
+    Asynchronous JavaScript and XML. AJAX is a technique for creating fast and dynamic web pages. 
+    AJAX allows web pages to be updated asynchronously by exchanging small amounts of data with the server behind the scenes.
+    This means that it is possible to update parts of a web page, without reloading the whole page.
+
+     HTTP Request
+    An HTTP request is made by a client, to a named host, which is located on a server.
+    The aim of the request is to access a resource on the server. To make the request, the client uses components 
+    of a URL (Uniform Resource Locator), which includes the information needed to access the resource
+
+16.Explain how the Logins window Works?
+
+17.In angular how to call from one application to another application?
+
+18.What is Angular Single Page Application?
+   Single Page Applications are web applications that load a single HTML page and .In the SPA the whole page is not reloaded every time, only every time the view will be change.
+Advantages of SPA:
+
+ No page flicker. Native application feel.
+ Client-side routing and data rendering on the client side.
+ Data from server is in JSON format.
+
+19.What is router Link and hyperlink and what is differnes between them?
+  
+   Href is the basic attribute provided by Html to navigate through pages which reloads the page on click.
+
+   routerLink is the attribute provided by angular to navigate to different components without reloading the page.
+
+   Major difference between both is that href kills the state of the current page where routerLink doesnt lose the state of the page.
+
+   For Eg. if an input text box is present in the page, the routerLink will retains its value after navigation.
+
+   The routerLink can be considered as the custom attribute of href in angular by overriding some of the features like Page reloading
+
+20.What is the difference between [routerLink] and routerLink ? How should you use each one? 
+ They're the same directive. You use the first one to pass a dynamic value, and the second one to pass a static path as a string.
+
+21.What is Json?
+
+   A JSON ( JavaScript object notation )format is a standard format to store and exchange data. Initially, 
+   JSON file is only used to exchange the data between the web application and server. Now, it is used for many purposes such as to take and restore the data backup.
+   Users can create a JSON file with the .json extension
+
+22.Explaind @ViewChild() using Component
+ @ViewChild() can be used for component communication. A component will get instance of another component inside it using @ViewChild(). 
+  In this way parent component will be able to access the properties and methods of child component. The child component selector will be used in parent component HTML template.
+
+23.Observables creation Types and from and of differnces?
+Link:https://www.tektutorialshub.com/angular/rxjs-observable-using-create-of-from-in-angular/
+There are a number of functions that are available which you can use to create new observables. 
+These operators help us to create observable from an array, string, promise, any iterable, etc.
+Here are some of the operators
+create
+defer
+empty
+from
+fromEvent
+interval
+of
+range
+throw 
+
+Create
+The Create method is one of the easiest. The create method calls the observable constructor behind the scene.
+ Create is a method of the observable object, Hence you do not have to import it.  
+EX:ngOnInit() {
+const obsUsingCreate = Observable.create( observer => {
+     observer.next( '1' )
+     observer.next( '2' )
+     observer.next( '3' )
+ 
+     observer.complete()
+   })
+  obsUsingCreate
+      .subscribe(val => console.log(val),
+              error=> console.log("error"),
+              () => console.log("complete"))
+
+}
+****Output *****
+1
+2
+3
+Complete
+ 
+Of Operator
+The Of creates the observable from the arguments that you pass into it. 
+You can pass any number of arguments to the Of. Each argument emitted separately and one after the other. It sends the Complete signal in the end.
+EX:
+ngOnInit() {
+  const array1=[1,2,3,4,5,6,7]
+  const array2=['a','b','c','d','e','f','g']  
+  const obsof2=of(array1,array2 );
+  obsof2.subscribe(val => console.log(val),
+           error=> console.log("error"),
+          () => console.log("complete"))
+ 
+}
+ 
+ 
+**** Output ***
+[1, 2, 3, 4, 5, 6, 7]
+['a','b','c','d','e','f','g']
+complete
+
+
+From Operator:
+From Operator takes only one argument that can be iterated and converts it into an observable.
+
+You can use it to convert
+
+an Array,
+anything that behaves like an array
+Promise
+any iterable object
+collections
+any observable like object
+It converts almost anything that can be iterated to an Observable.
+
+EX:
+ngOnInit() {
+ 
+    const array3 = [1, 2, 3, 4, 5, 6, 7]
+    const obsfrom1 = from(array3);
+    obsfrom1.subscribe(val => console.log(val),
+      error => console.log("error"),
+      () => console.log("complete"))
+ 
+}
+ 
+*** Output ****
+1
+2
+3
+4
+5
+6
+7
+complete
+24.Differnce between var,let,constant?
+ Link:https://www.educative.io/answers/difference-between-var-let-and-const-keyword-in-javascript
+var is function scoped
+  The variables declared using var inside the function are available only within that function. 
+ If we declare them outside the function, then they are available everywhere i.e. they are a global variable
+
+let & const is block scoped
+The variables declared using let or const are block-scoped. They are scoped to the block in which they are declared i.e. 
+inside the if/try/catch/while/for or any code block (enclosed in curly parentheses).
+              var	                                                                     let	                                   const
+scope          Variables declared with var are in the function scope. 	Variables declared as let are in the block scope.	Variables declared as const are in the block scope.
+Hoisting       Allowed Not                                                             allowed                                      	Not allowed
+Reassign       Allowed	                                                              Allowed	                                         Not allowed
+redeclaration  Allowed	                                                               Not allowed	                                Not allowed
+
+25.What are the types of directives?
+  Link:https://www.javatpoint.com/angular-8-directives
+   
+ Directives are used to manipulate the DOM. By using Angular directives, you can change the appearance, behavior or a layout of a DOM element. It also helps you to extend HTML.
+ 
+ Directives can be classified in 3 categories based on how they behave:
+
+  Component Directives: Component directives are used in main class. They contain the detail of how the component should be processed, instantiated and used at runtime.
+ 
+ Structural Directives: Structural directives start with a * sign. These directives are used to manipulate and change the structure of the DOM elements. 
+  
+ 
+  *ngIf Directive: The ngIf allows us to Add/Remove DOM Element.
+  *ngSwitch Directive: The *ngSwitch allows us to Add/Remove DOM Element. It is similar to switch statement of C#.
+  *ngFor Directive: The *ngFor directive is used to repeat a portion of HTML template once per each item from an iterable list (Collection).
+
+
+ Attribute Directives: Attribute directives are used to change the look and behavior of the DOM elements. 
+  For example: ngClass directive, and ngStyle directive etc.
+ ngClass Directive: The ngClass directive is used to add or remove CSS classes to an HTML element.
+ ngStyle Directive: The ngStyle directive facilitates you to modify the style of an HTML element using the expression. 
+ You can also use ngStyle directive to dynamically change the style of your HTML element.
+
+
+26.Explain ngmodule Properties list ?
+   Link: https://www.code-sample.com/2018/04/ngmodule-metadata-properties.html
+
+ The NgModule’s important metadata properties are as follows –
+  1.          providers
+  2.          declarations
+  3.          imports
+  4.          exports
+  5.          entryComponents
+  6.          bootstrap
+  7.          schemas
+  8.          id
+
+
+  
+The @NgModule class with the decorator and metadata properties -
+@NgModule({
+  providers?: Provider[]
+  declarations?: Array<Type<any> | any[]>
+  imports?: Array<Type<any> | ModuleWithProviders | any[]>
+  exports?: Array<Type<any> | any[]>
+  entryComponents?: Array<Type<any> | any[]>
+  bootstrap?: Array<Type<any> | any[]>
+  schemas?: Array<SchemaMetadata | any[]>
+  id?: string
+})
+
+ @Component({
+  selector: 'app-component-overview',
+  templateUrl: './component-overview.component.html',
+  styleUrls: ['./component-overview.component.css']
+})
+
+Popupopening code
+const dialogRef = this.dialogService.open({
+      // title: 'Add Customization Information',
+      content: AddTaskCustomizationInformationComponent,
+
+      height: 680,
+      width: 850,
+      appendTo: this.containerRef
+    });
+ dialogRef.result.subscribe((result) => {
+   
+      if (result instanceof DialogCloseResult) {
+        return;
+      } else {
+        this.GetTaskCustomizationListBasedOnUserNames();
+        this.getUserNamesOnTaskSelectDataSource = [];
+      }
+
+    
+    });
+ Directives Decortor
+  @Directive({
+   selector: '[integer]'
+  })
+
+  For services we user
+   @Injectable() decorator
+
+this._router.navigate(['/home', { outlets: outletObj }]); we can navigate from one component to another
+1.RouterLink   >directive
+2.Router.navigate ->In component we will use it to load other components
+3.Router.navigateByURL ->Based on the url we will navigate 
+https://www.digitalocean.com/community/tutorials/angular-navigation-routerlink-navigate-navigatebyurl
+
+
+27.Differnt Types of Data Bindings in Angular?
+  Link:https://www.javatpoint.com/data-binding-in-angular-8
+  What is data binding?
+ 
+    Data binding is a process that creates a connection between the application’s UI and the data. When the data changes its value,
+   the UI elements that are bound to the data will also change
+  Angular provides four types of data binding and they are different on the way of data flowing.
+
+  String Interpolation
+  Property Binding
+  Event Binding
+  Two-way binding
+
+  1.One-way databinding
+      One way databinding is a simple one way communication where HTML template is changed when we make changes in TypeScript code.
+     Angular Interpolation / String Interpolation, Property Binding, and Event Binding are the example of one-way databinding.
+
+  2.Two way Databinding
+     In two-way databinding, automatic synchronization of data happens between the Model and the View. Here, change is reflected in both components.
+    Whenever you make changes in the Model, it will be reflected in the View and when you make changes in View, it will be reflected in Model
+
+ 1. String interpolation
+     String Interpolation is a one-way databinding technique which is used to output the data from a TypeScript code to HTML template (view).
+    It uses the template expression in double curly braces to display the data from the component to the view.
+ 
+       
+   Syntax:
+   {{ data }}
+
+      For example: 
+  <li>Name: {{ user.name }}</li>  
+  <li>Email: {{ user.email }}</li>  
+
+ 2. Property Binding
+      Property Binding is also a one-way data binding technique. In property binding, we bind a property of a DOM element to a field which is a defined property 
+   in our component TypeScript code.
+  For example:
+    <img [src]="imgUrl"/>
+    <input type="email" [value]="user.email">  
+ 3.Event Binding
+    In Angular 8, event binding is used to handle the events raised from the DOM like button click, mouse move etc. When the DOM event happens (eg. click, change, keyup), 
+    it calls the specified method in the component. In the following example, the cookBacon() method from the component is called when the button is clicked:
+  For example:
+     <button (click)="cookBacon()"></button>  
+ 4.Two-way Data Binding
+   We have seen that in one-way data binding any change in the template (view) were not be reflected in the component TypeScript code. 
+  To resolve this problem, Angular provides two-way data binding. The two-way binding has a feature to update data from component to view and vice-versa.
+
+  In two way data binding, property binding and event binding are combined together.
+
+  Syntax:
+ 
+  [(ngModel)] = "[property of your component]"  
+
+  
+28.What is the DOM and why is it used?
+
+The DOM (Document Object Model) is an interface that represents how your HTML and XML documents are read by the browser. It allows a language (JavaScript) to manipulate, 
+ structure, and style your website.
+
+29.What are primitive and non-primitive data types in JavaScript?
+  Image result for primitive data types in javascript
+   Primitive data types are number, string, boolean, NULL, Infinity and symbol. Non-primitive data types is the object.
+
+30.what is Lazy Loading?
+ Link:https://angular.io/guide/lazy-loading-ngmodules
+
+ Lazy loading is an important Angular feature that helps to reduce the initial load time since it loads only the necessary files first. 
+ Other required modules are loaded on demand when you navigate to their particular route. Now, you can take advantage of this feature to improve your app's load time.
+
+ AppRoutingModule (excerpt)
+ content_copy
+ const routes: Routes = [
+  {
+    path: 'items',
+    loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+  }
+ ];
+
+
+
+
+ In the lazy-loaded module's routing module, add a route for the component.
+
+ Routing module for lazy loaded module (excerpt)
+ content_copy
+ const routes: Routes = [
+  {
+    path: '',
+    component: ItemsComponent
+  }
+ ];
+
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+forRoot() and forChild()
+forRoot() is used only on App.routing.module.ts and forchild() is used in child modules
+31.Differnet Types of Components?
+  app.component.html
+  app.component.css
+  app.component.ts
+  app.component.spec.ts
+
+32.why we use http interceptor ,how you used in your project?
+  In our Application we are using http interceptor to assign jwt token in request headers for every request
+
+33.Angular projects create comand
+  ng new LoginApplication >To create new application
+
+  ng g c appcomponent >Component adding
+
+34.Pure pipe and impure pipe?
+
+  https://www.geeksforgeeks.org/explain-pure-and-impure-pipe-in-angular/
+  https://stackoverflow.com/questions/39285550/what-is-an-impure-pipe-in-angular
+
+  Pipes are simple functions to use in template expressions to accept an input value and return a transformed value. 
+  Pipes are useful because you can use them throughout your application, while only declaring each pipe once. 
+
+  BuiltInPipes:
+  DatePipe: Formats a date value according to locale rules.
+  UpperCasePipe: Transforms text to all upper case.
+  LowerCasePipe: Transforms text to all lower case.
+  CurrencyPipe: Transforms a number to a currency string, formatted according to locale rules.
+  DecimalPipe: Transforms a number into a string with a decimal point, formatted according to locale rules.
+  PercentPipe: Transforms a number to a percentage string, formatted according to locale rules.
+
+  A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe.
+
+  An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes.
+
+
+  Deafult pipe in angular is pure pipe
+  Ex:
+  @Pipe({
+  name: 'sort',
+  pure: false //true makes it pure and false makes it impure
+  })
+  export class myPipe implements PipeTransform {
+
+  transform(value: any, args?: any): any {
+     //your logic here and return the result
+  }
+
+ }
+
+  Ex:
+  <p>The hero's birthday is {{ birthday | date:"MM/dd/yy" }} </p>
+
+
+35.What is Enacpsulation in Angular?
+    View encapsulation defines whether the template and styles defined within the component can affect the whole application or vice versa. 
+  Angular provides three encapsulation strategies:
+ Emulated (default) - styles from main HTML propagate to the component. Styles defined in this component's @Component decorator are scoped to this component only.
+ ShadowDom - styles from main HTML do not propagate to the component. Styles defined in this
+         component's @Component decorator are scoped to this component only.
+
+   None - styles from the component propagate back to the main HTML and therefore are visible to all components on the page.
+  Be careful with apps that have None and Native components in the application. All components with None encapsulation will have their styles duplicated in all components
+  with Native encapsulation.
+  EX:
+    @Component({
+    // ...
+    encapsulation: ViewEncapsulation.None,
+   styles: [
+   // ... ]
+  })
+  export class HelloComponent {
+  // ...
+  }
+36.Filters in Angular?
+     Filter is an important part in AngularJS as well as Angular 2 or Angular 4. It is basically used to filter an item from a group of items, 
+which are there in an array or an object array. It selects a subset of the items from an array and returns it as a new array and this item is displayed on UI.
+
+@angular/core of Angular 4 or 2 module library provides two moduels - Piple and PipeTransform for the filtering feature.
+
+37.What is RXJS and Methods?
+
+  Link:https://angular.io/guide/rx-library37.RxJSCommands
+  Link:https://www.sitepoint.com/rxjs-functions-with-examples/
+  RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables that makes it easier to compose asynchronous or callback-based code
+
+  1.Map
+  2.Filter
+  3.Reduce
+  4.Take
+  5.TakeWhile
+  6.Tap:
+
+   Tap is used for logging and it returns the original source value
+   
+  Link:https://www.tektutorialshub.com/angular/tap-operator-in-angular-observable/#:~:text=The%20Angular%20Tap%20RxJs%20operator,perform%20any%20other%20side%20effects.
+    The Angular Tap RxJs operator returns an observable that is identical to the source. It does not modify the stream in any way. Tap operator is useful for logging the value,
+   debugging the stream for the correct values, or perform any other side effects.
+
+38.Dependency Injection in Angular?
+    Dependency injection, or DI, is one of the fundamental concepts in Angular. DI is wired into the Angular framework and allows classes with Angular decorators, 
+ such as Components, Directives, Pipes, and Injectables, to configure dependencies that they need.
+
+39.TypeScript vs Javascript?
+     TypeScript is known as an Object-oriented programming language whereas JavaScript is a prototype based language. TypeScript has a feature known as Static typing 
+  but JavaScript does not support this feature. TypeScript supports Interfaces but JavaScript does not
+
+   In terms of software development, TypeScript offers many advantages over JavaScript: Optional static typing. JavaScript is a dynamically typed language,
+   which means that types are checked, and data type errors are only detected at runtime. This can be very dangerous and can create errors during production.
+
+40.RouteGuards,AuthRouteGuards?
+  There are a lot of use cases when it comes to access to an Angular route. There are times when you want to limit access to a route, limit access to only some specific users,
+  or want before leaving a route to alert the user or even retrieve data before accessing a route.
+ 
+  Angular Auth Guards add authentication layer which helps in preventing loading of components in various scenarios like Login authentication, 
+ permission-based authentication etc. We can add checks before loading components using Angular guards which are of four types
+
+ Thankfully there are a lot of guards in Angular that we can use to protect routes and provide the right page for the right user.
+  For sharing data with a guard consider using route.paramMap.get('attribut')
+  Guards are processed in the following order:
+
+ canDeactivate
+ canLoad
+ canActivateChild
+ canActivate
+ resolve
+
+CanActivate: Checks route navigation before the component is loaded.
+
+CanActivateChild: Checks route children navigation before the component is loaded.
+
+CanDeactivate: Checks navigation from the current route eg leaving the partially filled form.
+
+Resolve: Resolve loads/ retrieves data before the route is activated.
+
+Ex:
+ const routes: Routes = [
+  { path:'', redirectTo:'home',pathMatch:'full'},
+  { path:'home', component: HomeComponent},
+  { 
+    path:'details/:imbdid', 
+    component: DetailsComponent,
+    canActivate:[FooGuardService],
+    resolve:{
+      movie:FooResolveService
+    }
+  }
+Ex2.
+ RouterModule.forChild([
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            canActivateChild: [AuthGuard],
+            children: [
+              { path: 'crises', component: ManageCrisesComponent },
+              { path: 'heroes', component: ManageHeroesComponent },
+              { path: '', component: AdminDashboardComponent }
+            ]
+          }
+        ]
+      }
+    ])
+
+
+ CanLoad:
+ The CanLoad Guard prevents the loading of the Lazy Loaded Module. We generally use this guard when we do not want to unauthorized user to navigate to any of the routes of
+  the module and also stop then even see the source code of the module.
+      path: "admin", loadChildren:'./admin/admin.module#AdminModule', canLoad:[AuthGuardService]},
+   
+ CanActivate:
+  The Angular provides canActivate Guard, which prevents unauthorized user from accessing the route. But it does not stop the module from being downloaded. 
+ The user can use the chrome developer console to see the source code. The CanLoad Guard prevents the module from being downloaded.
+
+
+41.What is an Auth guard?
+   AuthGuard is a class which implements the interface CanActivate , to decide whether the user has access/permission to view specific page / route / path in the application or not. 
+  This will be useful when we need authentication/authorization based control over the application.
+
+  
+
+41.we can use two structural directives on the same element.?
+  InAngular, we cannot use two structural directives on the same element.
+
+  i.e., we cannot place *ngFor,*ngIf together on same element.
+
+  <div *ngIf="shouldShow" *ngFor="let order of orders">
+  <li></li>
+  </div>
+
+42.forroot and forchild in angular diff?
+  The forRoot() method creates an NgModule that contains all the directives, the given routes, and the Router service itself.
+  The forChild() method creates an NgModule that contains all the directives and the given routes, but does not include the Router service.
+
+ The forRoot Static Method:
+
+ RouterModule.forRoot(routes)
+ The forRoot static method is the method that configures the root routing module for your app. When you call RouterModule.forRoot(routes), 
+ you are asking Angular to instantiate an instance of the Router class globally. Just like Angular creates a new base AppModule to import all of your feature modules,
+ it also provides the AppRoutingModule to import all of your child routes.
+  the forRoot method is actually already being used inside of the app-routing.module.ts
+
+ Child Routes:
+
+ RouterModule.forChild(routes)
+  When you are using the forChild static method, you are basically telling Angular,
+ "There is already a Router instance available in the app so please just register all of these routes with that instance."
+  The forChild method is the method that you will call to register routes throughout your app and you will use it inside of the child, routing modules that you create.
+43.What is session Management?
+
+  Session management refers to the process of securely handling multiple requests to a web-based application or service from a single user or entity. 
+   Websites and browsers use HTTP to communicate, and a session is a series of HTTP requests and transactions initiated by the same user.
+
+   For eg. When a User logs into your website, not matter on which web page he visits after logging in, his credentials will be with the server, until he logs out. 
+ So this is managed by creating a session. Session Management is a mechanism used by the Web container to store session information for a particular user.
+44. what types of Decorators?
+   Link: https://www.pluralsight.com/guides/defining-metadata-with-a-decorator-in-angular
+  There are four types of decorators in Angular:
+
+ Class Decorators
+   Class Decorators are the top-level decorators that are used to define the purpose for the classes. They provide information to Angular that a particular class is a component, 
+  or module. 
+  @Component,@NgModule
+
+ Property Decorators
+  Property decorators are used to decorate the specific properties within the classes. Take a look at 
+  @Input(),@Output
+
+ Method Decorators
+    A Method Decorator decorates specific methods within your class with functionality. This is declared just before a method declaration.
+    @HostListener
+
+ Parameter Decorators
+   Parameter decorators are used to decorate parameters in your class constructors. It tells Angular that what you want that parameter to be initiated with.
+ For example- @Inject
+
+45.How many Types of Forms in Angular?
+ Link:https://www.tutorialspoint.com/angular8/angular8_forms.html
+ https://erpsolutions.oodles.io/developer-blogs/Types-of-form-in-angular/
+   Angular 8 supports two types of forms. They are Template driven forms and Reactive forms.
+
+ Template driven Forms:
+
+ The template-driven form is a form that makes use of the form module and most of the logic is driven by the template. 
+ Template-driven form is asynchronous in nature. It follows the approach of two-way binding.
+
+  In Module File we have mention it : import { FormsModule } from '@angular/forms'; 
+ test.component.html
+
+ <form #userName="ngForm" (ngSubmit)="onClickSubmit(userName.value)"> 
+   <input type="text" name="username" placeholder="username" ngModel> 
+   <br/> 
+   <br/> 
+   <input type="submit" value="submit"> 
+ </form>
+
+ In component we write below function when submit button clicks
+ onClickSubmit(result) {
+      console.log("You have entered : " + result.username); 
+   }
+ Reactive Forms:
+
+ Reactive form is a form that makes use of reactive form modules and most of the logic is driven by the typescript code. Reactive form is synchronous in nature.
+
+
+   Reactive Forms is created inside component class so it is also referred as model driven forms. Every form control will have an object
+  in the component and this provides greater control and flexibility in the form programming. Reactive Form is based on structured data model. 
+  Let’s understand how to use Reactive forms in angular.
+
+  In Module File we have mention it : Ex:import { ReactiveFormsModule } from '@angular/forms';
+ In coponent We have to import: import { FormGroup, FormControl } from '@angular/forms';
+
+ Create Reactive forms
+  Before moving to create Reactive forms, we need to understand about the following concepts,
+
+  FormControl − Define basic functionality of individual form control
+ 
+  FormGroup − Used to aggregate the values of collection form control
+
+  FormArray − Used to aggregate the values of form control into an array
+
+  ControlValueAccessor − Acts as an interface between Forms API to HTML DOM elements
+ 
+ Component:
+ export class TestComponent implements OnInit {
+   userName; 
+   formdata;
+   ngOnInit() { 
+      this.formdata = new FormGroup({ 
+         userName: new FormControl("Tutorialspoint")
+      }); 
+   } 
+   onClickSubmit(data) {this.userName = data.userName;}
+ }
+
+ Html:
+ <div> 
+   <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)" > 
+      <input type= text"  name="userName" placeholder="userName" 
+         formControlName = "userName"> 
+      <br/>
+      <br/>
+      <input type="submit"  value="Click here"> 
+   </form>
+ </div> 
+ <p> Textbox result is: {{userName}} </p>
+
+csharp  
+1.differnce IEnumerable and ILIst
+  The main difference between IEnumerable and List in C# is that IEnumerable is an interface, while List is a concrete class. 
+   Moreover, IEnumerable is read-only and List is not.
+  List represents the entire collection in memory, while IEnumerable provides an interface for getting the next item one-by-one (enumerating data).
+
+  Both IEnumerable and List are part of .NET's System.Collections namespace.
+2.differce between array and List
+
+ They are different object types. They have different capabilities and store their data in different ways.
+
+ An Array (System.Array) is fixed in size once it is allocated. You can't add items to it or remove items from it. Also, all the elements must be the same type. 
+  As a result, it is type safe, and is also the most efficient of the three, both in terms of memory and performance. Also, System.Array supports multiple dimensions
+  (i.e. it has a Rank property) while List and ArrayList do not (although you can create a List of Lists or an ArrayList of ArrayLists, if you want to).
+
+ you store value types in it, they are boxed and unboxed, which can be a bit inefficient. Also, it is not type-safe.
+
+  A List<> leverages generics; it is essentially a type-safe version of ArrayList. This means there is no boxing or unboxing (which improves performance) and 
+  if you attempt to add an item of the wrong type it'll generate a compile-time error.
+
+  
+3.What authentication u are using
+  JWT authentication is a token-based stateless authentication mechanism. It is popularly used as a client-side-based stateless session, this means the server doesn’t have '
+  to completely rely on a data store (or) database to save session information.
+
+    JWTs can be encrypted, but they are typically encoded & signed
+
+ Link :https://blog.miniorange.com/what-is-jwt-json-web-token-how-does-jwt-authentication-work/#:~:text=JWT%20authentication%20is%20a%20token,they%20are%20typically%20encoded%20%26%20signed.
+
+4.Explain about ref and out
+
+ Sr. No   Key	           ref keyword	                                                                       out keyword
+ 1	 Purpose	ref keyword is used when a called method has to update the passed parameter.	  out keyword is used when a called method has to update multiple parameter passed.
+ 2	 Direction	ref keyword is used to pass data in bi-directional way.	                          out keyword is used to get data in uni-directional way.
+ 3	 Initialization	Before passing a variable as ref, it is required to be initialized .	          No need to initialize variable if out keyword is used.
+                          otherwise compiler will throw error
+ 4	 Initialization	In called method, it is not required to initialize the parameter passed as ref.   In called method, it is required to initialize the parameter passed as out.
+
+5.how u connect to databased and reading data
+6.ur using line queries
+7.explain about generic collection
+  C# collection types are designed to store, manage and manipulate similar data more efficiently. 
+   Data manipulation includes adding, removing, finding, and inserting data in the collection. Collection types implement the following common functionality: 
+
+  .NET supports two types of collections, generic collections and non-generic collections. Prior to .NET 2.0, 
+  it was just collections and when generics were added to .NET, generics collections were added as well.
+
+  The Generic Collections in C# are strongly typed. The strongly typed nature allows these collection classes to store only one type of value into it. 
+  This not only eliminates the type mismatch at runtime but also we will get better performance as they don’t require boxing and unboxing while they store value type data.
+  The Generic Collection classes are implemented under the System.Collections.Generic namespace. The classes which are present in this namespace are as follows.
+
+  Stack<T>: It represents a variable size last-in-first-out (LIFO) collection of instances of the same specified type. 
+  Queue<T>: It represents a first-in, first-out collection of objects. 
+  HashSet<T>: It represents a set of values. It eliminates duplicate elements.
+  SortedList<TKey, TValue>: It represents a collection of key/value pairs that are sorted by key based on the associated System.Collections.Generic.IComparer implementation. It automatically adds the elements in ascending order of key by default.
+  List<T>: It represents a strongly typed list of objects that can be accessed by index. Provides methods to search, sort, and manipulate lists. It grows automatically as you add elements to it.
+  Dictionary<TKey, Tvalue>: It represents a collection of keys and values.
+  SortedSet<T>: It represents a collection of objects that are maintained in sorted order.
+  SortedDictionary<TKey, TValue>: It represents a collection of key/value pairs that are sorted on the key.
+  LinkedList<T>: It represents a doubly linked list.
+
+
+ The non-generic collection classes such as ArrayList, Hashtable, SortedList, Stack, and Queue are worked on the object data type. That means the elements added to the collection 
+ are of an object type. As these non-generic collection classes worked on object data type, we can store any type of value that may lead to a runtime exception due to type mismatch.
+ But with Generic Collections in C#, now we are able to store a specific type of data (whether a primitive type or a reference type) which provides type safety by eliminating the 
+ type mismatch at run time.
+
+
+8.Have u know about tuple
+
+9.have u used helper class
+
+10.Have u used custom error handline execption?  
+  Exception handling is a mechanism in .NET framework to detect and handle run time errors
+
+  In C# there are three keywords Try, Catch, and Finally for handling exceptions.
+
+    In try block statements it might throw an exception whereas catch handles that caused by try block if one exists.
+    The finally block is used for doing any clean up process. The statement in finally block always executes.
+
+11.In .Net Core we can work without using configure or configure services ?
+
+   We can work without Configure services
+
+12.Explain About Middle ware and Custom Middle ware?
+
+
+13.Differnces between .Net Framwork and .Net Core?
+
+
+14.Dictionary to List and List to Dictionary Conversion ?
+
+
+15.Add Tranist,Add scope ,Add Global,Add Singleton?
+  Add Singleton
+  When we register a type as singleton, only one instance is available throughout the application and for every request.
+
+  It is similar to having a static object.
+
+  The instance is created for the first request and the same is available throughout the application and for each subsequent requests.
+
+   public void ConfigureServices(IServiceCollection services){
+     services.AddSingleton<ILog,Logger>()
+  }
+
+  Add Scoped
+  When we register a type as Scoped, one instance is available throughout the application per request. When a new request comes in, the new instance is created. Add scoped specifies 
+  that a single object is available per request.
+
+   public void ConfigureServices(IServiceCollection services){
+     services.AddScoped<ILog,Logger>()
+   }
+
+  Add Transient
+   When we register a type as Transient, every time a new instance is created. Transient creates new instance for every service/ controller as well as for every request and every user.
+
+  public void ConfigureServices(IServiceCollection services){
+     services.AddTransient<ILog,Logger>()
+   }
+  Parameter	  Add Singleton	                                        Add Scoped	                                                         Add Transient
+  Instance	Same each request/ each user.	                        One per request.	                                                  Different for everytime.
+  Disposed	App shutdown	                                        End of request	                                                           End of request
+  Used in	When Singleton implementation is required.	        Applications which have different behavior per user.	                  Light weight and stateless services.
+
+ services.AddSingleton<ILOg,Log>();
+ services.AddTransient<ILog,Log>();
+ services.AddScoped<>(ILog,Log)();
+
+
+16.web config and App settings?
+ Web.config :
+  It is a configuration file, which is used in web application and it can be an ASP.NET project or MVC project. Some project contains multiple web.config 
+  file inside the same project but with different folder.
+
+ App.config :
+    It is also a special type of configuration file which is basically used with Windows Services, Windows application, Console Apps or it can be WPF application or any others.
+  
+    It parses at compile time; it means if you edit the app.config when program is running, then you need to restart the application to reload the configuration setting into the program.
+
+Machine.config
+
+  It is a special type of configuration file which creates into the OS when you install visual studio. This stores machine level configuration setting. 
+  Only one machine.config file exists into the system and it stores highest level of configuration settings.
+
+  Machine.config settings apply to all web applications which is residing on the server. The setting of machine.config can be overridden by web.config’s settings.
+  If your system does not contain the machine.config then you cannot execute the application.
+
+17.API Filters ?
+  Link:https://www.tutorialspoint.com/what-are-the-different-types-of-filters-in-chash-asp-net-webapi
+
+  Filters are used to inject extra logic at the different levels of WebApi Framework request processing. Filters provide a way for cross-cutting concerns 
+   (logging, authorization, and caching). Filters can be applied to an action method or controller in a declarative or programmatic way. Below are the types of filters in Web API C#.
+
+  There are different filter types:
+
+  Authorization filters – They run first to determine whether a user is authorized for the current request
+   we have to Imlement IAuthorizationFilter ,OnAuthorization method
+
+  Resource filters – They run right after the authorization filters and are very useful for caching and performance
+   we have to Implement IResourceFilter , OnResourceExecuting, OnResourceExecuted method
+
+  Action filters – They run right before and after the action method execution
+     we have to implement IActionFilter,  OnActionExecuting,OnActionExecuted
+
+  Exception filters – They are used to handle exceptions before the response body is populated
+   we have to implement IExceptionFilter , OnException method
+
+  Result filters – They run before and after the execution of the action methods result.
+    we have to imlement IResultFilter,OnResultExecuting, OnResultExecuted  method
+
+
+
+  Filter Type	           Interface	                      Class                                                            Description
+Simple Filter	         IFilter		                                                          Defines the methods that are used in a filter
+Action Filter	         IActionFilter	                  ActionFilterAttribute	                          Used to add extra logic before or after action methods execute.
+Authentication Filter	 IAuthenticationFilter		                                                  Used to force users or clients to be authenticated before action methods execute.
+Authorization Filter	 IAuthorizationFilter	         AuthorizationFilterAttribute	                  Used to restrict access to action methods to specific users or groups.
+Exception Filter	 IExceptionFilter	         ExceptionFilterAttribute	                  Used to handle all unhandled exception in Web API.
+Override Filter	         IOverrideFilter		                                                 Used to customize the behaviour of other filter for individual action method
+
+
+ 
+18.App Routing ,Attribute Routing ,Conventional Routing ?
+
+  If you POST your model inside the body with Content-Type: application/json then you have to tell the ModelBinder to read the model from body by applying [FromBody] attribute.
+   Conventional routing: The route is determined based on conventions that are defined in route templates that, at runtime, will map requests to controllers and actions (methods).
+ 
+  Attribute-based routing: The route is determined based on attributes that you set on your controllers and methods.
+
+
+18.HTTp Protocols Post,Get ki differnces?
+Difference between HTTP GET and HTTP POST
+
+       HTTP GET                                                                       HTTP POST
+
+In GET method we can not send large amount of data rather. 	                  In POST method large amount of data can be sent because the request parameter is appended into the body.
+limited data is sent because the request parameter is appended into the URL      
+
+GET request is comparatively better than Post so it is used more than the         POST request is comparatively less better than Get so it is used less than the Get request.
+Post request.
+
+
+GET request is comparatively less secure because the                     	   POST request is comparatively more secure because the data is not exposed in the URL bar.
+data is exposed in the URL bar.
+
+Request made through GET method are stored in Browser history.	                   Request made through POST method is not stored in Browser history.
+
+GET method request can be saved as bookmark in browser.                            POST method request can not be saved as bookmark in browser.
+
+Request made through GET method are stored in cache memory of Browser. 	           Request made through POST method are not stored in cache memory of Browser.
+
+Data passed through GET method can be easily stolen by attackers.	           Data passed through POST method can not be easily stolen by attackers.
+
+In GET method only ASCII characters are allowed.	                           In POST method all types of data is allowed.
+
+
+
+
+
+Difference between PUT and PATCH  request:
+
+                                PUT                                                                          	                                          PATCH                                                        
+PUT is a method of modifying resource where the client                                     	PATCH is a method of modifying resources where the client sends partial 
+ sends data that updates the entire resource .                                                  data that is to be updated without modifying the entire data.
+
+In a PUT request, the enclosed entity is considered to be    	                                With PATCH, however, the enclosed entity contains a set of instructions describing  
+a modified version of the resource stored on the origin server,                                 describing how a resource currently residing on the origin server should be modified to produce a new version.
+and the client is requesting that the stored version be replaced
+
+HTTP PUT is said to be idempotent, So if you send retry a request multiple times 	       HTTP PATCH is basically said to be non-idempotent. So if you retry the request N times, 
+, that should be equivalent to a single request modification                                   you will end up having N resources with N different URIs created on the server.
+
+It has High Bandwidth 	                                                                       Since Only data that need to be modified if send in the request body as a payload , It has Low Bandwidth 
+
+
+19.solid principle and design patterns >singleton design patterns?
+
+The Single Responsibility Principle is one of the SOLID design principles. We can define it in the following ways,
+
+A reason to change
+A class or method should have only one reason to change.
+ 
+Single Responsibility
+A class or method should have only a single responsibility.
+
+
+20.Explain about Web API ?
+  API stands for Application Programming Interface.
+
+  A Web API is an application programming interface for the Web.
+ 
+ WEB API isa Programmming Interface/Application That Provider a communication between or interaction between software
+Applications. Web API is often used to  Provider an interface for websits and client apllication to have dataaccess
+Web API can be used to acces data from a database and save data back to the database
+
+
+21.Explain about .Net Core?
+  .NET Core is a new version of .NET Framework, which is a free, open-source, general-purpose development platform maintained by Microsoft. 
+  It is a cross-platform framework that runs on Windows, macOS, and Linux operating systems.
+
+  .NET Core Framework can be used to build different types of applications such as mobile, desktop, web, cloud, IoT, machine learning, microservices, game, etc.
+
+  .NET Core is written from scratch to make it modular, lightweight, fast, and cross-platform Framework.
+  .NET Core application speed up the performance, reduce the memory footprint and becomes easy to maintain.
+
+  
+ 22.Explain about Encapsulation, Polymorphism and Interface ?
+
+ 1.Encapsulation:
+
+  Encapsulation, in the context of C#, refers to an object's ability to hide data and behavior that are not necessary to its user. 
+ Encapsulation enables a group of properties, methods and other members to be considered a single unit or object.
+
+ The following are the benefits of encapsulation:
+
+  Protection of data from accidental corruption
+  Specification of the accessibility of each of the members of a class to the code outside the class
+  Flexibility and extensibility of the code and reduction in complexity
+  Lower coupling between objects and hence improvement in code maintainability
+
+  Encapsulation in C# is implemented with different levels of access to object data that can be specified using the following access modifiers:
+
+   Public: Access to all code in the program
+   Private: Access to only members of the same class
+   Protected: Access to members of same class and its derived classes
+   Internal: Access to current assembly
+   Protected Internal: Access to current assembly and types derived from containing class
+  
+     What is the default access modifier for classes?
+     internal is the default if no access modifier is specified.
+  
+    What is the default access mode for class members?
+     The default access for members and classes is private.
+
+  2.Polymorphism:
+    Polymorphism is a Greek word, meaning "one name many forms". In other words, one object has many forms or has one name with multiple functionalities. 
+    "Poly" means many and "morph" means forms. Polymorphism provides the ability to a class to have multiple implementations with the same name. 
+   It is one of the core principles of Object Oriented Programming after encapsulation and inheritance.
+ 
+  There are two types of polymorphism in C#  
+   1. Static / Compile Time Polymorphism.
+   2. Dynamic / Runtime Polymorphism.
+
+  1.Static/Compile Time Poylmorphism
+
+    It is also known as Early Binding.Method overloading is an example of Static Polymorphism. In overloading, the method / function has a same name but different signatures.
+    It is also known as Compile Time Polymorphism because the decision of which method is to be called is made at compile time. 
+    Overloading is the concept in which method names are the same with a different set of parameters.
+
+  2.Dynamic / Runtime Polymorphism.
+
+     Dynamic / runtime polymorphism is also known as late binding. Here, the method name and the method signature (number of parameters and parameter type must be the same 
+    and may have a different implementation). Method overriding is an example of dynamic polymorphism.
+
+    Method overriding can be done using inheritance. With method overriding it is possible for the base class and derived class to have the same method name and same something. 
+    The compiler would not be aware of the method available for overriding the functionality, so the compiler does not throw an error at compile time. 
+    The compiler will decide which method to call at runtime and if no method is found then it throws an error.
+ 
+
+ 3.Interface:
+
+ Interface can have methods, properties, events, and indexers as its members. But interfaces will contain only the declaration of the members. 
+ The implementation of the interface’s members will be given by class who implements the interface implicitly or explicitly.
+
+  Interfaces specify what a class must do and not how.
+  Interfaces can’t have private members.
+  By default all the members of Interface are public and abstract.
+  The interface will always defined with the help of keyword ‘interface‘.
+  Interface cannot contain fields because they represent a particular implementation of data.
+  Multiple inheritance is possible with the help of Interfaces but not with classes.
+ 
+4.Absctraction
+ https://www.knowledgehut.com/tutorials/csharp/csharp-abstraction
+  Abstraction is an important part of object oriented programming. It means that only the required information is visible to the user and the rest of the information is hidden.
+
+  Abstraction can be implemented using abstract classes in C#. Abstract classes are base classes with partial implementation.
+   These classes contain abstract methods that are inherited by other classes that provide more functionality.
+
+  Some of the salient points about abstract classes are as follows:
+
+ The abstract class is created using the keyword abstract and some of the methods of the abstract class also contain the keyword abstract.
+ No object can be created of the abstract class i.e.it cannot be instantiated.
+ The abstract methods in the abstract class are implemented actually only in the derived classes.
+ If all the methods in the abstract class contain the keyword abstract, then that class is known as pure Abstract class.
+
+   Abstraction is hiding the details and implementation of the code. Encapsulation is hiding the data and controlling the visibility of the code
+
+23.Explain diff between constant and readonly ?
+   Link:https://www.geeksforgeeks.org/difference-between-readonly-and-const-keyword-in-c-sharp
+  ReadOnly Keyword	                                                   Const Keyword
+  In C#, readonly fields can be created using readonly keyword	          In C#, constant fields are created using const keyword.
+  ReadOnly is a runtime constant.                     	                  Const is a compile time constant.
+  The value of readonly field can be changed.	                          The value of the const field can not be changed.
+  It cannot be declared inside the method.	                          It can be declared inside the method.
+  In readonly fields, we can assign values in 	                          In const fields, we can only assign values in declaration part.
+   declaration and in the constructor part.                 
+   It can be used with static modifiers.	                           It cannot be used with static modifiers.
+
+   readonly int myvar1; 
+   readonly int myvar2; 
+   public GFG(int b, int c)
+    {
+ 
+        myvar1 = b;
+        myvar2 = c;
+        Console.WriteLine("Display value of myvar1 {0}, "+
+                        "and myvar2 {1}", myvar1, myvar2);
+    }
+   readonly int i;                                                             const int i=20;    
+                                                       
+
+
+ 
+24.Explain about constructor ,static constructor ,private constructor ?
+  Link:https://referbruv.com/blog/csharp-fundamentals-private-constructor-and-static-constructor-explained/
+
+ Constructor is the first block to be called within a class when an object of its type is created.
+
+   Although Constructors are marked as public by default for its visibility level, C# also supports two special kinds of Constructors – 
+   Private Constructor and Static Constructor. These two are used for different purposes and are employed under special scenarios.
+1.Paramterized Connstructor ->We have to pass one property for paramterized constructor
+2.copy constructor >Copy constructor is used to copy the class in the constructor, we have passing the instance of the class 
+3.Private Constructor
+4.Static Construcor
+5.Defualt constructor
+
+ 
+ Non static constructor is nothing but public constructors
+
+  Private Constructor
+
+ 1. Private Constructor is a special instance Constructor, used in classes that contain static members only.
+ 2.If a class has one or more private Constructors and no public Constructor, other classes can’t create instance of this class.
+ 3.Private constructors are also core to the implementation of a Singleton design pattern.
+
+ Static Constructor :
+ 1.Static constructors are used to initialize static members of the class or to perform particular actions that need to be performed only once.
+   A normal constructor is called each time an instance of the class is created. But in some cases, we might want the initialization of some members 
+   to happen only once in the entire application life.
+ 2.Static constructor is automatically called before the first instance of the class is created or any static member of the class is referred.
+ 3.A Static constructor can’t have any access modifiers or parameters.
+ 4.A Class or struct can have only one static constructor.
+
+25.What is Media Formatter in Csharp?
+
+  Media type formatters are classes responsible for serializing request/response data so that Web API can understand the request data format
+  and send data in the format which client expects.
+
+
+            Web API includes following built-in media type formatters.
+
+ Media Type Formatter Class	       MIME Type	                                      Description
+JsonMediaTypeFormatter	                application/json, text/json                	Handles JSON format
+XmlMediaTypeFormatter	                application/xml, text/json	                Handles XML format
+FormUrlEncodedMediaTypeFormatter	application/x-www-form-urlencoded	        Handles HTML form URL-encoded data
+JQueryMvcFormUrlEncodedFormatter	application/x-www-form-urlencoded	       Handles model-bound HTML form URL-encoded data
+
+
+
+26.what is a namespace?
+ 
+    Namespaces are used to organize the classes. It helps to control the scope of methods and classes in larger .Net programming projects. 
+  In simpler words you can say that it provides a way to keep one set of names(like class names) different from other sets of names.
+  The biggest advantage of using namespace is that the class names which are declared in one namespace will not clash with the same class names declared in another namespace.
+  It is also referred as named group of classes having common features. The members of a namespace can be namespaces, interfaces, structures, and delegates.
+
+
+27.Collection in csharp?
+    C# collection types are designed to store, manage and manipulate similar data more efficiently. 
+   Data manipulation includes adding, removing, finding, and inserting data in the collection. Collection types implement the following common functionality: 
+
+  .NET supports two types of collections, generic collections and non-generic collections. Prior to .NET 2.0, 
+  it was just collections and when generics were added to .NET, generics collections were added as well.
+
+ex:https://dotnetcrunch.in/generic-collections-in-csharp/
+
+28.Explain about Launch settings ?
+
+29.Explain about abstraction?
+
+30.Write Linq query to get Employee List from Employee Table and Department Table ,if Salary>10000 and Department is student  ?
+
+   Employee 
+   EmployeeID
+   Employee Name
+   salary 
+   DepartmentID >Foreign key
+
+  Department
+   DepartmentID
+   Department
+
+
+var employeelist=  (from stu in employees 
+                join dept in departments on 
+                 stu.dept_id equals dept.dept_id                
+                 where stu.salary>10000 
+                select new
+                {
+                    ID = stu.id, Name = stu.name,
+                    DeptName = dept.dept_name,
+                }).ToList();
+
+ 31.If the List has contains employee ids from above query output employee list how to get below list employee list from above output list?
+   List<int> employeeIDs=new List<int>();
+   emploeeIDS.Add(1),
+   employeeIDs.Add(2)
+one way
+  var k = from id in employeeIdList
+           where employeeIDs.Contains(id)
+           select id;
+another way
+ var result = employeeIdList.Where(p => employeeIDs.Any(p2 => p2.ID == p.ID));
+ var result = employeeIdList.Where(E => employeeIDs.contains(E.ID)).select(p=>p.ID).ToList();
+
+32.Explain about your project Folders structure?
+
+
+33.explain about how  Performance will .net core?
+
+34. Write collection example for generic list and non genric list? 
+
+35.Execute query and ExecuteNonQuery differnces in ADO.NET?
+   ExecuteReader is used for any result set with multiple rows/columns (e.g., SELECT col1, col2 from sometable ). 
+   ExecuteNonQuery is typically used for SQL statements without results (e.g., UPDATE, INSERT, etc.)
+
+36.What is cross origin in Web API?
+     Cross-origin resource sharing (CORS) is a browser security feature that restricts cross-origin HTTP requests that are initiated from scripts running in the browser.
+  If your REST API's resources receive non-simple cross-origin HTTP requests, you need to enable CORS support.
+
+CORS is typically required to build web applications that access APIs hosted on a different domain or origin
+
+37.why is linq?
+
+ LINQ in C# is used to work with data access from sources such as objects, data sets, SQL Server, and XML. 
+ LINQ stands for Language Integrated Query. LINQ is a data querying API with SQL like query syntaxes. 
+ LINQ provides functions to query cached data from all kinds of data sources.
+
+38. what are solid design prinicples?
+  Link:https://www.educative.io/blog/solid-principles-oop-c-sharp
+ SOLID principles are the design principles that enable us to manage most of the software design problems.
+ Robert C. Martin compiled these principles in the 1990s.
+
+ These principles provide us with ways to move from tightly coupled code and little encapsulation to the desired results of loosely coupled 
+   and encapsulated real needs of a business properly. SOLID is an acronym of the following.
+  
+   S: Single Responsibility Principle (SRP)
+      Every software module should have only one reason to change.Each class has only one single funtionality to execute
+
+  O: Open closed Principle (OCP)
+      Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification
+
+  L: Liskov substitution Principle (LSP)
+     you should be able to use any derived class instead of a parent class and have it behave in the same manner without modification
+
+  I: Interface Segregation Principle (ISP)
+     Clients should not be forced to implement interfaces they don't use. Instead of one fat interface, many small interfaces are preferred based on groups of functions, 
+     each one serving one submodule.
+
+  D: Dependency Inversion Principle (DIP)
+
+   The dependency inversion principle (DIP) has two parts:
+
+   High-level modules should not depend on low-level modules. Instead, both should depend on abstractions (interfaces)
+   Abstractions should not depend on details. Details (like concrete implementations) should depend on abstractions.
+
+
+39.In ADO.net Execute scalar ,ExecuteQuery and ExecuteNONQuery
+Lin:https://www.c-sharpcorner.com/blogs/executereader-executenonquery-and-executescalar-in-adonet
+ ExecuteNonQuery
+
+  ExecuteNonQuery method is used to execute SQL Command or the storeprocedure performs, INSERT, UPDATE or Delete operations. 
+  It doesn't return any data from the database. Instead, it returns an integer specifying the number of rows inserted, updated or deleted
+
+ ExecuteReader:
+ ExecuteReader method is used to execute a SQL Command or storedprocedure returns a set of rows from the database.
+
+ Executescalar
+  ExecuteScalar method is used to execute SQL Commands or storeprocedure, after executing return a single value from the database. 
+  It also returns the first column of the first row in the result set from a database.
+
+40.How to Get N records in Linq query?
+var data = (from p in people
+           select p).Take(100);
+
+41.Explain about var ,Object and Dynamic Keywords?
+ Link:https://stackoverflow.com/questions/21080346/difference-between-object-dynamic-and-var
+  
+ Object:
+
+  Each object in C# is derived from object type, either directly or indirectly.
+  It is compile time variable and require boxing and unboxing for conversion and it makes it slow.
+  You can change value type to reference type and vice versa.
+
+ public void CheckObject()
+ {
+    object test = 10;
+    test = test + 10;    // Compile time error
+    test = "hello";      // No error, Boxing happens here
+ }
+
+ Var:
+
+ It is compile time variable and does not require boxing and unboxing. Since Var is a compile time feature,
+ all type checking is done at compile time only. Once Var has been initialized, you can't change type stored in it.
+
+ public void CheckVar()
+ {
+    var test = 10;         // after this line test has become of integer type
+    test = test + 10;      // No error
+    test = "hello";        // Compile time error as test is an integer type
+ }
+
+ Dynamic:
+
+ It is run time variable and not require boxing and unboxing. 
+ You can assign and value to dynamic and also can change value type stored in same. All errors on dynamic can be discovered at run time only.
+  We can also say that dynamic is a run time object which can hold any type of data.
+
+public void CheckDynamic()
+{
+    dynamic test = 10;
+    test = test + 10;     // No error
+    test = "hello";       // No error, neither compile time nor run time
+}
+
+ Object is useful when we don't have more information about the data type. Dynamic is useful when we need to code using reflection or 
+ dynamic languages or with the COM objects and when getting result out of the LinQ queries.
+
+42.Explain About Partial class ,sealed class and Anyomonus class?
+   A Sealed class is a class that cannot be inherited.Sealed classes are used to restrict the inheritance feature of object oriented programming.
+
+
+  A partial class is a class that can be split between 2 or more source files.
+    It provides a special ability to implement the functionality of a single class into multiple files and all these files are combined into a single class file when the
+  application is compiled. A partial class is created by using a partial keyword. This keyword is also useful to split the functionality of methods, interfaces, or structure 
+  into multiple files.
+
+43.What are anonymous classes in C#?
+   Link:https://www.geeksforgeeks.org/c-sharp-anonymous-types/
+  
+  IN C#, an anonymous type is a type (class) without any name that can contain public read-only properties only. 
+  It cannot contain other members, such as fields, methods, events, etc. You create an anonymous type using the new operator with an object initializer syntax.
+   
+  The properties of anonymous types are read-only and cannot be initialized with a null, anonymous function, or a pointer type.
+   The properties can be accessed using dot (.) notation, same as object properties.
+ 
+  The scope of the anonymous type is always limited to the method in which they are defined. Due to their local scope, you are not allowed to pass an
+   anonymous type to another method, but you can pass it to those methods which can accept dynamic type parameters
+ 
+ // Anonymous type object
+        var anony_object = new {s_id = 134, 
+                                s_name = "Siya", 
+                             language = "Ruby"};
+43.Explain about ADO.NET?
+
+    ADO.NET is a set of classes (a framework) to interact with data sources such as databases and XML files. 
+   ADO is the acronym for ActiveX Data Objects. It allows us to connect to underlying data or databases. It has classes and methods to retrieve and manipulate data.
+
+  ADO.NET uses a multilayer architecture that mainly has a few concepts, for instance Connection, Reader, Command, Adapter and Dataset objects. 
+  ADO.NET introduced data providers that are a set of special classes to access a specific database, execute SQL commands and retrieve data.04-Nov-2020
+  System.Data.SqlClient: Contains the classes to ...
+  System.Data.OracleClient: Contains classes s...
+  System.Data.Odbc: Contains classes required to ...
+  System.Data: Contains the definition for colum...
+
+44.Explain about Web API Types
+  Link:https://stoplight.io/api-types
+
+   Web APIs are APIs that can be accessed using the HTTP protocol. The API defines endpoints, and valid request and response formats. 
+  Web APIs include the APIs used to communicate with the browser (see  list). They may be services such as web notifications and web storage.
+  Different web APIs feature varying levels of security and privacy, including open, internal and partner APIs.
+  Multiple web APIs can be combined into a composite API - a collection of data or service APIs.
+  
+  1.Open APIS
+  2.Internal APIS
+  3.Partner APIs
+  4.Composite APIS
+
+45.Explain about Web API Protocols?
+   An API protocol defines the rules for API calls: it specifies accepted data types and commands. Different API architectures specify different protocol constraints.
+  REST:
+   REST (representational state transfer) is a very popular web API architecture. To be a REST API, an API must adhere to certain architectural constraints, or principles, including:
+
+ SOAP :
+   Simple object access protocol (SOAP) 
+  SOAP (simple object access protocol) is an established web API protocol. It is intended to be extensible, neutral (able to operate over a range of communication protocols, 
+  including HTTP, SMTP, TCP and more), and independent (it allows for any programming style) The SOAP specification includes:
+
+ JSON-RPC and XML-RPC:
+   An RPC is a remote procedural call protocol. XML-RPC uses XML to encode its calls, while JSON-RPC uses JSON for the encoding. Both protocols are simple. 
+   A call can contain multiple parameters, and expects one result. They have a couple of key features, which require a different architecture to REST:
+
+  SOAP use XML to tranfer request and response while rest used json
+46.Explain about Rest API?
+   REST stands for representational state transfer
+  REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways.
+
+   When a client request is made via a RESTful API, it transfers a representation of the state of the resource to the requester or endpoint. 
+   This information, or representation, is delivered in one of several formats via HTTP: JSON (Javascript Object Notation), HTML, XLT, Python, PHP, or plain text. 
+  JSON is the most generally popular file format to use because, despite its name, it’s language-agnostic, as well as readable by both humans and machines. 
+
+  Something else to keep in mind: Headers and parameters are also important in the HTTP methods of a RESTful API HTTP request, as they contain important identifier 
+  information as to the request's metadata, authorization, uniform resource identifier (URI), caching, cookies, and more. There are request headers and response headers, 
+  each with their own HTTP connection information and status codes.
+
+
+ What is REST architecture and RESTful web services?
+  REST is a software architectural style that defines the set of rules to be used for creating web services. Web services which follow the REST architectural style are known as 
+  RESTful web services. It allows requesting systems to access and manipulate web resources by using a uniform and predefined set of rules
+
+45.What is session in webAPI?
+ Session is a State Management Technique. A Session can store the value on the Server. It can support any type of object to be stored 
+  along with our own custom objects. A session is one of the best techniques for State Management because it stores the data as client-based.
+
+ State Server: Medium(n processor and 1 server)
+ Session mode: Performance
+ SQL Server: Less
+ InProc: more(1 processor and 1 server)
+
+46.How many types of sessions are there in C#?
+     There are four mode types or just modes. In-Process mode, State Server mode, SQL Server mode, Custom mode and Off mode. 
+   These are modes. In-Process mode uses memory as session storage
+
+46.What is Local Storage ,Session storage ,Cookies and cache ?
+  LocalStorage:
+    Local Storage, what does that mean, just thing you don't know anything about technology, but by the itself you can guess. It is some storage which stores data locally. that what it is.
+
+     IT stores data in Browser without any expiration until user clear it through JavaScript code or Clear browser cache.
+
+  Session Storage:
+    It seems like it also stores data but related to a session then how different it is from localStorage?
+
+   The main difference is your session storage data will be deleted once the session is finish or browser tab is closed or the browser is closed.
+
+   You can just try in browser console by setting
+
+   localStorage.setItem('name' , 'alex')
+   sessionStorage.setItem('session','seesion value')
+
+   and then close tab and open again, you can still find localStorage data but not sessionStorage data.
+
+   Cache:
+    Web cache, also called HTTP cache, is a tech for storing temporary information like web pages, images, files, scripts or other web multimedia.
+    Cache is mainly used to reduce the server lag and reduce the loading speed of web page data.
+
+  Cookies:
+    Web cookie, also named browser cookie/internet cookies/HTTP cookie, is a small amount of data that is stored on your computer by the web browser
+   when you browse a web page. Cookies are used for remembering user’s browsing activity, e.g. clicking specific items or buttons, 
+   logging in information like names, passwords, addresses, payment card numbers, visited web pages, etc
+
+47.What is app settings in web config?
+   The <appSettings> element of a web. config file is a place to store connection strings, server names, file paths, and other miscellaneous settings needed
+   by an application to perform work.
+48.What is the difference between first () and FirstOrDefault () in Linq?
+ 
+    The major difference between First and FirstOrDefault is that First() will throw an exception if there is no result data for the supplied criteria
+   whereas FirstOrDefault() will return the default value (null) if there is no result data. First() will throw an exception if there is no result data
+
+49.Differnce between Ienumerable and IQueryable
+   Link:https://www.c-sharpcorner.com/UploadFile/a20beb/ienumerable-vs-iqueryable-in-linq/
+   IEnumerable and IQueryable are used for data manipulation in LINQ from the database and collections.
+   IEnumerable:
+    1.IEnumerable exists in the System.Collections namespace.
+    2.IEnumerable is suitable for querying data from in-memory collections like List, Array and so on.
+    3.While querying data from the database, IEnumerable executes "select query" on the server-side, loads data in-memory on the client-side and then filters the data.
+    4.IQueryable is beneficial for LINQ to SQL queries.
+
+
+  IQueryable
+
+    1.IQueryable exists in the System.Linq Namespace.
+    2.Queryable is suitable for querying data from out-memory (like remote database, service) collections.
+    3.While querying data from a database, IQueryable executes a "select query" on server-side with all filters
+    4.While querying data from a database, IQueryable executes a "select query" on server-side with all filters
+
+50.What is Dependency Injection?
+
+  Link:
+    https://www.c-sharpcorner.com/UploadFile/85ed7a/dependency-injection-in-C-Sharp/
+    https://www.dotnettricks.com/learn/dependencyinjection/implementation-of-dependency-injection-pattern-in-csharp
+
+   Dependecy Injection is a Programming Technique that makes class independent of its dependencies .It acheives that by decoupling the usage of an object from its creation.This Helps
+  to follow SOLID Dependcy inversion and Single Responsibility Principles
+
+  The intent of Dependency Injection is to make code maintainble ,Dependency Injection helps to reduce the tight coupling among software componenets.Dependency Injection Reduces 
+  hard coded depencies among your classes by injecting those  dependcies at run time instead of design time techincally
+   
+  Three types of dependency Injection:
+
+   1.Constructor Injection
+   2.Property Injection
+   3.Method Injection
+
+ Advantages of Dependency Injection
+  Reduces class coupling
+  Increases code reusability
+  Improves code maintainability
+  Make unit testing possible
+
+51.Explain about Azure Devops?
+
+
+52.What is the difference between managed and unmanaged code?
+The main difference between managed and unmanaged code is listed below:
+
+  Managed Code	                                            Unmanaged Code
+ It is managed by CLR.	                                  It is not managed by CLR.
+ .NET framework is a must for execution.	          Does not require a .NET framework for the execution.
+ Memory management is done through garbage collection.	  Runtime environment takes care of memory management.
+
+53. What is a delegate in .NET?
+
+54.What is base keyword and why we use base keyword in .Net?
+  Link:https://www.javatpoint.com/c-sharp-base
+
+  In C#, base keyword is used to access fields, constructors and methods of base class.
+  
+ C# base keyword: 
+   We can use the base keyword to access the fields of the base class within derived class. It is useful if base and derived classes have the same fields.
+  If derived class doesn't define same field, there is no need to use base keyword. Base class field can be directly accessed by the derived class.
+
+  You can use base keyword within instance method, constructor or instance property accessor only. You can't use it inside the static method.
+
+
+55. What is the extension method in csharp?
+    Link:https://www.tutorialsteacher.com/csharp/csharp-extension-method
+    Extension methods, as the name suggests, are additional methods. Extension methods allow you to inject additional methods without modifying, 
+   deriving or recompiling the original class, struct or interface. Extension methods can be added to your own custom class, .NET framework classes, or third party classes or interfaces.
+
+    An extension method is actually a special kind of static method defined in a static class. To define an extension method, first of all, define a static class.
+
+    where the first parameter of the extension method specifies the type on which the extension method is applicable. We are going to use this extension method on int type.
+    So the first parameter must be int preceded with the this modifier.
+  
+  Ex:
+  Example: Define an Extension Method
+   namespace ExtensionMethods
+   {
+      public static class IntExtensions
+      {
+        public static bool IsGreaterThan(this int i, int value)
+        {
+            return i > value;
+        }
+      }
+   }
+
+
+  Example: Extension method
+  using ExtensionMethods;
+
+  class Program
+  {
+    static void Main(string[] args)
+    {
+        int i = 10;
+
+        bool result = i.IsGreaterThan(100); 
+
+        Console.WriteLine(result);
+      }
+   }
+  Note: The only difference between a regular static method and an extension method is that the first parameter of the extension method specifies the type
+   that it is going to operator on, preceded by the this keyword.
+
+56.HashTable vs Dictionary
+      Hashtable                                                            Dictionary
+ Hashtable is included in the System.Collections namespace.	        Dictionary is included in the System.Collections.Generic namespace.
+ Hashtable is a loosely typed (non-generic) collection,                  Dictionary is a generic collection. So it can store key-value pairs of specific data types.
+ this means it stores key-value pairs of any data types.
+
+ Hashtable is thread safe.	                                        Only public static members are thread safe in Dictionary.
+ Hashtable returns null if we try to find a key which does not exist.	Dictionary throws an exception if we try to find a key which does not exist.
+ Data retrieval is slower than dictionary because of boxing-unboxing.	Data retrieval is faster than Hashtable.
+
+57.authorization and authentication?
+  Authentication:
+   Authentication verifies the identity of a user or service, and authorization determines their access rights
+   Authentication is the process of verifying the identity of a user by obtaining some sort of credentials for example his username password combination,
+    and using those credentials to verify the user’s identity.
+
+  Authorization:
+
+   Authorization is the process of allowing an authenticated user to access his resources by checking whether the user has access rights to the system.
+   You can control access rights by granting or denying specific permissions to an authenticated user. So, If the authentication was successful,
+  the authorization process starts. Authentication process always proceeds to Authorization process.
+
+   JWT used for Authorization:
+    JWT is json web Tokens
+     JWT is a JSON based format of a security token which is basically a base64 url-encoded string which is used as a means of transferring 
+   secure content between two applications. They are used to secure request data in Web APIs. These are included in Authorization HTTP headers as part of 
+   the bearer authentication scheme.
+
+   OAuth is for authorization: 
+     OAuth is not an API or a service: it’s an open standard for authorization and anyone can implement it. With OAuth, you can log into 
+   third party websites with your Google, Facebook, Twitter or Microsoft accounts without having the necessity to provide your passwords. This way you can avoid creating
+   accounts and remembering passwords on each and every web application that you use on the Internet.
+
+           Authentication	                                                                                          Authorization
+Determines whether users are who they claim to be	                                             Determines what users can and cannot access
+Challenges the user to validate credentials (for example,                                            Verifies whether access is allowed through policies and rules
+through passwords, answers to security questions, or facial recognition)
+Usually done before authorization	                                                             Usually done after successful authentication
+Generally, transmits info through an ID Token	                                                     Generally, transmits info through an Access Token
+Generally governed by the OpenID Connect (OIDC) protocol	                                     Generally governed by the OAuth 2.0 framework
+Example: Employees in a company are required to authenticate                                        Example: After an employee successfully authenticates, 
+through the network before accessing their company email	                                    the system determines what information the employees are allowed to access
+the system determines what information the employees are allowed to access
+
+   //Hash the userId by HMAC-SHA-1 (Hashed Message Authentication Code) 
+            byte[] userIdByte = Encoding.ASCII.GetBytes(userId);
+            HMACSHA1 userIdHMAC = new HMACSHA1(userIdByte, true);
+58.FromBody
+
+59.put,patch,post,get
+
+60.What is Normalization ?
+  Normalization
+ 
+  Normalization is the process of organizing data into a related table; it also eliminates redundancy and increases the integrity which improves performance of the query. 
+ To normalize a database, we divide the database into tables and establish relationships between the tables.
+ 
+
+61.Temp data and view data?
+  Link:https://www.c-sharpcorner.com/blogs/viewbag-viewdata-and-tempdata-in-mvc
+   ViewBag
+  ViewBag is a dynamic object to pass the data from Controller to View. And, this will pass the data as a property of object ViewBag. 
+ And we have no need to typecast to read the data or for null checking. The scope of ViewBag is permitted to the current request and the value of ViewBag will become null while redirecting.
+
+
+  ViewData
+  ViewData is a dictionary object to pass the data from Controller to View where data is passed in the form of key-value pair. And typecasting is required to read the data in
+  View if the data is complex and we need to ensure null check to avoid null exceptions. The scope of ViewData is similar to ViewBag and it is restricted to the current request
+  and the value of ViewData will become null while redirecting.
+
+ TempData
+
+  TempData is a dictionary object to pass the data from one action to other action in the same Controller or different Controllers. Usually, TempData object will be stored in a 
+   session object. Tempdata is also required to typecast and for null checking before reading data from it. TempData scope is limited to the next request and if we want Tempdata to
+   be available even further, we should use Keep and peek.
+ 
+62.What is difference between bundling and minification?
+    Bundling and minification are two techniques you can use in ASP.NET to improve page load performance for your web application.
+    Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller payloads.
+
+
+
+63.What are the main return types supported in web API?
+  https://learn.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/action-results
+  Link:https://learn.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/action-results
+
+  It supports the following return types 
+   1.HttpResponseMessage -It will convert the Repsonse to an HTTP
+   2.IHttpActionResult -internally calls Execute Async to Create an HTTPResponseMessage
+   3.Void -It will Return Empty Content  
+   4.Other types such as string, int, etc.  
+
+
+ Return type	               How Web API creates the response
+ void	                       Return empty 204 (No Content)
+ HttpResponseMessage	       Convert directly to an HTTP response message.
+ IHttpActionResult	       Call ExecuteAsync to create an HttpResponseMessage, then convert to an HTTP response message.
+ Other type	             Write the serialized return value into the response body; return 200 (OK).
+
+    HttpResponseMessage
+   In web API version 1.0 we have type called HttpResponseMessage for receiving Http Response message from API Call
+    Ex:
+     public HttpResponseMessage Get(int id){
+
+      var product=dbcontext.Products.Get(id);
+      if(product==null)
+        return Request.CreateResponse(HttpStatusCode.NotFound);
+      
+      return Request.CreateResponse(HttpStatusCode.OK,product);
+    }
+   IHttpActionResult :
+   In web API version 2.0 ,IHttpActionResult introduce which is basically the
+  Replacement of HttpResonseMessage .It creates clean code and also simpliesfies unit testing
+
+   If a controller action returns an IHttpActionResult, Web API calls the ExecuteAsync method to create an HttpResponseMessage.
+ Then it converts the HttpResponseMessage into an HTTP response message.
+
+
+   EX:
+   public IHttpActionResult Get(int id){
+     var product=dbContext.Products.Get(id);
+
+     if(product==null)
+                 return NotFound();
+
+      return OK(product);
+    }
+   
+
+
+     ->you can create your custom types
+
+64.What is idempotent?
+   Idempotence, in programming and mathematics, is a property of some operations such that no matter how many times you execute them, you achieve the same result.
+
+65.Which HTTP method is idempotent?
+    Implemented correctly, the GET , HEAD , PUT , and DELETE methods are idempotent, but not the POST method. All safe methods are also idempotent.
+
+66.Why is HTTP POST not idempotent?
+      HTTP POST. Generally – not necessarily – POST APIs are used to create a new resource on the server. So when we invoke the same POST request N times,
+   we will have N new resources on the server. So, POST is not idempotent.
+   NON-IDEMPOTENT: If an operation always causes a change in state, like POSTing the same message to a user over and over, 
+   resulting in a new message sent and stored in the database every time, we say that the operation is NON-IDEMPOTENT.
+
+67.What is Parameter Binding in ASP.NET Web API?
+   Parameter Binding is a process that specifies that when a Web API calls a method on a controller, it must set the values for the parameters.
+
+   By Default, Web API uses the following rules to bind the parameter:
+
+  FromUri: If the parameter is of "Simple" type, the Web API tries to get the URI value. Simple Type includes.Net Primitive type like int, double, etc., DateTime, TimeSpan, GUID, string, any type which can convert from the string type.
+  FromBody: If the parameter is of "Complex" type, the Web API only binds the values from the message body.
+
+68.HTTP status Codes?
+  HTTPStatus Codes     Status            	Meaning
+  1xx	             Informational	    It specifies that the request has been received and the process is continuing.
+  2xx	             Success	            It specifies that the action was successfully received, understood, and accepted.
+  3xx	             Redirection	    It specifies that we have to take further actions to complete the request.
+  4xx	             Client Error	    It specifies that the request contains incorrect syntax or cannot be fulfilled.
+  5xx	             Server Error	    It specifies that the server failed to fulfil a valid request.
+ 
+69.HTTP verbs?
+  Link:https://www.c-sharpcorner.com/article/rest-features-in-webapi-with-verbs-getpostputdele/
+   HTTP GET
+    This verb should be used only to get information or data from database or other source. The code will look like the given code.
+  
+  HTTP POST
+  This verb should be used only to post or create new entry with information or data to database or other source. Code will look like the given below. 
+  
+  HTTP PUT
+   This verb should be used only to update the existing entry with information or data to database or other source
+
+  HTTP DELETE
+   This verb should be used only to delete existing entry within database or other source.
+
+  HTTP PATCH
+   The HTTP PATCH type should be used to update any partial resources. This verb should be used only to update the existing entry with partial data in database or other source.
+
+70.what is method overloading?
+
+  Link:https://www.tutorialspoint.com/csharp/csharp_operator_overloading.htm
+71.Design Patterns?
+   Link:https://www.dofactory.com/net/adapter-design-pattern
+   Link:https://www.c-sharpcorner.com/UploadFile/bd5be5/design-patterns-in-net/
+
+   Design patterns provide general solutions or a flexible way to solve common design problems.
+
+   Design Patterns in the object-oriented world is a reusable solution to common software design problems that occur repeatedly in real-world application development. 
+   It is a template or description of how to solve problems that can be used in many situations.
+
+   "A pattern is a recurring solution to a problem in a context."
+
+   "Each pattern describes a problem that occurs over and over again in our environment, and then describes the core of the solution to that problem, 
+  in such a way that you can use this solution a million times over, without ever doing it the same way twice.
+
+    There are three basic classifications of patterns Creational, Structural, and Behavioral patterns.
+
+  Creational Patterns
+
+  Abstract Factory : Creates an instance of several families of classes
+  Builder : Separates object construction from its representation
+  Factory Method : Creates an instance of several derived classes
+  Prototype : A fully initialized instance to be copied or cloned
+  Singleton : A class in which only a single instance can exist
+
+  Note 
+  The best way to remember Creational pattern is by remembering ABFPS (Abraham Became First President of States).
+
+  Structural Patterns
+
+  Adapter : Match interfaces of different classes .
+  Bridge : Separates an object's abstraction from its implementation.
+  Composite : A tree structure of simple and composite objects.
+  Decorator : Add responsibilities to objects dynamically.
+  Flyweight : A fine-grained instance used for efficient sharing.
+  Proxy : An object representing another object.
+
+  Note
+   To remember structural pattern best is (ABCDFFP)
+
+  Behavioral Patterns
+
+   Mediator : Defines simplified communication between classes.
+   Memento : Capture and restore an object's internal state.
+  Interpreter : A way to include language elements in a program.
+  Iterator : Sequentially access the elements of a collection.
+  Chain of Resp : A way of passing a request between a chain of objects.
+  Command : Encapsulate a command request as an object.
+  State : Alter an object's behavior when its state changes.
+  Strategy : Encapsulates an algorithm inside a class.
+  Observer : A way of notifying change to a number of classes.
+  Template Method : Defer the exact steps of an algorithm to a subclass.
+  Visitor : Defines a new operation to a class without change.
+
+  Note: Just remember Music....... 2 MICS On TV (MMIICCSSOTV).
+
+72.What is diff between design pattern and solid principles?
+  Link:https://www.linkedin.com/pulse/design-principles-vs-patterns-hallah-shahid-butt/
+  Link:https://www.tutorialsteacher.com/articles/difference-between-design-principle-and-design-pattern
+  Link:https://stackoverflow.com/questions/31317141/whats-the-difference-between-design-patterns-and-design-principles
+
+  Design Principle
+     Design principles provide high level guidelines to design better software applications. They do not provide implementation guidelines and are not bound to any programming language. 
+   The SOLID (SRP, OCP, LSP, ISP, DIP) principles are one of the most popular sets of design principles.
+
+    For example, the Single Responsibility Principle (SRP) suggests that a class should have only one reason to change. This is a high-level statement which
+   we can keep in mind while designing or creating classes for our application. SRP does not provide specific implementation steps but it's up to you 
+  how you implement SRP in your application.
+
+  Design Pattern
+
+   Design Pattern provides low-level(general reusable) solutions related to implementation, of commonly occurring object-oriented problems.
+   In other words, design pattern suggests a specific implementation for the specific object-oriented programming problem. 
+
+  For example, if you want to create a class that can only have one object at a time, then you can use the Singleton design pattern which suggests
+   the best way to create a class that can only have one object.
+
+   Design patterns are tested by others and are safe to follow, e.g. Gang of Four patterns: Abstract Factory, Factory, Singleton, Command, etc.
+
+73.What is Reflection and why we need t0 use Reflection?
+
+
+74.How the Security Works in web API?
+   Security works in Web API by using Authorization and Authentication
+
+  In our case we are using JWt Token Based Authentication for webAPI.after user Login we generte a JWT Token using practice and logged user id and save it in angular
+  and for every request we will send that JWT Token in header parmaters and in backend in api we will validate the jwt token with data which we passing i input model
+  if it matches then only we will allow the request to get data toherwise we will throw error
+
+73.Content Negotation in Web API?
+
+  Link:https://dotnettutorials.net/lesson/content-negotiation-web-api/
+  Content Negotiation Definition:
+   We can define Content Negotiation as “the process of selecting the best representation for a given response when there are multiple representations available”.
+
+  One of the standards of the REST service is that the client should have the ability to decide in which format they want the response – whether they want the response in
+  XML or JSON etc. This is called Content Negotiation.
+
+
+74.singleton Design Pattern Example
+
+public readonly HttpClient _httpClient;
+private static object object =new object();
+public static HttpClient  httpClientInstance(){
+
+ if(_lock(object )){
+
+    if(_httpClient==null){
+        _httpClient =new HttpClient();
+     }
+  }
+
+  return _httpClient ;
+
+}
+
+75.When you create an instance of a derived class which constructor is called first?
+  base constructor
+    The base constructor will be called first. You are right. But the execution starts at the derived constructor, the first thing the derived constructor
+  does is call the base constructor(if any). So it appears as if the base constructor is being called first.
+
+ public class A
+ {
+   public A(){
+
+   }
+
+ }
+ public class A:B
+ {
+   public B(){
+
+   }
+
+ }
+ public class c:B
+ {
+   public c(){
+     
+   }
+
+ }
+
+ Execute :A,B,c
+76.what is Content Negotation?
+  Link:https://dotnettutorials.net/lesson/content-negotiation-web-api/
+   https://code-maze.com/content-negotiation-web-api/
+
+    Content Negotiation as “the process of selecting the best representation for a given response when there are multiple representations available”.
+
+    One of the standards of the REST service is that the client should have the ability to decide in which format they want the response – whether they want the response 
+  in XML or JSON etc. This is called Content Negotiation.
+
+      Content negotiation is implemented by ObjectResult and the Ok() method inherits from OkObjectResult that inherits from ObjectResult .
+   That means our controller method is able to return the content negotiated response
+
+
+77.short circuting in csharp?
+  Link:https://kodify.net/csharp/if-else/short-circuit-if/
+   These && and || two logical operators also perform something called short-circuit evaluation. With short-circuit evaluation, C# stops evaluating a condition as soon as it
+  can deduce the final outcome
+ 
+  Ex:
+    Say our program evaluates the A && B expression. When A is processed and turns up false, C# knows that the A && B condition has to be false as well.
+  After all, a single false value makes the && operator return false as well. So when the first expression is false, C# short-circuits and doesn’t check the second expression.
+  Instead it simply returns false
+
+  The same thing happens with the || operator. When our program comes across the A || B expression and A evaluates to true, then we already know the outcome of A || B: 
+    that condition has to be true as well. And so C# short-circuits and simply returns true without processing the second expression.
+
+   The effect of short-circuit evaluation is that our code runs a little bit quicker. And we can also use this feature to prevent errors. 
+
+
+78.Implicit and  Explicit Interface?
+  Link:https://www.geeksforgeeks.org/c-sharp-explicit-interface-implementation/
+    There are two ways of implementing C# interfaces “Explicit” and “Implicit”.
+
+   Implicit” interface and “Explicit” interface is that in implicit the interface methods are publicly implemented while in explicit the methods are privatelyimplemented.
+
+    Explicitly telling the compiler that a particular member belongs to that particular interface is called Explicit interface implementation. 
+
+  Implict :
+
+
+  Explicit:
+   // C# Program to show the use of
+  // Explicit interface implementation
+  using System;
+
+  interface I1 {
+
+	// Property X
+	int X
+	{
+		set;
+		get;
+	}
+  }
+
+  interface I2 {
+
+	// Method X
+	int X();
+ }
+
+  class C : I1, I2 {
+
+	int x;
+
+	// Implicit implementation of
+	// the property
+	public int X
+	{
+		set { x = value; }
+		get { return x; }
+	}
+
+	// Explicit implementation of
+	// the method
+	int I2.X()
+	{
+		return 0;
+	}
+  }
+
+ // Driver Code
+ class GFG {
+
+	// Main Method
+	static void Main(string[] args)
+	{
+		C c = new C();
+		I2 i2 = new C();
+
+		// Invokes set accessor
+		c.X = 10;
+
+		// Invokes get accessor
+		Console.WriteLine("Value of x set using X"+
+							" from I1 is " + c.X);
+
+		// Call to the X method
+		Console.WriteLine("Value returned by I2.X()"+
+									" is " + i2.X());
+	}
+  }
+
+
+  
+78.why we use aysnc functionalities?
+
+
+
+79.Abstract Class?
+
+  Can we define abstract class as static?
+   If you declare a method in a class abstract to use it, you must override this method in the subclass. But, overriding is not possible with static methods.
+   Therefore, an abstract method cannot be static
+
+  Can Abstract class be Private?
+    If a method of a class is private, you cannot access it outside the current class, not even from the child classes of it. But, incase of an abstract method,
+    you cannot use it from the same class, you need to override it from subclass and use. Therefore, the abstract method cannot be private.
+
+   Can we have private methods in abstract class C#?
+    If a method of a class is private, you cannot access it outside the current class, not even from the child classes of it. But,
+    incase of an abstract method, you cannot use it from the same class, you need to override it from subclass and use. Therefore, the abstract method cannot be private.
+
+  Can an abstract class have static methods? 
+   Yes, abstract class can have Static Methods. The reason for this is Static methods do not work on the instance of the class, they are directly associated with the class itself.
+
+    Abstarct class Have constructor but interface did not have constructor
+
+
+80.Singleton design Pattern?
+ sealed class means we can canot inherit it ,so for singleton we will mention as sealed 
+
+   public sealed class clsHttpClientCalling
+    {
+        private static HttpClient _httpclient;
+        static object lockObject = new object();
+
+        //As per discussion with Kumara sir, siva and omkar Max time out it 5min. Because we are calling from ccda generation service
+        public static HttpClient getInstanceOfHttpClient()
+        {
+            int TimeOut = 5;
+            if (_httpclient == null)
+            {
+                lock (lockObject)
+                {
+                    if (_httpclient == null)
+                    {
+                        if (ConfigurationManager.AppSettings.AllKeys.Contains("TimeoutPeriodinMinits"))
+                            TimeOut = Convert.ToInt32(ConfigurationManager.AppSettings["TimeoutPeriodinMinits"]);
+
+                        _httpclient = new HttpClient();
+                        _httpclient.DefaultRequestHeaders.Clear();
+                        _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        _httpclient.Timeout = TimeSpan.FromMinutes(TimeOut);
+                    }
+                }
+            }
+            return _httpclient;
+        }
+
+  }
+
+81.what are struct types?
+ Link:https://www.tutorialsteacher.com/csharp/csharp-struct
+  struct is the value type data type that represents data structures. It can contain a parameterized constructor, static constructor, constants, fields,
+  methods, properties, indexers, operators, events, and nested types.
+
+  struct can be used to hold small data values that do not require inheritance, e.g. coordinate points, key-value pairs, and complex data structure.
+  Structs cannot have inheritance, so have only one type
+Ex:
+  struct Coordinate
+ {
+    public int x;
+    public int y;
+ }
+
+ Coordinate point = new Coordinate();
+ Console.WriteLine(point.x); //output: 0  
+ Console.WriteLine(point.y); //output: 0
+
+
+82.Nullabel Types?
+
+  Nullable types represent value-type variables that can be assigned the value of null. You cannot create a nullable type based on a reference type.
+  (Reference types already support the null value.)
+
+  So, no they're not reference types.
+
+  public int? id{get;set;}
+
+83.What is the difference between struct and class in C sharp?
+ Structs are value types while classes are reference types. Structs can be instantiated without using a new operator. A struct cannot inherit from another struct or class, 
+  and it cannot be the base of a class. All structs inherit directly from System.
+
+84.C# Tuples
+C# tuple is a data structure that is used to store sequence of elements. Tuple with n elements are known as n-tuple.
+
+ We can use Tuple for the following reasons.
+
+ To represent a single set of data
+ To provide easy access and manipulation of data
+ To return multiple values from a method without using out parameter
+ To pass multiple values to a method through a single parameter
+
+  var book = new Tuple<string, string, double>("C# in Depth", "Jon Skeet", 100.50);  
+
+ for tuple we can upto 8 items in it
+85.what is function?
+  Func is generally used for those methods which are going to return a value, or in other words, Func delegate is used for value returning methods. 
+ It can also contain parameters of the same type or of different types
+
+86.Shadowing (method hiding)?
+  Ex:https://www.c-sharpcorner.com/UploadFile/ff2f08/overriding-vs-shadowing-in-C-Sharp/
+    A method or function of the base class is available to the child (derived) class without the use of the "overriding" keyword. 
+  The compiler hides the function or method of the base class. This concept is known as shadowing or method hiding. In the shadowing or method hiding,
+  the child (derived) class has its own version of the function, the same function is also available in the base class.
+  Shadowing is a VB.Net concept. It also known as method hiding in C#. Using this concept we can provide a new implementation for the base class method without overriding it.
+ Example
+
+  Public class BaseClass
+  {
+     public string GetMethodOwnerName()
+     {
+       return "Base Class";
+     }
+  }
+  public class ChildClass : BaseClass
+  {
+    public new string GetMethodOwnerName()
+    {
+       return "ChildClass";
+     }
+  }
+C#
+ Test Code
+
+ static void Main(string[] args)
+ {
+    ChildClass c = new ChildClass();
+    Console.WriteLine(c.GetMethodOwnerName());
+ }
+
+87.what is IDisposable?
+
+  IDisposable is an interface that contains a single method, Dispose(), for releasing unmanaged resources, like files, streams, database connections and so on.
+
+ public class SimpleCleanup : IDisposable
+ {
+    // some fields that require cleanup
+    private SafeHandle handle;
+    private bool disposed = false; // to detect redundant calls
+
+    public SimpleCleanup()
+    {
+        this.handle = /*...*/;
+    }
+    
+   public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+    protected virtual void Dispose(bool disposing)
+    {
+       
+            if (disposing)
+            {
+                // Dispose managed resources.
+                if (handle != null)
+                {
+                    handle.Dispose();
+                }
+            }
+
+            // Dispose unmanaged managed resources.
+                
+    }
+
+  
+ }
+
+88.What we need using Block?
+  Link:https://www.twilio.com/blog/c-8-making-use-of-using-declarations
+ https://dotnetpattern.com/csharp-using-statement
+  In C#, the using keyword has two purposes: The first is the using directive, which is used to import namespaces at the top of a code file.
+   The second is the using statement. C# 8 using statements ensure that classes that implement the IDisposable interface call their dispose method.
+  It guarantees that the dispose method will be called, even if the code throws an exception.
+
+  C# provides a special "using" statement to call Dispose method explicitly. using statement gives you a proper way to call the Dispose method on the object. 
+
+ using statement provides some unique features.
+
+ Manage Scope: It also manages the scope of the object. At the end of using block, using calls the Dispose method and in the method, object release all its
+  resources and should not be available further.
+ Instantiate the object as read-only: Object instantiates in the using statement are read-only and you can not modify or reassigned the object. 
+ This feature ensures Dispose method is called on the object which is instantiated.
+ Ensures Dispose method will always be called: using statement also ensures Dispose method will always be called whether any exception was occurred or not.
+
+89.Why do we need static constructor in C#?
+ Link:https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-constructors
+    A static constructor is used to initialize any static data, or to perform a particular action that needs to be performed only once. 
+  It is called automatically before the first instance is created or any static members are referenced.
+
+ Static constructors have the following properties:
+
+ A static constructor doesn't take access modifiers or have parameters.
+ A class or struct can only have one static constructor.
+ Static constructors cannot be inherited or overloaded.
+ A static constructor cannot be called directly and is only meant to be called by the common language runtime (CLR). It is invoked automatically.
+ The user has no control on when the static constructor is executed in the program.
+  A field declared as static readonly may only be assigned as part of its declaration or in a static constructor. 
+  Ex:
+
+  class SimpleClass
+  {
+    // Static variable that must be initialized at run time.
+     static readonly long baseline;
+
+     // Static constructor is called at most one time, before any
+     // instance constructor is invoked or member is accessed.
+     static SimpleClass()
+     {
+        baseline = DateTime.Now.Ticks;
+     }
+  }
+
+
+  Can static class have private constructor in C#?
+  A static class can only have a static constructor and public/private does not apply since your code can never call this constructor (the CLR does).
+ 
+  Can we have static constructor in non static class in C#?
+   Also, you can have a static constructor in a static class or a non-static class. A static constructor is used to initialize the static members of a class. 
+   The static constructor of a class is invoked the first time a static member of the class is accessed
+
+  Can static constructor initialize non-static variable?
+    Static constructor can initialize only static variable but non-static constructor can initialize both static and non-static variable.
+  
+ Can we change value of static variable in non static method?
+  In the non-static method, the method can access static data members and static methods as well as non-static members and method of another class or same class, 
+  also can change the values of any static data member.
+
+90.What is Searlization?
+  Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file. 
+  Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
+
+ Tap in 
+liskov substistution principle
+
+ngonchanges or ngdocheck will execute first
+
+
+abstract class
+
+Database
+
+Data Definition Language(DDL)
+DML(Data Manipulation Language): 
+
+DELETE operations (DML) can be rolled back (undone), while DROP(DDL) and TRUNCATE(DDL) operations cannot be rolled back
+
+1.Primary key and unique key differnces ?
+     Primary key                                                                  Unique Key
+  In the case of a primary key, we cannot save NULL values.                 In the case of a unique key, we can save a null value, however, only one NULL value is supported.
+  The primary key tends to generate a clustered index by default.           The unique key tends to generate a non-clustered index.
+  Each table holds just one primary key.                                    A table can hold more than one unique key.
+  It is used to recognize specific records in the table.                    It anticipates storing duplicate entries in a column except for a NULL value.
+  The primary key is accepted as a unique or sole identifier for            When the primary key is not present in the table, then the unique key is also used as a unique
+   every record in the table.                                                identifier for records
+   
+
+2.Explain about Indexers in sql
+  Indexes are used to retrieve data from the database more quickly than otherwise. The users cannot see the indexes, they are just used to speed up searches/queries.
+
+  ex : “In simple words suppose we want to search the topic in to book we go to index page of that book and search the topic which we want.Just like that to search the 
+  values from the table when indexing is there you need not use the full table scan.”
+
+  SQL Indexes are nothing but way of reducing the cost of the query.More the cost of the query less the performance of the query.The main task of query tuner is to 
+  reduce the cost of the query using indexing,Reduce the Full table scans,reduce the time to fetch the records from the query.
+
+  Clustered Indexes:
+
+  1.The clustered indexes are indexes which are physically stored in order means it stores in ascending or descending order in Database.
+
+  2.Clustered indexes are created one for each table.
+
+  3.When primary key is created then clustered index has been automatically created in the table.
+
+  4.If table is under heavy data modifications the clustered indexes are preferable to use.
+
+  Non Clustered Indexes:
+
+  1.The clustered indexes are used for searching purpose as we can create clustered indexes where primary is is defined.But Non clustered indexes are indexes which will be 
+  created on the multiple joining conditions,multiple filters used in query.
+
+  2.We can create 0 to 249 non-clustered indexes on single table.
+
+  3.Foreign keys should be non clustered.When user wants to retrieve heavy data from fields other than primary key the non clustered indexes are useful.
+
+  I have explained the Basic concept of SQL Indexes here.In upcoming articles i will explain how the indexing works in detailed description with Example.Please comment if you want
+   copy of this article or if you have any questions.Hope you like article of SQL Indexes.
+
+  USE [319_XpertEMR] 
+  GO 
+ 
+  /****** Object:  Index [INX_tbl_Documents_Fillable_HTML_Templates_PatientData_DOS]    Script Date: 9/27/2022 10:45:20 PM ******/ 
+  CREATE NONCLUSTERED INDEX [INX_tbl_Documents_Fillable_HTML_Templates_PatientData_DOS] ON [dbo].[tbl_Documents_Fillable_HTML_Templates_PatientData] 
+  ( 
+     [DOS] ASC, 
+     [Fillable_HTML_DocumentTemplateID] ASC 
+  ) 
+  INCLUDE([Documents_Fillable_HTML_Templates_PatientData_InActive])  
+  WHERE ([Documents_Fillable_HTML_Templates_PatientData_InActive]=(0)) 
+  WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY] 
+  GO 
+
+3.sql No Log and normal database differnces
+   In Sql NO Log Database we cannot maintain log for Tables but in sql database we can log everey table
+
+4.Why we use NOLOCk in Sql ?
+  The NOLOCK hint allows SQL to read data from tables by ignoring any locks and therefore not get blocked by other processes.
+  This can improve query performance by removing the blocks, but introduces the possibility of dirty reads.
+  EX: SELECT * FROM Person.Contact WITH (NOLOCK) WHERE ContactID < 20 
+  Lock Types
+   MD - metadata lock
+   DB - database lock
+   TAB - table lock
+   PAG - page lock
+ Mode
+  S - Shared access
+  Sch-S - Schema stability makes sure the schema is not changed while object is in use
+  IS - Intent shared indicates intention to use S locks
+  Issues with NOLOCK
+      We mentioned above how you can get dirty reads using the NOLOCK hint. These are also other terms you may encounter for this hint.
+
+   Dirty Reads - this occurs when updates are done, so the data you select could be different.
+   Nonrepeatable Reads - this occurs when you need to read the data more than once and the data changes during that process
+   Phantom Reads - occurs where data is inserted or deleted and the transaction is rolled back. So for the insert you will get more records and for the delete you will get less records.
+ 
+5.What is deadlock in SQL?
+
+  In terms of SQL Server, a deadlock occurs when two (or more) processes lock the separate resource. Under these circumstances, each process cannot continue and begins to wait 
+  for others to release the resource.
+
+ 6.What is dirty read in SQL?
+    Dirty Reads A dirty read occurs when a transaction reads data that has not yet been committed. For example, suppose transaction 1 updates a row. Transaction 2 r
+   eads the updated row before transaction 1 commits the update
+
+7.Group by ,foregin key ,order by,left join ,partion keys?
+
+      GROUP BY	                                                                                          ORDER BY
+  1.Group by statement is used to group the rows that have the same value.	 1.Whereas Order by statement sort the result-set either in ascending or in descending order.
+  2.In select statement, it is always used before the order by keyword.          2.While in select statement, it is always used after the group by keyword.
+  3.It may be allowed in CREATE VIEW statement.	                                 3.While it does not use in CREATE VIEW statement.
+
+       Group By Syntax –                                                               Order By Syntax –
+
+   SELECT function_Name(column_1), column_2                                    SELECT column_1, column_2, column_3...........
+   FROM Table_Name                                                             FROM Table_Name
+   WHERE condition                                                              ORDER BY column_1, column_2, column_3....... ASC|DESC;
+   GROUP BY column_1, column_2
+   ORDER BY column_1, column_2;                                                 
+8.foreign key ,unique key primary key,partion key ?
+ Foreign keys in SQL are used to create a link between two tables. It is a column that creates a relationship between the tables by taking a reference
+ from another table in the same database using the primary key. The foreign key may contain null and duplicate values
+
+9.Sql Joins
+  SQL Join statement is used to combine data or rows from two or more tables based on a common field between them. Different types of Joins are as follows: 
+
+    INNER JOIN
+    LEFT JOIN
+    RIGHT JOIN
+    FULL JOIN
+
+ A. INNER JOIN
+  The INNER JOIN keyword selects all rows from both the tables as long as the condition is satisfied.
+  This keyword will create the result-set by combining all rows from both the tables where the condition satisfies i.e value of the common field will be the same. 
+
+  Syntax: 
+
+  SELECT table1.column1,table1.column2,table2.column1,....
+  FROM table1 
+  INNER JOIN table2
+  ON table1.matching_column = table2.matching_column;
+B. LEFT JOIN
+  This join returns all the rows of the table on the left side of the join and matches rows for the table on the right side of the join. 
+ For the rows for which there is no matching row on the right side, the result-set will contain null. LEFT JOIN is also known as LEFT OUTER JOIN.
+
+  Syntax: 
+
+  SELECT table1.column1,table1.column2,table2.column1,....
+  FROM table1 
+  LEFT JOIN table2
+  ON table1.matching_column = table2.matching_column;
+
+ C. RIGHT JOIN
+
+  RIGHT JOIN is similar to LEFT JOIN. This join returns all the rows of the table on the right side of the join and matching rows for the table on the left side of the join. 
+  For the rows for which there is no matching row on the left side, the result-set will contain null. RIGHT JOIN is also known as RIGHT OUTER JOIN. 
+ Syntax: 
+
+ SELECT table1.column1,table1.column2,table2.column1,....
+ FROM table1 
+ RIGHT JOIN table2
+ ON table1.matching_column = table2.matching_column;
+
+ D. FULL JOIN
+ FULL JOIN creates the result-set by combining results of both LEFT JOIN and RIGHT JOIN. The result-set will contain all the rows from both 
+ For the rows for which there is no matching, the result-set will contain NULL values.
+
+ Syntax:  
+
+ SELECT table1.column1,table1.column2,table2.column1,....
+ FROM table1 
+ FULL JOIN table2
+ ON table1.matching_column = table2.matching_column;
+
+
+10.Find the nth highest salary?
+  Select * from (select empName,Salary,denseRank() over (order by salary desc )r from eployess) where r=&n 
+
+11.What is an index in SQL?
+ An index contains keys built from one or more columns in the table or view. These keys are stored in a structure (B-tree) that enables SQL Server to find the row or rows 
+ associated with the key values quickly and efficiently. SQL Server documentation uses the term B-tree generally in reference to indexes
+
+12.Create Stored Procedure
+   A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again. 
+  So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+
+
+  Create PROC [dbo].[usp_EasyForms_SP]
+ (
+   @return          INT =Null OUTPUT,
+   @errorID         INT =Null OUTPUT,
+   @errorMessage    varchar(2048)=NULL OUTPUT,
+   @LoggerUserID    INT 
+ )
+ AS
+/*SET NOCOUNT ON STATEMENT INTO STORE PROCEDURES CAN REDUCE NETWORK TRAFFIC,
+BECAUSE CLIENT WILL NOT RECEIVE THE MESSAGE INDICATING THE NUMBER OF ROWS AFFECTED BY T-SQL STATEMENT. */
+ SET NOCOUNT ON
+ BEGIN Try
+    SELECT * from tbl_EasyForms_GcloudStorage_patientData_SignedURL_Info tbl
+     where tbl.LocalTempOriginalURL LIKE '%Temp%'
+
+ End Try
+
+ BEGIN Catch
+   SELECT 
+     @return=-1,
+     @errorID=ERROR_NUMBER(),
+     @errorMessage=ERROR_MESSAGE()
+	 Exec usp_common_errorlog_insert @errorID,@errorMessage,'[usp_EasyForms_SP]',@LoggerUserID
+
+   RETURN -1
+
+  End Catch
+  -- Makes the number of row count enable   
+SET NOCOUNT OFF
+
+13.Differnce between having and where clause?
+1. WHERE Clause: 
+   WHERE Clause is used to filter the records from the table or used while joining more than one table.Only those records will be extracted who are satisfying the specified condition 
+  in WHERE clause. It can be used with SELECT, UPDATE, DELETE statements. 
+  Consider the Query: 
+
+ SELECT S_Name, Age FROM Student 
+  WHERE Age >=18
+
+ HAVING Clause: 
+ HAVING Clause is used to filter the records from the groups based on the given condition in the HAVING Clause. 
+ Those groups who will satisfy the given condition will appear in the final result. HAVING Clause can only be used 
+   with SELECT statement.
+  SELECT Age, COUNT(Roll_No) AS No_of_Students 
+  FROM Student GROUP BY Age
+  HAVING COUNT(Roll_No) > 1
+SR.NO.   	WHERE Clause	                                                               HAVING Clause
+1.	WHERE Clause is used to filter the records from the table based 	          HAVING Clause is used to filter record from the groups based on the specified condition.
+         on the specified condition.
+2.	WHERE Clause can be used without GROUP BY Clause	                          HAVING Clause cannot be used without GROUP BY Clause
+3.	WHERE Clause implements in row operations	                                  HAVING Clause implements in column operation
+4.	WHERE Clause cannot contain aggregate function	                                  HAVING Clause can contain aggregate function
+5.	WHERE Clause can be used with SELECT, UPDATE, DELETE statement.	                  HAVING Clause can only be used with SELECT statement.
+6.	WHERE Clause is used before GROUP BY Clause	                                  HAVING Clause is used after GROUP BY Clause
+7.	WHERE Clause is used with single row function like UPPER, LOWER etc.              HAVING Clause is used with multiple row function like SUM, COUNT etc.
+ 
+14.user defined question in sql ?
+    The UDF or User Defined Functions in SQL Server are like methods in any other programming language that accepts the parameters, performs complex calculations,
+   and returns the result value.
+
+15.System defind function in sql?
+  The functions that are defined by the system are known as "system defined functions". In other words, all the 
+  built-in functions supported by the SQL server are referred to as system defined functions. Usage of the built-in functions
+  saves much development time while performing certain tasks.
+
+  1.Scalar Function
+  Scalar functions operate on a single value and return a single value. Below is the list of some useful SQL Server Scalar functions.
+
+  Scalar Function	Description
+  abs(-10.67)	        This returns an absolute number of the given number means 10.67.
+  rand(10)	        This will generate a random number of 10 characters.
+  round(17.56719,3)	This will round off the given number to 3 places of decimal meaning 17.567
+  upper('dotnet')	This will return the upper case of the given string meaning 'DOTNET'
+  lower('DOTNET')	This will returns the lower case of the given string means 'dotnet'
+  ltrim(' dotnet')	This will remove the spaces from the left-hand side of the 'dotnet' string.
+  convert(int, 15.56)	This will convert the given float value to integer means 15.
+
+ 2.Aggregate Function
+   Aggregate functions operate on a collection of values and return a single value. Below is the list of some useful SQL Server Aggregate functions.
+  System Aggregate Function
+  Aggregate Function	Description
+  max()	                This returns the maximum value from a collection of values.
+  min()         	This returns the minimum value from a collection of values.
+  avg()	                This returns an average of all values in a collection.
+  count()	       This returns no of counts from a collection of values.
+
+16.union ,union all 
+   The only difference between Union and Union All is that Union extracts the rows that are being specified in the query while Union All extracts all the rows 
+  including the duplicates (repeated values) from both the queries.
+      Union	                                                                                         Union All
+  It combines the result set from multiple tables with eliminating the duplicate records	 It combines the result set from multiple tables without eliminating the duplicate records
+  It performs a distinct on the result set.	                                                 It does not perform distinct on the result set
+  We need to specify Union operator                                                            We need to specify Union All Operator
+  SQL Union All gives better performance in query execution in comparison to SQL Union      It gives better performance in comparison with SQL Union Operator
+
+
+17.what is a view in sql?
+
+   In SQL, a view is a virtual table based on the result-set of an SQL statement. A view contains rows and columns, just like a real table.
+   The fields in a view are fields from one or more real tables in the database.
+
+
+ CREATE VIEW [Brazil Customers] AS
+ SELECT CustomerName, ContactName
+ FROM Customers
+ WHERE Country = 'Brazil';
+ other Questions
+
+18.Explain about sql profiler?
+    SQL Server Profiler is an interface to create and manage traces and analyze and replay trace results. 
+  Events are saved in a trace file that can later be analyzed or used to replay a specific series of steps when diagnosing a problem.
+  SQL Trace and SQL Server Profiler are deprecated. The Microsoft. SqlServe
+
+19.sql procedure and function differnces
+
+20.Create Function in Sql?
+
+CREATE FUNCTION [schema_name.]function_name (parameter_list)
+RETURNS data_type AS
+BEGIN
+    statements
+    RETURN value
+END
+
+
+Ex:
+CREATE FUNCTION sales.udfNetSale(
+    @quantity INT,
+    @list_price DEC(10,2),
+    @discount DEC(4,2)
+)
+RETURNS DEC(10,2)
+AS 
+BEGIN
+    RETURN @quantity * @list_price * (1 - @discount);
+END;
+
+CREATE Function Sales.udfcube(
+  @number INT,
+)
+RETURNS INT
+AS
+BEGIN
+   RETURN @number*@number*@number
+END
+
+21.Based on Two Columns how to insert unique date
+ CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT UC_Person UNIQUE (ID,LastName)
+);
+
+22.What is Composite Key in Sql?
+   A composite key in SQL can be defined as a combination of multiple columns, and these columns are used to identify all the rows that are involved uniquely.
+  Even though a single column can't identify any row uniquely, a combination of over one column can uniquely identify any record
+
+22.Composite Primary Key?
+  What is the purpose of a composite primary key?
+     A composite primary key is a combination of 2 or more columns used to create a unique primary key. 
+ The term key can refer to a unique key, which can be designated and used as primary key or non-unique key, 
+ which can be used as a search key for an index for a distinct view.
+
+23.what is Cross Join ?
+
+ CROSS JOIN is used to combine each row of the first table with each row of the second table. 
+ It is also known as the Cartesian join since it returns the Cartesian product of the sets of rows from the joined tables.
+ Ex:
+  SELECT ColumnName_1, 
+       ColumnName_2, 
+       ColumnName_N
+  FROM [Table_1]
+     CROSS JOIN [Table_2]
+
+ or
+  SELECT ColumnName_1, 
+       ColumnName_2, 
+       ColumnName_N
+  FROM [Table_1],[Table_2]
+
+24.What is query and sub query in SQL?
+  A query is an operation that retrieves data from one or more tables or views. In this reference, a top-level SELECT statement is called a query, 
+  and a query nested within another SQL statement is called a subquery.
+
+ select * from Employee
+   where Employee.DepartmentID IN(select * from Department)
+
+25.Linq Query and Sql Query
+
+  select * from Employee
+  Inner Join Department on Department.DepartmentID==Employee.DepartmentID
+
+
+ (from Emp in Employee
+  join Department in DepartmentTable  on 
+   Department.DepartmentID equals Employee.DepartmentID
+   Select Emp).ToList()
+
+26.Joins is faster or subquery is faster?
+  The advantage of a join includes that it executes faster. The retrieval time of the query using joins almost always will be faster than that of a subquery. 
+ By using joins, you can maximize the calculation burden on the database i.e., instead of multiple queries using one join query.
+
+27.Which is faster LINQ or SQL?
+       More importantly: when it comes to querying databases, LINQ is in most cases a significantly more productive querying language than SQL. 
+  Compared to SQL, LINQ is simpler, tidier, and higher-level. It's rather like comparing C# to C++.
+
+28.What is the use of coalesce?
+   The COALESCE function returns the first non-NULL value from a series of expressions. The expressions are evaluated in the order in which 
+  they are specified, and the result of the function is the first value that is not null.
+
+29.Which is better coalesce or Isnull?
+       advantage that COALESCE has over ISNULL is that it supports more than two inputs, whereas ISNULL supports only two. Another advantage of COALESCE is
+    that it's a standard function (namely, defined by the ISO/ANSI SQL standards), whereas ISNULL is T-SQL–specific.
+
+30.Select second highest salary from a table?
+  select Top 2
+   EmployeeID,Salary from Employee
+   order by salary Desc
+
+31.update Gender in Employee Table if male equal to female and female to Male
+  UPDATE [EMPDATA] 
+  SET GENDER = (CASE WHEN GENDER ='MALE' THEN 'FEMALE'
+                  WHEN GENDER = 'FEMALE' THEN 'MALE'
+                END )
+
+35.Group by
+ Select EmployeeID,Salary
+ from Employee
+ Inner Join Department Department.DepartmentID=Employee.DepartmentID
+ GroupBy Department.DepartmentID
+
+36.Functions vs procedures
+
+37.Convert json into Table in sql?
+
+ Link:https://learn.microsoft.com/en-us/sql/relational-databases/json/convert-json-data-to-rows-and-columns-with-openjson-sql-server?view=sql-server-ver16
+ Link:https://visualstudiomagazine.com/articles/2017/08/01/returning-json.aspx
+ DECLARE @json NVARCHAR(MAX)
+
+ SET @json='{"name":"John","surname":"Doe","age":45,"skills":["SQL","C#","MVC"]}';
+
+ SELECT *
+ FROM OPENJSON(@json);
+
+ 1.Return select list as json
+
+  Select FirstName As FName 
+  From Customers
+  Where Id = 1 
+  FOR JSON AUTO
+
+  The JSON result reflects the alias:
+
+   "[{""FName"":""Peter""}]"
+
+38.differnce between truncate and delete?
+
+     The delete statement is used to remove single or multiple records from an existing table depending on the specified condition. 
+   The truncate command removes the complete data from an existing table but not the table itself. It preserves the table structure or schema.
+
+
+39.CTE vs SQL?
+  Link:https://www.dotnettricks.com/learn/sqlserver/difference-between-cte-and-temp-table-and-table-variable
+
+ CTE stands for Common Table Expressions. It was introduced with SQL Server 2005. It is a temporary result set and typically it may be a result of complex sub-query. 
+  Unlike the temporary table, its life is limited to the current query. It is defined by using WITH statement. CTE improves readability and ease in maintenance of complex queries 
+ and sub-queries. Always begin CTE with a semicolon.
+
+ ;With CTE1(Address, Name, Age)--Column names for CTE, which are optional
+ AS
+ (
+ SELECT Addr.Address, Emp.Name, Emp.Age from Address Addr
+ INNER JOIN EMP Emp ON Emp.EID = Addr.EID
+ )
+ SELECT * FROM CTE1 --Using CTE 
+ WHERE CTE1.Age > 50
+ ORDER BY CTE1.NAME
+
+
+ Why is CTE better than subquery?
+ CTE can be reusable: One advantage of using CTE is CTE is reusable by design. Instead of having to declare the same subquery in every place you need to use it,
+  you can use CTE to define a temporary table once, then refer to it whenever you need it.
+
+ How many CTE can be used in SQL?
+ two CTEs
+ Using two independent CTEs in one SQL query. Using two CTEs where the second CTE refers to the first. Using two CTEs where one CTE is recursive
+
+
+ When to use temp table and CTE is SQL?
+    As far as when to use each, they have very different use cases. If you will have a very large result set, or need to refer to it more than once, put it in a #temp table.
+   If it needs to be recursive, is disposable, or is just to simplify something logically, a CTE is preferred.
+
+
+  Looking at SQL Profiler results from these queries (each were run 10 times and averages are below) we can see that the CTE just slightly outperforms both the temporary table 
+  and table variable queries when it comes to overall duration. The CTE also uses less CPU than the other two options and performs fewer reads (significant fewer reads that the 
+  table variable query).
+
+ Query Type	Reads	Writes	CPU	Duration (ms)
+ CTE	         1378	0	47	497
+ Temp table	2146	51	109	544
+ Table variable	133748	51	297	578
+
+40.sql Execution plan and Sql profiler and Trace ?
+  
+  link:https://www.careerride.com/SQL-Server-Execution-Plan-Profiler.aspx
+  What is an execution plan?
+  An Execution plan is most useful when a SQL query runs slowly. An execution plan gives details of the SQL Server query optimizer.
+  It consists of set of steps that describes the information of the relational database. Since one query can be executed in several ways,
+  execution plan provides a mechanism to manually analyze the performance.
+
+ What is SQL Profiler?
+  SQL Profiler is used to monitor events of SQL server. The profiler has a user friendly GUI that allows selected events to be traced and monitored.
+   It is most useful when queries are performing slowly, debugging stored procedures, reviewing of all activities that took place on the server.
+
+41.if we create clusteredd index without createing primary key for a table
+   Can I create Clustered index without Primary key? Yes, you can create. The main criteria is that the column values should be unique and not null. 
+  Indexing improves the performance in case of huge data and has to be mandatory for quick retrieval of data.
+
+
+42.what is Transcation?
+  Link:https://www.tutorialspoint.com/sql/sql-transactions.html
+   A transaction in SQL Server is a sequential group of statements or queries to perform single or multiple tasks in a database. Each transaction may have single read, write,
+   update, or delete operations or a combination of all these operations.
+
+  Transaction Control
+  The following commands are used to control transactions.
+
+  COMMIT − to save the changes.
+
+  ROLLBACK − to roll back the changes.
+ 
+  SAVEPOINT − creates points within the groups of transactions in which to ROLLBACK.
+
+  SET TRANSACTION − Places a name on a transaction.
+
+43.What are the transaction types in SQL?
+   SQL Server can operate 3 different transactions modes and these are: Auto-commit transactions. Implicit transactions. Explicit transactions
+
+43.VarCHAR(MAX)?
+  nvarchar [ ( n | max ) ],VarChar Max size is upto 2GB
+
+  n defines the string size in byte-pairs, and can be a value from 1 through 4,000. max indicates that the maximum storage size is 2^30-1 characters (2 GB)
+  The key difference between varchar and nvarchar is the way they are stored, varchar is stored as regular 8-bit data(1 byte per character) and nvarchar stores data 
+  at 2 bytes per character. Due to this reason, nvarchar can hold upto 4000 characters and it takes double the space as SQL varchar.
+  
+44.What is Trigger ?
+
+   A trigger is a special type of stored procedure that automatically runs when an event occurs in the database server. DML triggers run when a user
+  tries to modify data through a data manipulation language (DML) event. DML events are INSERT, UPDATE, or DELETE statements on a table or view.
+
+  In SQL Server we can create four types of triggers 
+  Data Definition Language (DDL) triggers, 
+  Data Manipulation Language (DML) triggers, 
+  CLR triggers, and 
+  Logon triggers
+
+45.How many types of DML triggers are present in SQL Server?
+   There are two types of DML triggers: AFTER or FOR trigger and INSTEAD OF trigger. The AFTER trigger will be fired and executed after performing the INSERT, 
+  UPDATE or DELETE action that fires it successfully.
+
+  Can we use commit in trigger?
+  Trigger should not commit and cannot commit. Committing in a trigger usually raises an exception unless it happens into autonomous transaction
+
+46.What is schema in SQL?
+   What is Schema in SQL? In a SQL database, a schema is a list of logical structures of data. A database user owns the schema, 
+  which has the same name as the database manager. As of SQL Server 2005, a schema is an individual entity (container of objects) distinct from the user who constructs the object.
+
+47.What are the 3 types of schema?
+ Image result
+   Schema is of three types: Logical Schema, Physical Schema and view Schema. 
+  Logical Schema – It describes the database designed at logical level. 
+  Physical Schema – It describes the database designed at physical level.
+  View Schema – It defines the design of the database at the view level.
+
+48.what is sql cursor?
+ Ex:https://www.geeksforgeeks.org/what-is-cursor-in-sql
+  https://www.javatpoint.com/cursor-in-sql-server
+
+  Cursor is a Temporary Memory or Temporary Work Station. It is Allocated by Database Server at the Time of Performing DML(Data Manipulation Language) 
+  operations on Table by User. Cursors are used to store Database Tables. There are 2 types of Cursors: Implicit Cursors, and Explicit Cursors.
+
+ These are explained as following below.
+ Implicit Cursors:
+  Implicit Cursors are also known as Default Cursors of SQL SERVER. These Cursors are allocated by SQL SERVER when the user performs DML operations.
+
+ Explicit Cursors :
+  Explicit Cursors are Created by Users whenever the user requires them. Explicit Cursors are used for Fetching data from Table in Row-By-Row Manner.
+
+
+ 1. Declare Cursor
+    DECLARE s1 CURSOR FOR SELECT * FROM studDetails 
+ 2 Open Cursor
+    OPEN s1
+ 3. Fetch Cursor
+     FETCH FIRST FROM s1
+     FETCH LAST FROM s1
+     FETCH NEXT FROM s1
+     FETCH PRIOR FROM s1
+     FETCH ABSOLUTE 7 FROM s1
+     FETCH RELATIVE -2 FROM s1
+ 4.Close Cursor
+     CLOSE s1
+ 5. Deallocate Cursor
+      DEALLOCATE s1
+
+ How can we avoid cursors?
+   Using the SQL while loop
+   User-defined functions
+   Using Joins
+
+
+Sql Querires:
+
+1.To Get Records from two Tables
+SELECT Orders.order_id,Customers.customer_id,Customers.first_name,Customers.last_name 
+FROM Orders
+Inner Join Customers on Customers.customer_id= Orders.customer_id
+
+
+
+2.To get unique records and sum of the orders amount 
+select Customers.first_name,Customers.last_name,SUM(Orders.amount)
+FROM Customers
+Left Join orders on Customers.customer_id = Orders.customer_id
+Group By Customers.first_name,Customers.last_name
+
+3.To get Distinct Records and Count 
+
+Select Distinct Orders.item ,Count(Orders.item)
+from Orders
+Group By Orders.item
+
+4.Create and Insertion  into tables
+  CREATE TABLE 
+  (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+     Age int,
+     CONSTRAINT UC_Person UNIQUE (ID,LastName) 
+   );
+
+Insert into Persons
+   (ID,
+   LastName,
+   FirstName,
+   Age)
+ values
+  (
+   2,
+   "Test",
+  "user2",
+   1)
+
+
+
+5.Print Matrix  add 2 to every in same row and in another row add the before row total +2 
+int height = 4;
+
+int Total=0;
+int printno = 0;
+for (int i = 1; i <= Width; i++)
+{
+    printno = Total;
+    for (int j = 1; j <= height; j++)
+    {
+
+        if (i == 1 && j == 1) printno = 1;
+         else printno += 2;
+
+            Console.Write(printno + " " );
+        Total += printno;
+    }
+    Console.WriteLine(Environment.NewLine);
+}
+
+Output:
+1 3 5 7
+
+18 20 22 24
+
+102 104 106 108
+
+6.Print the Number in Reverse order?
+
+ int i=1234;
+
+ public static void Main(string[] args)
+	{
+		 Console.Write("Enter the Number: ");   
+         int n = int.Parse(Console.ReadLine());  
+		int temp = n,r=0,sum=0;
+		 while(n>0){
+		    r=n%10;      
+            sum=(sum*10)+r;      
+            n=n/10;      	
+		 }
+		
+		 Console.Write("ss"+sum);   
+       
+ }
+
+ Revers a string ?
+  static void Main(string[] args)  
+        {  
+            string str = "", reverse = "";  
+            int Length = 0;  
+            Console.WriteLine("Enter a Word");  
+            //Getting String(word) from Console  
+            str = Console.ReadLine();  
+            //Calculate length of string str  
+            Length = str.Length - 1;  
+            while(Length>=0)  
+            {  
+                reverse = reverse + str[Length];  
+                Length--;  
+            }  
+            //Displaying the reverse word  
+            Console.WriteLine("Reverse word is {0}",reverse);  
+            Console.ReadLine();  
+        }  
+ 
+7.Pagenation using Linq Query?
+
+ int fromRecords= (Pagenumber-1)*100;
+ int toRecords=pagenumber*100;
+
+ List<int> integerList= (from integer in integerList
+                        Select integer).Skip(fromRecords).Take(toRecords).ToList();
+
+
+
+8.Composite Primary Key Declartion?
+ 
+ CREATE TABLE contacts
+ (
+   last_name VARCHAR(30) NOT NULL,
+  first_name VARCHAR(25) NOT NULL,
+  birthday DATE,
+  CONSTRAINT contacts_pk PRIMARY KEY (last_name, first_name)
+ );
+
+9.How to Get each item Random Rows from SQL Table?
+
+  SELECT * FROM Customers
+  ORDER BY RANDOM()
+
+ Random rows in Csharp by using Linq?
+
+ List<int> intarray=new List<int>(){1,2,3,4,5};
+ var ran = new Random();
+ List<int> updatearray = intarray.OrderBy(x => ran.Next()).ToList();
+
+
+Project Questins:
+1.What Is a Project Management Methodology?
+   Link:https://www.projectmanager.com/blog/project-management-methodology
+    A project management methodology is a set of principles, tools and techniques that are used to plan, execute and manage projects.
+   Project management methodologies help project managers lead team members and manage work while facilitating team collaboration.
+  1.Waterfall Methodology
+  2.Agile Methodology
+  3.Scrum Methodology
+  4.PMI / PMBOK
+  5.Critical Path Method (CPM)
+  6.Kanban Methodology
+  7.Extreme Programming (XP)
+  8.Lean Methodology
+  9.Six Sigma
+  10.PRINCE2
+
+2.How we connect visual studio with azure devops?
+
+3.what is the full form of Scrum?
+
+  The Full Form of SCRUM is‍ Systematic Customer Resolution Unraveling Meeting. SCRUM. Systematic Customer Resolution Unraveling Meeting.
+
+  What is a scrum in agile?
+  What is scrum? In short, scrum is a framework for effective collaborations among teams working on complex products.
+  Scrum is a type of agile technology that consists of meetings, roles, and tools to help teams working on complex projects collaborate and better structure and manage their workload.
+
+  What are the five steps in Scrum?
+  5 Scrum phases of effective project management
+  Initiation. The initiation phase of a Scrum framework is the period in which you create a vision for your project. ...
+  Planning and estimation. ...
+  Implementation. ...
+  Reviewing. ...
+  Releasing.
+
+  Agile vs Scrum
+  The key difference between Agile and Scrum is that while Agile is a project management philosophy that utilizes a core set of values or principles, 
+  Scrum is a specific Agile methodology that is used to facilitate a project.
+
+4.what are CI/CD Pipelines and steps?
+Link:https://www.tutorialworks.com/cicd-pipeline-stages/
+
+An excellent pipeline should take care of the following:
+ Compiling and testing the code (Continuous Integration)
+ Producing an artifact from the code, ready to be deployed (Continuous Delivery)
+ Deploying the application to a server automatically (Continuous Deployment)
+
+The 7 essential stages of a CI/CD pipeline
+So now we’ve seen what a pipeline is for, let’s take a look at some of the most common stages in a CI/CD pipeline. We put these stages into pipelines in order to support the goals above.
+
+The trigger
+ The best pipelines are triggered automatically when new code is committed to the repository.
+
+Code checkout
+  In this first stage, the CI server will check out the code from the source code repository, such as GitHub or Bitbucket. 
+  The CI/CD tool usually receives information from a poll, or a webhook, which says which specific commit triggered the pipeline.
+  The pipeline then checks out the source code at a given commit point, and starts the process.
+
+Compile the code
+ If you’re developing in a compiled language like Java, the first thing you’ll probably need to do is compile your program.
+
+ This means that your CI tool needs to have access to whatever build tools you need to compile your app. For example, if it’s Java, you’ll use something like Maven or Gradle.
+
+Run unit tests
+ The next key element of your CI/CD pipeline is unit testing. This is the stage where you configure your CI/CD tool to execute the tests that are in your codebase.
+  You might use Maven or Gradle to do this in Java, or Jest in JavaScript.
+
+Package the code
+ Once all of the tests are passing, you can now move on to packaging the code. Exactly how you package your application depends on your programming language and target environment.
+
+Run acceptance tests
+  Now comes the time to perform acceptance testing on your application.
+  Acceptance tests are a way of ensuring that your software does what it is meant to do, and that it meets the original requirements.
+  But manual acceptance testing is very tedious and time-consuming. So there are a growing number of ways that you can perform automated acceptance testing.
+
+Delivery or Deployment
+ Finally, when the application has been tested, it can move into the delivery or deployment stage.
+ At this stage, you have an artifact ready to be deployed (continuous delivery). Or, you can continue to CI/CD heaven and automatically deploy your software (continuous deployment).
+ Most pipelines don’t make it to this final stage, and that’s a shame. There is enormous value in being able to automatically deploy your software into production.
+
+
+1.Explain about faced challenges in your office realted coding
+2.Where do yourself after 5 years?
+3.Explain about weakness?
+4.How your scrum process works?
+

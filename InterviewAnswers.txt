@@ -1,0 +1,1182 @@
+﻿Links To Reffer
+Program
+https://dotnettutorials.net/lesson/how-to-remove-duplicate-characters-from-a-string-in-chsrap/
+
+MVC
+https://www.tutorialsteacher.com/mvc/action-selectores-in-mvc
+
+
+----------
+C#
+
+Classess:
+Classes are the user defined data types that 
+represent the state and behaviour of an object
+
+Types:
+Public
+Private
+Protected
+Internal
+Protected internal
+
+Link:
+https://www.c-sharpcorner.com/UploadFile/0c1bb2/types-of-classes-in-C-Sharp1/
+----
+What is a partial class?
+A class can be spread across multiple source files using the keyword partial. All source files for the class definition are compiled as one file with all class members.
+
+ability to implement the functionality of a single class into multiple files and all these files are combined into a single class file when the application is compiled
+
+--
+strings in C# immutable
+Immutable means string values cannot be changed once 
+they have been created. Any modification to a string value 
+results in a completely new string instance, 
+thus an inefficient use of memory and extraneous garbage collection. The mutable System.Text.StringBuilder 
+
+----
+What are early binding and late binding?
+
+Early binding:
+
+In early binding methods and properties are detected and checked during compile-time. Early binding is also called static binding. Example of early binding is Method overloading and Operator overloading.
+
+Late binding:
+
+Late binding is the opposite of early binding. In the late binding method and properties are detected and checking during runtime. Late binding is also called dynamic binding. An example of dynamic binding is Method overriding.
+------
+
+What is a Sealed class?
+A sealed class cannot be inherited. The class can be stopped from further inheriting using the Sealed class.
+-----------
+
+
+OOPs:
+1)Inheritance:
+inherit fields and methods from one class to another. We group the "inheritance concept" into two categories
+Derived Class (child) - the class that inherits from another class
+Base Class (parent) - the class being inherited from
+
+c#
+Parent=>Child
+
+Calss Car:Engine:Wheels
+Multiple 
+
+Interface:IClass
+MuLtiple
+
+Class IClass{
+Engine
+}
+
+2)Polymorphism:
+Polymorphism means providing an ability to take more than one form
+
+two different kinds of polymorphisms available, those are:
+
+1)Compile Time Polymorphism/Early binding
+2)Run Time Polymorphism//Late binding
+
+Compile Time Polymorphism :Method overloading
+means defining multiple methods with the same name but with different parameters. Using compile-time polymorphism, 
+we can perform different tasks with the same method name by passing different parameters
+
+public class Calculate
+
+{
+    public void AddNumbers(int a, int b)
+    {
+        Console.WriteLine("a + b = {0}", a + b);
+    }
+    public void AddNumbers(int a, int b, int c)
+    {
+        Console.WriteLine("a + b + c = {0}", a + b + c);
+    }
+}
+
+
+Run Time Polymorphism:Method Overriding
+Run Time Polymorphism means overriding a base class method in the derived class by creating a similar function. 
+In c#, the run time polymorphism can be achieved by using method overriding, and it is also called late binding or dynamic binding.
+
+This can be achieved by using override & virtual keywords and the inheritance principle
+
+// Base Class
+public class Users
+{
+    public virtual void GetInfo()
+    {
+       Console.WriteLine("Hi");
+    }
+}
+// Derived Class
+public class Details: Users
+{
+    public override void GetInfo()
+    {
+       Console.WriteLine("Hellow");
+    }
+}
+
+3)Abstraction
+Data abstraction is the process of hiding certain details and
+showing only essential information to the user.
+
+Abstract class: is a restricted
+class that cannot be used to create objects 
+(to access it, it must be inherited from another class).
+
+Abstract method: can only be used in an abstract class, and it does not have a body. 
+The body is provided by the derived class (inherited from).
+
+Class Car{
+
+Wheels  w =  new wheels();
+
+public abstract void animal();
+
+}
+
+abstract class Animal 
+{
+  
+  public void sleep() 
+  {
+    Console.WriteLine("Zzz");
+  }
+}
+
+
+
+
+4)Encapsulation :
+The process of binding the data and functions together into a single unit (i.e. class) is called encapsulation in C#. 
+Or you can say that the process of defining a class by hiding its internal data members from outside the class
+and accessing those internal data members only through publicly exposed
+methods (setter and getter methods) or properties with proper validations is called encapsulation.
+
+
+https://www.tutlane.com/tutorial/csharp/csharp-access-modifiers-public-private-protected-internal
+
+Access Modifiers:
+public
+private
+protected
+Internal
+Internal PRotectes
+
+
+
+
+Differnace Between Abstarct and Interface
+https://www.c-sharpcorner.com/article/abstract-class-vs-interface-c-sharp/
+
+----Solid Principels------
+Ref
+https://www.dotnettricks.com/learn/designpatterns/solid-design-principles-explained-using-csharp
+Video
+https://www.youtube.com/watch?v=yxf2spbpTSw
+Single Responsibility Principle (SRP):A class should have only one reason to change.
+Class Should Have One Responcibility
+
+
+Open Closed Principle (OCP):Software entities (classes, modules, functions, etc.) 
+1)should be open for extension, but closed for modification.
+2)Software entity must be open to extension but closed to modification
+
+Liskov Substitution Principle (LSP):
+2)Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.
+3)Should not Use inheritance when they are not in useuse only if super class is replaceable by sub class
+
+Interface Segregation Principle (ISP):
+1)No client should be forced to implement methods which it does not use, and the contracts should be broken down to thin ones.
+2)Client should not be forced to implement interface when not in use 
+  Insted of one Fat interface we can go with small interface
+3)Keep interface as Small as Possible
+
+Dependency Inversion Principle (DIP):
+1)High-level modules should not depend on low-level modules. Both should depend on abstractions.
+2)Depend Upon Interfaces and Abstract rather than a Concrete Class
+
+
+
+
+Abstractions should not depend on details. Details should depend on abstractions.
+
+---------
+Delegates
+
+------
+Abstract Class vs	Interface
+1)Provides the partial implementation of functionalities that is done by inheriting classes	
+1)Used to declare the behavior of an implementing class
+-----
+2)Used to declare properties, methods, events, and fields as well	
+2)Feilds cannot be declared using interfaces
+
+
+------
+cookies available in ASP.NET?
+Session cookies: Present on the client machine and valid only for single sessions
+Persistent cookies: Present on the user machine and has a specific period denoting its expiry
+
+--C# Generics:
+Generic Collections:
+C# includes specialized classes that store series of values 
+or objects are called collections.
+
+C#:  generic collections and non-generic collections 
+
+Generic:
+
+List:
+Dictionary:Dictionary<TKey,TValue> contains key-value pairs.
+SortedList:
+Queue:
+Stack:
+Hashset:Hashset<T> contains non-duplicate elements. 
+It eliminates duplicate elements.
+
+
+NoGeneric:
+ArrayList:ArrayList stores objects
+ of any type like an array.
+SortedList:SortedList stores key and value pairs. It automatically arranges elements in ascending order of key by default. 
+C# includes both, generic and non-generic SortedList collection
+Stack:LIFO style (Last In First Out)
+Queue:FIFO style (First In First Out).
+HashTable:stores key and value pairs. It retrieves the values by comparing the
+ hash value of the keys.
+
+--------
+1)Disadvantages of Oops
+Its only suitable for Small Application
+
+2)Differnet types of Inheritance
+1)Single Inhertiance
+Base Class and Derived Class
+2)Multiple Inheritance
+Multiple Inhertiance can be achived with Interface only
+we can have one base class 
+Example:
+class BaseClass
+{
+public void Animal()
+{
+  Console.writeLine('Animal')
+}
+}
+class Interface
+{
+public void Fly();
+}
+class ChildClass:BaseClass,Interface
+{
+   public void Eagle()
+   {
+   }
+} 
+3)Multi Level
+Base Class
+   |
+Derived Class1
+   |
+Derived Calss2
+   |
+4)Hierarcial Inheritance
+
+----------
+3)How do we Prevent Class from Being Inherited
+By using Sealed Key Word
+sealed class ABC{}
+------------
+4)Polymorphism
+Ability to Have more than one form variable Object or Function
+
+a)Method Over Loading doesnt need inheritance
+b)Method Overriding needs Inhertiance(Base and Derived Class)
+
+i)Method Overloading
+Run Time Polymorphisam
+ii)Method OverRiding
+Complie Time Polymorphisam
+class baseClass
+{
+  public virtaul void greetings()
+  {
+  }
+}
+
+class subcalss:baseclass
+{
+   public override void greetings()
+   {
+   }
+}
+
+class Program
+{
+   static void Main(string args[])
+   {
+      baseclass obj = new subclass();
+      obj.greetings();--->will call subclass since override is Written
+   }
+}
+
+-------------------
+5)Abstract calss and Interface
+
+Resource
+https://www.youtube.com/watch?v=yyU3bXyc_oU
+
+a)Base Class Cannot be instanctiated it can only be derived
+b)abstract method Definition it is forced to implement in derived class
+
+Example:
+
+public abstarct class Base{
+   publict int ID;
+   publisct string FirstName;
+   public string FullName()->Declaration
+   {
+      return this.firstname;
+   }
+   public abstact int GetMonthlySalary();-->Definition
+}
+
+public class FullTimeEmployee:Base{
+     
+    public int AnnualSalary {get;set;}
+    public override int GetMonthlySalary()-->Compulsary Implemenation
+    {
+      return this.anualSalary/12;
+    }
+}
+
+
+i)Abstarct class has both Declaration and Definition
+public abstarct class Car
+{
+   public abstarct void Engine();-->Definiion
+   
+   public void Dashboard()-->Declaration
+   {
+     CW("Dash board")
+   }
+}
+ii)Interface has only Definition
+
+abstarct cannont have multiple Inheritance
+
+------------
+When to use Interface and Abstarct
+
+Abstract classes should be used primarily for objects that are closely related,
+whereas interfaces are best suited for providing common functionality to unrelated classes
+
+An interface is a completely "abstract class", which can only contain abstract methods and properties (with empty bodies)
+
+a)Interfaces can contain properties and methods, but not fields.
+b)members of an interface are abstract and public.
+
+Abstarct Class is a good choise when methods are Concrete and Has to Be implemented
+
+Interface Instanctiation:
+interface IAnimal 
+{
+    void die();
+}
+
+class Cat : IAnimal 
+{
+    void die() { ... }
+    void meow() { ... }
+}
+
+IAnimal anAnimal = new Cat();
+Cat aCat= new Cat();
+
+C# knows for sure anAnimal.die() works, because die() is defined in IAnimal. But it won't let you do anAnimal.meow() even though it's a Cat, whereas aCat can invoke both methods.
+
+When you use the interface as your type you are, in a way, losing information.
+
+However, if you had another class Dog that also implements IAnimal, your anAnimal could reference a Dog instance as well. That's the power of an interface; you can give them any class that implements it.
+
+-----------------------
+Can we instanctiate Interface and Abstract 
+
+No we cant instanciate Interface or Abstact Class its only used for Inheritace
+
+
+-------------------
+Out and Ref Parameters
+
+Passing Parameters by Referance 
+1)Ref Parameter->When we have to Modify a Value
+2)Out Parameter->When we have to return a Value;
+
+------------
+Parms
+
+We can use N number of Parameters
+
+public static int Add(parms int[] list)
+{}
+
+Add(12,13,10)
+
+---------------------
+Access Specifiers
+
+Accessability of Class method,property,field
+
+Modifier	Description
+public	        The code is accessible for all classes
+private	        The code is only accessible within the same class
+protected	The code is accessible within the same class, or in a class that is inherited from that class. 
+internal	The code is only accessible within its own assembly, but not from another assembly. You will learn more 
+
+---------------
+a)Can we have Multiple Cath Blocks
+
+Yes we can write but Only one Catch Block will Execute
+
+b)Can we have only try Block
+
+yes we can but we need to have Finally
+try{}
+finally{}
+
+c)Differance between throw and throw ex
+  
+i)Throw sends complete Information
+ii)throw ex sends some information
+
+---------------------
+Array vs ArrayList | HAsh Table
+
+Array:
+i)Array is Strongly Typed
+ii)Array is Fixed Item List
+Cat[] catArray;
+carArray = new Cat[10];
+catArray[0]=moggly;
+
+ArrayList:
+i)no Type Mentioned
+ii)Any number of Items
+
+Array List vs Hash Tables
+
+i)ArrayList array = new ArrayList();
+array.Add(7898);
+array.add("Seven");
+
+ii)Hash Table
+
+HashTable hash = new HashTable();
+hashtable.add("Number",1);
+hastable.add("Car","Ferrary");
+
+------------
+
+Using:
+USing is used to Ensure the DisposeMethod();
+
+Release Object Memmory;
+using(Object O = new Object())
+{
+ //Dipose Automatically   
+}
+
+-------------------
+Read Only vs const
+i)ReadOnly Can be used in Declaration as well as in Constructor
+ii)Readonly Value Can be Cahnges
+iii)REadonly run Time Constant
+class Example{
+public readonly int Var;
+
+public Example(int b)
+{
+ Var=b; 
+}
+
+}
+
+ii)Const:
+Const Cannot be used in Constructor:
+Const Value cannot be changes 
+Const is Complie time Constant
+-------------
+--------
+MVC Structure
+1)App Data
+2)App Start
+BundelConfig->Js files bundels
+Filter Config->Register global Filters
+RouteConfig->routes.map(name,url,defaults)->new { controller = "Home", action = "Home", id = UrlParameter.Optional }
+
+-------
+Controllers :
+handles any incoming URL request
+
+Action Method:
+Result of Class which return from action method
+ViewResult
+PartialViewResult
+JsonResult
+EmptyResult
+HttpUnauthorizedResult
+
+Action Selectors:
+Handel Request
+1)ActionName->
+[ActionName("Find")]
+[ActionName("Find")]
+    public ActionResult GetById(int id)
+    {
+        // get student from the database 
+        return View();
+    }
+public ActionResult GetById(int id)
+2)NonAction
+public string Index()
+    {
+            return "This is Index action method of StudentController";
+    }
+3)ActionVerbs
+
+ActionVerbs:
+GET,POST,Put,Delete,Patch
+
+Razor Engine:
+Write HTMl and Server Side Code
+
+HTML Helpers:
+Html.ActionLink()
+Html.TextBox()
+Html.TextArea()
+Html.CheckBox()
+Html.Password()
+
+
+View Bag:
+Pass data from Controller to View
+ViewBag.TotalStudents = studentList.Count();
+@ViewBag.TotalStudents
+
+View Data:
+Pass data from controller to View Derieved from view data Dictionary
+ViewBag ->is Dynamic Type
+ViewData ->Dictionary Type 
+ViewData["students"] = studentList;
+
+Temp Data:
+Pass data from View to controller and vice versa
+Once consumed cannot cannot be accessed since its already consumed
+TempData["name"] = "Bill";
+TempData.Keep() for consecutive request
+
+
+Validation Messages:
+[Required]
+1)public string StudentName { get; set; }
+
+<span class="field-validation-error text-danger" 
+            data-valmsg-for="StudentName" 
+            data-valmsg-replace="true">The StudentName field is required.</span>
+2)ValidationMessageFor()
+[Required(ErrorMessage="Please enter student name.")]
+    public string StudentName { get; set; }
+->use ErrorMessage
+@Html.Editor("StudentName") <br />
+@Html.ValidationMessageFor(m => m.StudentName, "Please enter student name.", new { @class = "text-danger" })
+3)
+ModelState.IsValid
+[HttpPost]
+    public ActionResult Edit(Student std)
+    {
+if (ModelState.IsValid) { }}
+
+
+Exception Handling:
+1)try catch
+2)Custom Error that logs->
+<customErrors> ON in web config
+HandleErrorAttribute ->in FilterConfig(filters.Add(new HandleErrorAttribute()))
+
+
+
+Bundling and Minification
+Bundling and minification techniques were introduced in MVC 4 to improve request load time. Bundling allows us to load the bunch of static files from the server in a single HTTP request.
+
+Filters:
+before or after an action method executes
+
+Authorization filters:authentication (Before and After)->IAuthorizationFilter
+Action filters:(Before and After)->IActionFilter
+Result filters:After Execution of View->IResultFilter
+Exception filters:Unhandeled Exception->IExceptionFilter
+
+
+Action Filters
+Action filter executes before and after an action method executes
+
+-----------------------
+Repository Pattern
+
+C# mediates between the domain and data mapping layers (like Entity Framework). 
+It allows you to pull a record or number of records out of datasets, and then have those records to 
+work on acting like an in-memory domain object collection, and you can also update or delete records within those data set, and the mapping code encapsulated by the Repository 
+
+Link:
+https://codewithshadman.com/repository-pattern-csharp/
+
+--------------------
+Asp.net mvc vs web forms
+
+1)Request->controller->View
+2)View->Code
+
+1)HTMl Controls
+2)Server Controls
+
+1)partial views are reusable
+2)user controls
+
+1)Javascript and css is easy
+2)Difficult
+
+---------------------------
+ADO.NET Architecture :
+NET components to interact with the database and process the query result using 
+Connection, Reader, Command, Adapter and DataSet/DataTable objects.
+
+Entity Framework:
+Entity Framework is an Object Relational Mapper 
+(ORM), built at the top of an ADO.NET, 
+it creates the necessary code automatically for 
+storing, and retrieving data
+
+Create USername()
+
+DataReader:
+it allows you to retrieve read-only and 
+forward-only data from a database
+
+DataSet:
+fill data in DataSet once and then get data from
+DataSet instead of connecting with the database.
+
+SqlCommand Object?
+ExecuteNonQuery:
+to execute SQL Command or the storeprocedure performs, INSERT, UPDATE or Delete operations.
+It doesn't return any data from the database. Instead, 
+it returns an integer specifying the number of rows inserted, updated or deleted.
+
+ExecuteReader:
+ExecuteReader method is used to execute a SQL
+ Command or storedprocedure returns a set of rows from the database.
+
+Executescalar:
+execute SQL Commands or storeprocedure, 
+after executing return a single value from the database. 
+It also returns the first column of the first 
+row in the result set from a database.
+
+---------------------------
+SQL
+
+Primary Key :
+It is unique column in every table in a database
+It can ONLY accept;
+    - nonduplicate values
+    - cannot be NULL
+
+Foreign Key: 
+It is a column that comes from a different table and
+using Foreign key tables are related each other
+It is the primary key of another table
+It can be duplicate or null for another table
+
+Composite Key:
+A composite key is a primary key composed
+ of multiple columns used to identify a record uniquely
+----------
+Joins
+
+Inner join: matching values in both tables
+Left Join:all records from the left table (table1), and the matching records from the right table (table2).
+Right join :all records from the right table (table2), and the matching records from the left table (table1)
+Full outer Join:match in left (table1) or right (table2) table records.
+
+Self Join:self join is a regular join, but the table is joined with itself
+Natural Join:columns with the same name of associated tables will appear once only
+Cross Join:number of rows in the first table multiplied by the number of rows in the second table
+
+
+Natural Join:
+Combines two tables and returns rows of Same with exact vaules
+
++---------+--------------+-----------+------------+
+| ITEM_ID | ITEM_NAME    | ITEM_UNIT | COMPANY_ID |
++---------+--------------+-----------+------------+
+| 1       | Chex Mix     | Pcs       | 16         |
+| 6       | Cheez-It     | Pcs       | 15         |
+| 2       | BN Biscuit   | Pcs       | 15         |
+| 3       | Mighty Munch | Pcs       | 17         |
+| 4       | Pot Rice     | Pcs       | 15         |
+| 5       | Jaffa Cakes  | Pcs       | 18         |
+| 7       | Salt n Shake | Pcs       |            |
++---------+--------------+-----------+------------+
+
++------------+---------------+--------------+
+| COMPANY_ID | COMPANY_NAME  | COMPANY_CITY |
++------------+---------------+--------------+
+| 18         | Order All     | Boston       |
+| 15         | Jack Hill Ltd | London       |
+| 16         | Akas Foods    | Delhi        |
+| 17         | Foodies.      | London       |
+| 19         | sip-n-Bite.   | New York     |
+
+SELECT *
+FROM foods 
+NATURAL JOIN company;
+
+Output
+COMPANY_ID ITEM_ID    ITEM_NAME                 ITEM_UNIT  COMPANY_NAME              COMPANY_CITY
+---------- ---------- ------------------------- ---------- ------------------------- --------------
+16         1          Chex Mix                  Pcs        Akas Foods                Delhi
+15         6          Cheez-It                  Pcs        Jack Hill Ltd             London
+15         2          BN Biscuit                Pcs        Jack Hill Ltd             London
+17         3          Mighty Munch              Pcs        Foodies.                  London
+15         4          Pot Rice                  Pcs        Jack Hill Ltd             London
+18         5          Jaffa Cakes               Pcs        Order All                 Boston
+
+
+Difference between natural join and inner join
+There is one significant difference between INNER JOIN and NATURAL JOIN is the number of columns returned. See the following example on company table and foods table
+
+SELECT * 
+FROM company;
+
+COMPANY_ID COMPANY_NAME              COMPANY_CITY
+---------- ------------------------- ---------------
+18         Order All                 Boston
+15         Jack Hill Ltd             London
+16         Akas Foods                Delhi
+17         Foodies.                  London
+19         sip-n-Bite.               New York
+
+Referance Link(https://www.w3resource.com/sql/joins/natural-join.php)
+
+
+
+---------
+UNION ALL:
+COMBINES THE RESULT OF 2 QUERY AND
+DOESN'T REMOVE DUPLICATE ROWS
+AND DOESN'T SORT BY FIRST COLUMN
+
+UNION:
+COMBINES THE RESULT OF 2 QUERY AND
+REMOVES DUPLICATE ROWS AND
+SORTS BY FIRST COLUMN 
+
+Merge:
+Runs insert, update, or delete
+ operations on a target table from the 
+results of a join with a source table
+
+-----------
+CTE
+
+Common Table Expression
+
+A CTE allows you to define a temporary named result i,e used for 
+select,insert ,update,delete,merge
+
+WITH expression_name[(column_name [,...])]
+AS
+    (CTE_definition)
+SQL_statement;
+
+
+--------
+Cursors
+
+A SQL Server cursor is a set of 
+T-SQL logic to loop over a 
+predetermined number of rows one at a time
+
+The purpose for the cursor may be to update one row at a time or perform an administrative process such as
+ SQL Server database backups in a sequential manner
+
+1)Declare Variables
+2)Declare Cursor
+3)Open the Cursor
+3)Begin the custom business logic
+4) Fetch the next record from the cursor
+5)Close the cursor
+6)Deallocate cursor
+
+
+---------
+
+Types of SQL or Sql Queries
+
+Data Definition Language (DDL)->Create,Drop,Alter,Trunctae
+Data Manipulation Language (DML)->Grand,Revoke
+Data Control Language(DCL)->insert,Update,Delete
+Transaction Control Language(TCL)->Commit,RollBack
+Data Query Language (DQL)->Select
+------------
+
+Normalization:
+reduces data redundancy and
+ eliminates undesirable characteristics
+ like Insertion, Update and Deletion Anomalies
+
+1NF-->6NF
+1NF->
+Each table cell should contain a single value.
+Each record needs to be unique.
+2NF->
+
+------
+Index :
+PErformance tuning can be done done using indexing
+Indexig two types:
+Clustered Index
+Non Clusteres Index
+
+Clustered	 Non-clustered
+1	A clustered index is used to define the order or to sort the table or arrange the data by alphabetical order just like a dictionary.
+2	A non-clustered index collects the data at one place and records at another place.
+1	It is faster than a non-clustered index.	
+2        It is slower than the clustered index.
+
+
+--Optimize Stored Procedure--
+indexes
+Avoid Distinct
+like 
+
+Avoid poor performing techniques
+CTE’s – Common table expressions
+Table Variables
+
+---
+Triggers
+A trigger is a special type of stored procedure in
+ database that automatically invokes/runs/fires 
+when an event occurs 
+in the database server.
+
+Types:
+DDL Trigger:CREATE, ALTER and DROP
+DML Trigger:INSERT, UPDATE, and DELETE
+Logon Trigger:user session is being established
+
+DDL trigger:
+runs when DDL events occur in the database.
+DDL events are CREATE, ALTER and DROP statements.
+
+------------------------
+JavaScript
+
+1)closures:
+inner functions that have access to variables and parameters of outer function even after the outer function has returned.
+function multFn() {
+  var mult = 9;
+  return function(val) {
+    mult = mult * val;
+    return mult;
+  }
+}
+  
+// Use the closure
+var mult = multFn();
+console.log(mult(18));
+
+2)different data types present in javascript?
+Primitive types
+1)String 
+2)Number 
+3)BigInt 
+
+ Non-primitive types
+Object
+var obj1 = {
+   x:  43,
+   y:  "Hello world!",
+   z: function(){
+      return this.x;
+   }
+}
+
+3)Explain Hoisting in javascript.
+Hoisting is the default behaviour of javascript where all the variable and function declarations are moved on top.
+
+hoistedVariable = 3;
+console.log(hoistedVariable); // outputs 3 even when the variable is declared after it is initialized	
+var hoistedVariable;
+
+4)Difference between “ == “ and “ === “ operators.
+Both are comparison operators. The difference between both the operators is that “==” is used to compare values whereas, “ === “ is used to compare both values and types.
+
+
+
+------------------------
+Angular
+
+directives in Angular?
+Types of directives
+Component directive
+Structural directive
+Attribute directive
+
+Component directive
+
+Structural directive:
+ngIf — adds or removes element from DOM.
+*ngFor — renders list of elements on every iteration
+
+Attribute directive
+ngStyle — used to apply styles that will change the appearance.
+ngClass — used to apply CSS classes to change the appearance.
+
+----
+Decorator in Angular ?
+https://www.pluralsight.com/guides/defining-metadata-with-a-decorator-in-angular
+
+decorators is to store metadata about a class, method, or property. 
+1)Class Decorators
+export class EventThumbnailComponent {
+  constructor() {
+    console.log('Hey I am a component!');
+  }
+}
+
+2)Property Decorators
+ @Input()
+
+3)Method Decorators
+@HostListener
+export class EventThumbnailComponent {
+  @HostListener('click', ['$event'])
+  onHostClick(event: Event) {
+
+    // clicked, `event` available
+  }
+}
+
+4)Parameter Decorators
+Parameter decorators are used to decorate parameters in your class constructors
+export class EventThumbnailComponent {
+ constructor(@Inject(MyService) myService) {
+ console.log(myService); // MyService
+  }
+}
+
+----
+What is data binding in Angular?
+Data binding is one of the most significant and effective elements for creating communication between the DOM and the component. It makes designing interactive apps easier by reducing the need to worry about data pushing and pulling between the component and the template.
+
+There are Four types of Data binding in Angular: 
+
+Property Binding
+Event Binding
+String Interpolation
+Two way data binding
+Property Binding: One method of data binding is called property binding. In property binding, we connect a DOM element's property to a field that is a declared property in our TypeScript component code. In reality, Angular transforms string interpolation into property binding internally.
+
+Event Binding: Using event binding, you may respond to DOM events like button clicks and mouse movements. When a DOM event (such as a click, change, or keyup) occurs, the component's designated method is called.
+
+String Interpolation: In order to export data from TypeScript code to an HTML template( view ), String Interpolation is a one way data binding approach. The data from the component is shown to the view using the template expression enclosed in double curly braces. The value of a component property is added by using string interpolation
+
+----
+lifecycle hooks in Angular?
+
+different phases it goes through from the time of creation to the time it's destroyed
+
+OnChange-Initialize-DoCheck-AfterContnetInit-AfterContentcheck-
+
+ngOnChanges − When the value of a data bound property changes, then this method is called.
+
+ngOnInit − This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
+
+ngDoCheck − This is for the detection and to act on changes that Angular can't or won't detect on its own.
+
+ngAfterContentInit − This is called in response after Angular projects external content into the component's view.
+
+ngAfterContentChecked − This is called in response after Angular checks the content projected into the component.
+
+ngAfterViewInit − This is called in response after Angular initializes the component's views and child views.
+
+ngAfterViewChecked − This is called in response after Angular checks the component's views and child views.
+
+ngOnDestroy − This is the cleanup phase just before Angular destroys the directive/component.
+
+----
+How are observables different from promises?
+The first difference is that an Observable is lazy whereas a Promise is eager.
+
+Both observables and promises help us work with asynchronous functionality in JavaScript. 
+Promises deal with one asynchronous event at a time, while 
+observables handle a sequence of asynchronous events over a period of time
+
+Promise	                    Observable
+Emits a single value	    Emits multiple values over a period of time
+Not Lazy	            Lazy. An observable is not called until we subscribe to the observable
+Cannot be cancelled	    Can be cancelled by using the unsubscribe() method
+ 	                    Observable provides operators like map, forEach, filter, reduce, retry, retryWhen etc.
+
+const promise = new Promise((resolve, reject) => {
+       console.log('Text inside promise');
+       resolve('Hello world!');
+     });
+
+
+Parent To Child Compoent
+
+1)Input and Output
+2)ViewChild and View Children
+3)Content and contentchildren
+
+What is Content Projection
+
+
+Template  
+
+
+---
+
+
+Interview Programing Questions
+
+Find Character Count
+
+Dictionary<string, int> characterCountList = new Dictionary<string, int>();
+
+string word = "BaNAna";
+word = word.ToLower();
+
+bool check = false;
+foreach(var c in word)
+{
+    var count = 0;
+    foreach(var character2 in word)
+    {
+        if (!characterCountList.ContainsKey(c.ToString()))
+        {
+            check = true;
+            if (character2 == c)
+            {
+                count++;
+            }
+        }
+        else check = false;
+    }
+    if(check) characterCountList.Add(c.ToString(), count);
+}
+
+foreach(var data in characterCountList) Console.WriteLine(data.ToString());
+
+
+
+--------------------------
+
+microservices
+angular
+azure
+async await->imp
+multiple async await
+https->status codes
+Architectural design
+Code Reviews->Naming convenction,try catch,documentation,
+Oracle->Postgress Sql
+Entity Frame Work->Caching
+Agile/Scrum->Sprint and ask details
+Linq Query->Joins in Linq->left,right,outer,
+
+
+
+
+
+--Innovalon----
+Angular
+->Pass Data From Parent to child
+->Lazy Loading
+->How To Implement Lazy Loading
+->Rxjs
+->Promise vs Observable
+->Guards
+->autentication in angular
+
+
+Dotnet
+Action Filters in Dotnet
+Solid Principels
+Oops
+Abstarction vs interface
+-----------
+Fibonachi Series
+Linq Find the Highest Salary
+Css Selectors
+Html 5 Latest Featuers
+Dotnet Closed Circuit
+Enity FrameWork Core Questions
+Linq Questions
+Angular Lazy Loading
+Angular Auth Guards
+Passing Data BEtween Components
+Types Of Filters
+
+
+---------Sapiens-------
+Explain OOps
+Explain Inheritance in Oops
+Solid Principels ->Live Examples
+Base Class Derived Class Example
+Number of Count Of Characters in letter
+Quick Sort
+ ------------------------
+CMC
+C#
+Nullable Type
+Filters
+MVC Works
+Virtual Method
+Layout 
+Partial View
+
+
+Sql
+Union vs Union All
+Rank Function
+Truncate vs Delete
+Views
+
+-------------
+ASSURECARE
+abstract class
+ng lif cycle hook
+two subscribe functions angular
+call two proceduers
+can we create a override properties of one class with interface
+(we can use new Key word,we can use virtual class and override)
+find the count in letters (interview)
+pass data  parent to child with out service 
+
+
+
+
+
+
+
+
+
