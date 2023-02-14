@@ -1,7 +1,9 @@
-1.Print Matrix add 2 to every in same row and in another row add the before row total +2
+# Interview Programs
+
+> 1.Print Matrix add 2 to every in same row and in another row add the before row total +2
 int height = 4;
 
-int Total=0;
+ int Total=0;
 int printno = 0;
 for (int i = 1; i <= Width; i++)
 {
@@ -26,7 +28,7 @@ Output:
 
 102 104 106 108
 
-2.Print the Number in Reverse order?
+> 2.Print the Number in Reverse order?
 
 int i=1234;
 
@@ -44,7 +46,7 @@ Console.Write("ss"+sum);
 
 }
 
-Revers a string ?
+> Revers a string ?
 static void Main(string[] args)  
  {  
  string str = "", reverse = "";  
