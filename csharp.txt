@@ -1,0 +1,1501 @@
+csharp  
+1.differnce IEnumerable and ILIst
+  The main difference between IEnumerable and List in C# is that IEnumerable is an interface, while List is a concrete class. 
+   Moreover, IEnumerable is read-only and List is not.
+  List represents the entire collection in memory, while IEnumerable provides an interface for getting the next item one-by-one (enumerating data).
+
+  Both IEnumerable and List are part of .NET's System.Collections namespace.
+2.differce between array and List
+
+ They are different object types. They have different capabilities and store their data in different ways.
+
+ An Array (System.Array) is fixed in size once it is allocated. You can't add items to it or remove items from it. Also, all the elements must be the same type. 
+  As a result, it is type safe, and is also the most efficient of the three, both in terms of memory and performance. Also, System.Array supports multiple dimensions
+  (i.e. it has a Rank property) while List and ArrayList do not (although you can create a List of Lists or an ArrayList of ArrayLists, if you want to).
+
+ you store value types in it, they are boxed and unboxed, which can be a bit inefficient. Also, it is not type-safe.
+
+  A List<> leverages generics; it is essentially a type-safe version of ArrayList. This means there is no boxing or unboxing (which improves performance) and 
+  if you attempt to add an item of the wrong type it'll generate a compile-time error.
+
+  
+3.What authentication u are using
+  JWT authentication is a token-based stateless authentication mechanism. It is popularly used as a client-side-based stateless session, this means the server doesn’t have '
+  to completely rely on a data store (or) database to save session information.
+
+    JWTs can be encrypted, but they are typically encoded & signed
+
+ Link :https://blog.miniorange.com/what-is-jwt-json-web-token-how-does-jwt-authentication-work/#:~:text=JWT%20authentication%20is%20a%20token,they%20are%20typically%20encoded%20%26%20signed.
+
+4.Explain about ref and out
+
+ Sr. No   Key	           ref keyword	                                                                       out keyword
+ 1	 Purpose	ref keyword is used when a called method has to update the passed parameter.	  out keyword is used when a called method has to update multiple parameter passed.
+ 2	 Direction	ref keyword is used to pass data in bi-directional way.	                          out keyword is used to get data in uni-directional way.
+ 3	 Initialization	Before passing a variable as ref, it is required to be initialized .	          No need to initialize variable if out keyword is used.
+                          otherwise compiler will throw error
+ 4	 Initialization	In called method, it is not required to initialize the parameter passed as ref.   In called method, it is required to initialize the parameter passed as out.
+
+5.how u connect to databased and reading data
+6.ur using line queries
+7.explain about generic collection
+  C# collection types are designed to store, manage and manipulate similar data more efficiently. 
+   Data manipulation includes adding, removing, finding, and inserting data in the collection. Collection types implement the following common functionality: 
+
+  .NET supports two types of collections, generic collections and non-generic collections. Prior to .NET 2.0, 
+  it was just collections and when generics were added to .NET, generics collections were added as well.
+
+  The Generic Collections in C# are strongly typed. The strongly typed nature allows these collection classes to store only one type of value into it. 
+  This not only eliminates the type mismatch at runtime but also we will get better performance as they don’t require boxing and unboxing while they store value type data.
+  The Generic Collection classes are implemented under the System.Collections.Generic namespace. The classes which are present in this namespace are as follows.
+
+  Stack<T>: It represents a variable size last-in-first-out (LIFO) collection of instances of the same specified type. 
+  Queue<T>: It represents a first-in, first-out collection of objects. 
+  HashSet<T>: It represents a set of values. It eliminates duplicate elements.
+  SortedList<TKey, TValue>: It represents a collection of key/value pairs that are sorted by key based on the associated System.Collections.Generic.IComparer implementation. It automatically adds the elements in ascending order of key by default.
+  List<T>: It represents a strongly typed list of objects that can be accessed by index. Provides methods to search, sort, and manipulate lists. It grows automatically as you add elements to it.
+  Dictionary<TKey, Tvalue>: It represents a collection of keys and values.
+  SortedSet<T>: It represents a collection of objects that are maintained in sorted order.
+  SortedDictionary<TKey, TValue>: It represents a collection of key/value pairs that are sorted on the key.
+  LinkedList<T>: It represents a doubly linked list.
+
+
+ The non-generic collection classes such as ArrayList, Hashtable, SortedList, Stack, and Queue are worked on the object data type. That means the elements added to the collection 
+ are of an object type. As these non-generic collection classes worked on object data type, we can store any type of value that may lead to a runtime exception due to type mismatch.
+ But with Generic Collections in C#, now we are able to store a specific type of data (whether a primitive type or a reference type) which provides type safety by eliminating the 
+ type mismatch at run time.
+
+
+8.Have u know about tuple
+
+9.have u used helper class
+
+10.Have u used custom error handline execption?  
+  Exception handling is a mechanism in .NET framework to detect and handle run time errors
+
+  In C# there are three keywords Try, Catch, and Finally for handling exceptions.
+
+    In try block statements it might throw an exception whereas catch handles that caused by try block if one exists.
+    The finally block is used for doing any clean up process. The statement in finally block always executes.
+
+11.In .Net Core we can work without using configure or configure services ?
+
+   We can work without Configure services
+
+12.Explain About Middle ware and Custom Middle ware?
+
+
+13.Differnces between .Net Framwork and .Net Core?
+
+
+14.Dictionary to List and List to Dictionary Conversion ?
+
+
+15.Add Tranist,Add scope ,Add Global,Add Singleton?
+  Add Singleton
+  When we register a type as singleton, only one instance is available throughout the application and for every request.
+
+  It is similar to having a static object.
+
+  The instance is created for the first request and the same is available throughout the application and for each subsequent requests.
+
+   public void ConfigureServices(IServiceCollection services){
+     services.AddSingleton<ILog,Logger>()
+  }
+
+  Add Scoped
+  When we register a type as Scoped, one instance is available throughout the application per request. When a new request comes in, the new instance is created. Add scoped specifies 
+  that a single object is available per request.
+
+   public void ConfigureServices(IServiceCollection services){
+     services.AddScoped<ILog,Logger>()
+   }
+
+  Add Transient
+   When we register a type as Transient, every time a new instance is created. Transient creates new instance for every service/ controller as well as for every request and every user.
+
+  public void ConfigureServices(IServiceCollection services){
+     services.AddTransient<ILog,Logger>()
+   }
+  Parameter	  Add Singleton	                                        Add Scoped	                                                         Add Transient
+  Instance	Same each request/ each user.	                        One per request.	                                                  Different for everytime.
+  Disposed	App shutdown	                                        End of request	                                                           End of request
+  Used in	When Singleton implementation is required.	        Applications which have different behavior per user.	                  Light weight and stateless services.
+
+ services.AddSingleton<ILOg,Log>();
+ services.AddTransient<ILog,Log>();
+ services.AddScoped<>(ILog,Log)();
+
+
+16.web config and App settings?
+ Web.config :
+  It is a configuration file, which is used in web application and it can be an ASP.NET project or MVC project. Some project contains multiple web.config 
+  file inside the same project but with different folder.
+
+ App.config :
+    It is also a special type of configuration file which is basically used with Windows Services, Windows application, Console Apps or it can be WPF application or any others.
+  
+    It parses at compile time; it means if you edit the app.config when program is running, then you need to restart the application to reload the configuration setting into the program.
+
+Machine.config
+
+  It is a special type of configuration file which creates into the OS when you install visual studio. This stores machine level configuration setting. 
+  Only one machine.config file exists into the system and it stores highest level of configuration settings.
+
+  Machine.config settings apply to all web applications which is residing on the server. The setting of machine.config can be overridden by web.config’s settings.
+  If your system does not contain the machine.config then you cannot execute the application.
+
+17.API Filters ?
+  Link:https://www.tutorialspoint.com/what-are-the-different-types-of-filters-in-chash-asp-net-webapi
+
+  Filters are used to inject extra logic at the different levels of WebApi Framework request processing. Filters provide a way for cross-cutting concerns 
+   (logging, authorization, and caching). Filters can be applied to an action method or controller in a declarative or programmatic way. Below are the types of filters in Web API C#.
+
+  There are different filter types:
+
+  Authorization filters – They run first to determine whether a user is authorized for the current request
+   we have to Imlement IAuthorizationFilter ,OnAuthorization method
+
+  Resource filters – They run right after the authorization filters and are very useful for caching and performance
+   we have to Implement IResourceFilter , OnResourceExecuting, OnResourceExecuted method
+
+  Action filters – They run right before and after the action method execution
+     we have to implement IActionFilter,  OnActionExecuting,OnActionExecuted
+
+  Exception filters – They are used to handle exceptions before the response body is populated
+   we have to implement IExceptionFilter , OnException method
+
+  Result filters – They run before and after the execution of the action methods result.
+    we have to imlement IResultFilter,OnResultExecuting, OnResultExecuted  method
+
+
+
+  Filter Type	           Interface	                      Class                                                            Description
+Simple Filter	         IFilter		                                                          Defines the methods that are used in a filter
+Action Filter	         IActionFilter	                  ActionFilterAttribute	                          Used to add extra logic before or after action methods execute.
+Authentication Filter	 IAuthenticationFilter		                                                  Used to force users or clients to be authenticated before action methods execute.
+Authorization Filter	 IAuthorizationFilter	         AuthorizationFilterAttribute	                  Used to restrict access to action methods to specific users or groups.
+Exception Filter	 IExceptionFilter	         ExceptionFilterAttribute	                  Used to handle all unhandled exception in Web API.
+Override Filter	         IOverrideFilter		                                                 Used to customize the behaviour of other filter for individual action method
+
+
+ 
+18.App Routing ,Attribute Routing ,Conventional Routing ?
+
+  If you POST your model inside the body with Content-Type: application/json then you have to tell the ModelBinder to read the model from body by applying [FromBody] attribute.
+   Conventional routing: The route is determined based on conventions that are defined in route templates that, at runtime, will map requests to controllers and actions (methods).
+ 
+  Attribute-based routing: The route is determined based on attributes that you set on your controllers and methods.
+
+
+18.HTTp Protocols Post,Get ki differnces?
+Difference between HTTP GET and HTTP POST
+
+       HTTP GET                                                                       HTTP POST
+
+In GET method we can not send large amount of data rather. 	                  In POST method large amount of data can be sent because the request parameter is appended into the body.
+limited data is sent because the request parameter is appended into the URL      
+
+GET request is comparatively better than Post so it is used more than the         POST request is comparatively less better than Get so it is used less than the Get request.
+Post request.
+
+
+GET request is comparatively less secure because the                     	   POST request is comparatively more secure because the data is not exposed in the URL bar.
+data is exposed in the URL bar.
+
+Request made through GET method are stored in Browser history.	                   Request made through POST method is not stored in Browser history.
+
+GET method request can be saved as bookmark in browser.                            POST method request can not be saved as bookmark in browser.
+
+Request made through GET method are stored in cache memory of Browser. 	           Request made through POST method are not stored in cache memory of Browser.
+
+Data passed through GET method can be easily stolen by attackers.	           Data passed through POST method can not be easily stolen by attackers.
+
+In GET method only ASCII characters are allowed.	                           In POST method all types of data is allowed.
+
+
+
+
+
+Difference between PUT and PATCH  request:
+
+                                PUT                                                                          	                                          PATCH                                                        
+PUT is a method of modifying resource where the client                                     	PATCH is a method of modifying resources where the client sends partial 
+ sends data that updates the entire resource .                                                  data that is to be updated without modifying the entire data.
+
+In a PUT request, the enclosed entity is considered to be    	                                With PATCH, however, the enclosed entity contains a set of instructions describing  
+a modified version of the resource stored on the origin server,                                 describing how a resource currently residing on the origin server should be modified to produce a new version.
+and the client is requesting that the stored version be replaced
+
+HTTP PUT is said to be idempotent, So if you send retry a request multiple times 	       HTTP PATCH is basically said to be non-idempotent. So if you retry the request N times, 
+, that should be equivalent to a single request modification                                   you will end up having N resources with N different URIs created on the server.
+
+It has High Bandwidth 	                                                                       Since Only data that need to be modified if send in the request body as a payload , It has Low Bandwidth 
+
+
+19.solid principle and design patterns >singleton design patterns?
+
+The Single Responsibility Principle is one of the SOLID design principles. We can define it in the following ways,
+
+A reason to change
+A class or method should have only one reason to change.
+ 
+Single Responsibility
+A class or method should have only a single responsibility.
+
+
+20.Explain about Web API ?
+  API stands for Application Programming Interface.
+
+  A Web API is an application programming interface for the Web.
+ 
+ WEB API isa Programmming Interface/Application That Provider a communication between or interaction between software
+Applications. Web API is often used to  Provider an interface for websits and client apllication to have dataaccess
+Web API can be used to acces data from a database and save data back to the database
+
+
+21.Explain about .Net Core?
+  .NET Core is a new version of .NET Framework, which is a free, open-source, general-purpose development platform maintained by Microsoft. 
+  It is a cross-platform framework that runs on Windows, macOS, and Linux operating systems.
+
+  .NET Core Framework can be used to build different types of applications such as mobile, desktop, web, cloud, IoT, machine learning, microservices, game, etc.
+
+  .NET Core is written from scratch to make it modular, lightweight, fast, and cross-platform Framework.
+  .NET Core application speed up the performance, reduce the memory footprint and becomes easy to maintain.
+
+  
+ 22.Explain about Encapsulation, Polymorphism and Interface ?
+
+ 1.Encapsulation:
+
+  Encapsulation, in the context of C#, refers to an object's ability to hide data and behavior that are not necessary to its user. 
+ Encapsulation enables a group of properties, methods and other members to be considered a single unit or object.
+
+ The following are the benefits of encapsulation:
+
+  Protection of data from accidental corruption
+  Specification of the accessibility of each of the members of a class to the code outside the class
+  Flexibility and extensibility of the code and reduction in complexity
+  Lower coupling between objects and hence improvement in code maintainability
+
+  Encapsulation in C# is implemented with different levels of access to object data that can be specified using the following access modifiers:
+
+   Public: Access to all code in the program
+   Private: Access to only members of the same class
+   Protected: Access to members of same class and its derived classes
+   Internal: Access to current assembly
+   Protected Internal: Access to current assembly and types derived from containing class
+  
+     What is the default access modifier for classes?
+     internal is the default if no access modifier is specified.
+  
+    What is the default access mode for class members?
+     The default access for members and classes is private.
+
+  2.Polymorphism:
+    Polymorphism is a Greek word, meaning "one name many forms". In other words, one object has many forms or has one name with multiple functionalities. 
+    "Poly" means many and "morph" means forms. Polymorphism provides the ability to a class to have multiple implementations with the same name. 
+   It is one of the core principles of Object Oriented Programming after encapsulation and inheritance.
+ 
+  There are two types of polymorphism in C#  
+   1. Static / Compile Time Polymorphism.
+   2. Dynamic / Runtime Polymorphism.
+
+  1.Static/Compile Time Poylmorphism
+
+    It is also known as Early Binding.Method overloading is an example of Static Polymorphism. In overloading, the method / function has a same name but different signatures.
+    It is also known as Compile Time Polymorphism because the decision of which method is to be called is made at compile time. 
+    Overloading is the concept in which method names are the same with a different set of parameters.
+
+  2.Dynamic / Runtime Polymorphism.
+
+     Dynamic / runtime polymorphism is also known as late binding. Here, the method name and the method signature (number of parameters and parameter type must be the same 
+    and may have a different implementation). Method overriding is an example of dynamic polymorphism.
+
+    Method overriding can be done using inheritance. With method overriding it is possible for the base class and derived class to have the same method name and same something. 
+    The compiler would not be aware of the method available for overriding the functionality, so the compiler does not throw an error at compile time. 
+    The compiler will decide which method to call at runtime and if no method is found then it throws an error.
+ 
+
+ 3.Interface:
+
+ Interface can have methods, properties, events, and indexers as its members. But interfaces will contain only the declaration of the members. 
+ The implementation of the interface’s members will be given by class who implements the interface implicitly or explicitly.
+
+  Interfaces specify what a class must do and not how.
+  Interfaces can’t have private members.
+  By default all the members of Interface are public and abstract.
+  The interface will always defined with the help of keyword ‘interface‘.
+  Interface cannot contain fields because they represent a particular implementation of data.
+  Multiple inheritance is possible with the help of Interfaces but not with classes.
+ 
+4.Absctraction
+ https://www.knowledgehut.com/tutorials/csharp/csharp-abstraction
+  Abstraction is an important part of object oriented programming. It means that only the required information is visible to the user and the rest of the information is hidden.
+
+  Abstraction can be implemented using abstract classes in C#. Abstract classes are base classes with partial implementation.
+   These classes contain abstract methods that are inherited by other classes that provide more functionality.
+
+  Some of the salient points about abstract classes are as follows:
+
+ The abstract class is created using the keyword abstract and some of the methods of the abstract class also contain the keyword abstract.
+ No object can be created of the abstract class i.e.it cannot be instantiated.
+ The abstract methods in the abstract class are implemented actually only in the derived classes.
+ If all the methods in the abstract class contain the keyword abstract, then that class is known as pure Abstract class.
+
+   Abstraction is hiding the details and implementation of the code. Encapsulation is hiding the data and controlling the visibility of the code
+
+23.Explain diff between constant and readonly ?
+   Link:https://www.geeksforgeeks.org/difference-between-readonly-and-const-keyword-in-c-sharp
+  ReadOnly Keyword	                                                   Const Keyword
+  In C#, readonly fields can be created using readonly keyword	          In C#, constant fields are created using const keyword.
+  ReadOnly is a runtime constant.                     	                  Const is a compile time constant.
+  The value of readonly field can be changed.	                          The value of the const field can not be changed.
+  It cannot be declared inside the method.	                          It can be declared inside the method.
+  In readonly fields, we can assign values in 	                          In const fields, we can only assign values in declaration part.
+   declaration and in the constructor part.                 
+   It can be used with static modifiers.	                           It cannot be used with static modifiers.
+
+   readonly int myvar1; 
+   readonly int myvar2; 
+   public GFG(int b, int c)
+    {
+ 
+        myvar1 = b;
+        myvar2 = c;
+        Console.WriteLine("Display value of myvar1 {0}, "+
+                        "and myvar2 {1}", myvar1, myvar2);
+    }
+   readonly int i;                                                             const int i=20;    
+                                                       
+
+
+ 
+24.Explain about constructor ,static constructor ,private constructor ?
+  Link:https://referbruv.com/blog/csharp-fundamentals-private-constructor-and-static-constructor-explained/
+
+ Constructor is the first block to be called within a class when an object of its type is created.
+
+   Although Constructors are marked as public by default for its visibility level, C# also supports two special kinds of Constructors – 
+   Private Constructor and Static Constructor. These two are used for different purposes and are employed under special scenarios.
+1.Paramterized Connstructor ->We have to pass one property for paramterized constructor
+2.copy constructor >Copy constructor is used to copy the class in the constructor, we have passing the instance of the class 
+3.Private Constructor
+4.Static Construcor
+5.Defualt constructor
+
+ 
+ Non static constructor is nothing but public constructors
+
+  Private Constructor
+
+ 1. Private Constructor is a special instance Constructor, used in classes that contain static members only.
+ 2.If a class has one or more private Constructors and no public Constructor, other classes can’t create instance of this class.
+ 3.Private constructors are also core to the implementation of a Singleton design pattern.
+
+ Static Constructor :
+ 1.Static constructors are used to initialize static members of the class or to perform particular actions that need to be performed only once.
+   A normal constructor is called each time an instance of the class is created. But in some cases, we might want the initialization of some members 
+   to happen only once in the entire application life.
+ 2.Static constructor is automatically called before the first instance of the class is created or any static member of the class is referred.
+ 3.A Static constructor can’t have any access modifiers or parameters.
+ 4.A Class or struct can have only one static constructor.
+
+25.What is Media Formatter in Csharp?
+
+  Media type formatters are classes responsible for serializing request/response data so that Web API can understand the request data format
+  and send data in the format which client expects.
+
+
+            Web API includes following built-in media type formatters.
+
+ Media Type Formatter Class	       MIME Type	                                      Description
+JsonMediaTypeFormatter	                application/json, text/json                	Handles JSON format
+XmlMediaTypeFormatter	                application/xml, text/json	                Handles XML format
+FormUrlEncodedMediaTypeFormatter	application/x-www-form-urlencoded	        Handles HTML form URL-encoded data
+JQueryMvcFormUrlEncodedFormatter	application/x-www-form-urlencoded	       Handles model-bound HTML form URL-encoded data
+
+
+
+26.what is a namespace?
+ 
+    Namespaces are used to organize the classes. It helps to control the scope of methods and classes in larger .Net programming projects. 
+  In simpler words you can say that it provides a way to keep one set of names(like class names) different from other sets of names.
+  The biggest advantage of using namespace is that the class names which are declared in one namespace will not clash with the same class names declared in another namespace.
+  It is also referred as named group of classes having common features. The members of a namespace can be namespaces, interfaces, structures, and delegates.
+
+
+27.Collection in csharp?
+    C# collection types are designed to store, manage and manipulate similar data more efficiently. 
+   Data manipulation includes adding, removing, finding, and inserting data in the collection. Collection types implement the following common functionality: 
+
+  .NET supports two types of collections, generic collections and non-generic collections. Prior to .NET 2.0, 
+  it was just collections and when generics were added to .NET, generics collections were added as well.
+
+ex:https://dotnetcrunch.in/generic-collections-in-csharp/
+
+28.Explain about Launch settings ?
+
+29.Explain about abstraction?
+
+30.Write Linq query to get Employee List from Employee Table and Department Table ,if Salary>10000 and Department is student  ?
+
+   Employee 
+   EmployeeID
+   Employee Name
+   salary 
+   DepartmentID >Foreign key
+
+  Department
+   DepartmentID
+   Department
+
+
+var employeelist=  (from stu in employees 
+                join dept in departments on 
+                 stu.dept_id equals dept.dept_id                
+                 where stu.salary>10000 
+                select new
+                {
+                    ID = stu.id, Name = stu.name,
+                    DeptName = dept.dept_name,
+                }).ToList();
+
+ 31.If the List has contains employee ids from above query output employee list how to get below list employee list from above output list?
+   List<int> employeeIDs=new List<int>();
+   emploeeIDS.Add(1),
+   employeeIDs.Add(2)
+one way
+  var k = from id in employeeIdList
+           where employeeIDs.Contains(id)
+           select id;
+another way
+ var result = employeeIdList.Where(p => employeeIDs.Any(p2 => p2.ID == p.ID));
+ var result = employeeIdList.Where(E => employeeIDs.contains(E.ID)).select(p=>p.ID).ToList();
+
+32.Explain about your project Folders structure?
+
+
+33.explain about how  Performance will .net core?
+
+34. Write collection example for generic list and non genric list? 
+
+35.Execute query and ExecuteNonQuery differnces in ADO.NET?
+   ExecuteReader is used for any result set with multiple rows/columns (e.g., SELECT col1, col2 from sometable ). 
+   ExecuteNonQuery is typically used for SQL statements without results (e.g., UPDATE, INSERT, etc.)
+
+36.What is cross origin in Web API?
+     Cross-origin resource sharing (CORS) is a browser security feature that restricts cross-origin HTTP requests that are initiated from scripts running in the browser.
+  If your REST API's resources receive non-simple cross-origin HTTP requests, you need to enable CORS support.
+
+CORS is typically required to build web applications that access APIs hosted on a different domain or origin
+
+37.why is linq?
+
+ LINQ in C# is used to work with data access from sources such as objects, data sets, SQL Server, and XML. 
+ LINQ stands for Language Integrated Query. LINQ is a data querying API with SQL like query syntaxes. 
+ LINQ provides functions to query cached data from all kinds of data sources.
+
+38. what are solid design prinicples?
+  Link:https://www.educative.io/blog/solid-principles-oop-c-sharp
+ SOLID principles are the design principles that enable us to manage most of the software design problems.
+ Robert C. Martin compiled these principles in the 1990s.
+
+ These principles provide us with ways to move from tightly coupled code and little encapsulation to the desired results of loosely coupled 
+   and encapsulated real needs of a business properly. SOLID is an acronym of the following.
+  
+   S: Single Responsibility Principle (SRP)
+      Every software module should have only one reason to change.Each class has only one single funtionality to execute
+
+  O: Open closed Principle (OCP)
+      Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification
+
+  L: Liskov substitution Principle (LSP)
+     you should be able to use any derived class instead of a parent class and have it behave in the same manner without modification
+
+  I: Interface Segregation Principle (ISP)
+     Clients should not be forced to implement interfaces they don't use. Instead of one fat interface, many small interfaces are preferred based on groups of functions, 
+     each one serving one submodule.
+
+  D: Dependency Inversion Principle (DIP)
+
+   The dependency inversion principle (DIP) has two parts:
+
+   High-level modules should not depend on low-level modules. Instead, both should depend on abstractions (interfaces)
+   Abstractions should not depend on details. Details (like concrete implementations) should depend on abstractions.
+
+
+39.In ADO.net Execute scalar ,ExecuteQuery and ExecuteNONQuery
+Lin:https://www.c-sharpcorner.com/blogs/executereader-executenonquery-and-executescalar-in-adonet
+ ExecuteNonQuery
+
+  ExecuteNonQuery method is used to execute SQL Command or the storeprocedure performs, INSERT, UPDATE or Delete operations. 
+  It doesn't return any data from the database. Instead, it returns an integer specifying the number of rows inserted, updated or deleted
+
+ ExecuteReader:
+ ExecuteReader method is used to execute a SQL Command or storedprocedure returns a set of rows from the database.
+
+ Executescalar
+  ExecuteScalar method is used to execute SQL Commands or storeprocedure, after executing return a single value from the database. 
+  It also returns the first column of the first row in the result set from a database.
+
+40.How to Get N records in Linq query?
+var data = (from p in people
+           select p).Take(100);
+
+41.Explain about var ,Object and Dynamic Keywords?
+ Link:https://stackoverflow.com/questions/21080346/difference-between-object-dynamic-and-var
+  
+ Object:
+
+  Each object in C# is derived from object type, either directly or indirectly.
+  It is compile time variable and require boxing and unboxing for conversion and it makes it slow.
+  You can change value type to reference type and vice versa.
+
+ public void CheckObject()
+ {
+    object test = 10;
+    test = test + 10;    // Compile time error
+    test = "hello";      // No error, Boxing happens here
+ }
+
+ Var:
+
+ It is compile time variable and does not require boxing and unboxing. Since Var is a compile time feature,
+ all type checking is done at compile time only. Once Var has been initialized, you can't change type stored in it.
+
+ public void CheckVar()
+ {
+    var test = 10;         // after this line test has become of integer type
+    test = test + 10;      // No error
+    test = "hello";        // Compile time error as test is an integer type
+ }
+
+ Dynamic:
+
+ It is run time variable and not require boxing and unboxing. 
+ You can assign and value to dynamic and also can change value type stored in same. All errors on dynamic can be discovered at run time only.
+  We can also say that dynamic is a run time object which can hold any type of data.
+
+public void CheckDynamic()
+{
+    dynamic test = 10;
+    test = test + 10;     // No error
+    test = "hello";       // No error, neither compile time nor run time
+}
+
+ Object is useful when we don't have more information about the data type. Dynamic is useful when we need to code using reflection or 
+ dynamic languages or with the COM objects and when getting result out of the LinQ queries.
+
+42.Explain About Partial class ,sealed class and Anyomonus class?
+   A Sealed class is a class that cannot be inherited.Sealed classes are used to restrict the inheritance feature of object oriented programming.
+
+
+  A partial class is a class that can be split between 2 or more source files.
+    It provides a special ability to implement the functionality of a single class into multiple files and all these files are combined into a single class file when the
+  application is compiled. A partial class is created by using a partial keyword. This keyword is also useful to split the functionality of methods, interfaces, or structure 
+  into multiple files.
+
+43.What are anonymous classes in C#?
+   Link:https://www.geeksforgeeks.org/c-sharp-anonymous-types/
+  
+  IN C#, an anonymous type is a type (class) without any name that can contain public read-only properties only. 
+  It cannot contain other members, such as fields, methods, events, etc. You create an anonymous type using the new operator with an object initializer syntax.
+   
+  The properties of anonymous types are read-only and cannot be initialized with a null, anonymous function, or a pointer type.
+   The properties can be accessed using dot (.) notation, same as object properties.
+ 
+  The scope of the anonymous type is always limited to the method in which they are defined. Due to their local scope, you are not allowed to pass an
+   anonymous type to another method, but you can pass it to those methods which can accept dynamic type parameters
+ 
+ // Anonymous type object
+        var anony_object = new {s_id = 134, 
+                                s_name = "Siya", 
+                             language = "Ruby"};
+43.Explain about ADO.NET?
+
+    ADO.NET is a set of classes (a framework) to interact with data sources such as databases and XML files. 
+   ADO is the acronym for ActiveX Data Objects. It allows us to connect to underlying data or databases. It has classes and methods to retrieve and manipulate data.
+
+  ADO.NET uses a multilayer architecture that mainly has a few concepts, for instance Connection, Reader, Command, Adapter and Dataset objects. 
+  ADO.NET introduced data providers that are a set of special classes to access a specific database, execute SQL commands and retrieve data.04-Nov-2020
+  System.Data.SqlClient: Contains the classes to ...
+  System.Data.OracleClient: Contains classes s...
+  System.Data.Odbc: Contains classes required to ...
+  System.Data: Contains the definition for colum...
+
+44.Explain about Web API Types
+  Link:https://stoplight.io/api-types
+
+   Web APIs are APIs that can be accessed using the HTTP protocol. The API defines endpoints, and valid request and response formats. 
+  Web APIs include the APIs used to communicate with the browser (see  list). They may be services such as web notifications and web storage.
+  Different web APIs feature varying levels of security and privacy, including open, internal and partner APIs.
+  Multiple web APIs can be combined into a composite API - a collection of data or service APIs.
+  
+  1.Open APIS
+  2.Internal APIS
+  3.Partner APIs
+  4.Composite APIS
+
+45.Explain about Web API Protocols?
+   An API protocol defines the rules for API calls: it specifies accepted data types and commands. Different API architectures specify different protocol constraints.
+  REST:
+   REST (representational state transfer) is a very popular web API architecture. To be a REST API, an API must adhere to certain architectural constraints, or principles, including:
+
+ SOAP :
+   Simple object access protocol (SOAP) 
+  SOAP (simple object access protocol) is an established web API protocol. It is intended to be extensible, neutral (able to operate over a range of communication protocols, 
+  including HTTP, SMTP, TCP and more), and independent (it allows for any programming style) The SOAP specification includes:
+
+ JSON-RPC and XML-RPC:
+   An RPC is a remote procedural call protocol. XML-RPC uses XML to encode its calls, while JSON-RPC uses JSON for the encoding. Both protocols are simple. 
+   A call can contain multiple parameters, and expects one result. They have a couple of key features, which require a different architecture to REST:
+
+  SOAP use XML to tranfer request and response while rest used json
+46.Explain about Rest API?
+   REST stands for representational state transfer
+  REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways.
+
+   When a client request is made via a RESTful API, it transfers a representation of the state of the resource to the requester or endpoint. 
+   This information, or representation, is delivered in one of several formats via HTTP: JSON (Javascript Object Notation), HTML, XLT, Python, PHP, or plain text. 
+  JSON is the most generally popular file format to use because, despite its name, it’s language-agnostic, as well as readable by both humans and machines. 
+
+  Something else to keep in mind: Headers and parameters are also important in the HTTP methods of a RESTful API HTTP request, as they contain important identifier 
+  information as to the request's metadata, authorization, uniform resource identifier (URI), caching, cookies, and more. There are request headers and response headers, 
+  each with their own HTTP connection information and status codes.
+
+
+ What is REST architecture and RESTful web services?
+  REST is a software architectural style that defines the set of rules to be used for creating web services. Web services which follow the REST architectural style are known as 
+  RESTful web services. It allows requesting systems to access and manipulate web resources by using a uniform and predefined set of rules
+
+45.What is session in webAPI?
+ Session is a State Management Technique. A Session can store the value on the Server. It can support any type of object to be stored 
+  along with our own custom objects. A session is one of the best techniques for State Management because it stores the data as client-based.
+
+ State Server: Medium(n processor and 1 server)
+ Session mode: Performance
+ SQL Server: Less
+ InProc: more(1 processor and 1 server)
+
+46.How many types of sessions are there in C#?
+     There are four mode types or just modes. In-Process mode, State Server mode, SQL Server mode, Custom mode and Off mode. 
+   These are modes. In-Process mode uses memory as session storage
+
+46.What is Local Storage ,Session storage ,Cookies and cache ?
+  LocalStorage:
+    Local Storage, what does that mean, just thing you don't know anything about technology, but by the itself you can guess. It is some storage which stores data locally. that what it is.
+
+     IT stores data in Browser without any expiration until user clear it through JavaScript code or Clear browser cache.
+
+  Session Storage:
+    It seems like it also stores data but related to a session then how different it is from localStorage?
+
+   The main difference is your session storage data will be deleted once the session is finish or browser tab is closed or the browser is closed.
+
+   You can just try in browser console by setting
+
+   localStorage.setItem('name' , 'alex')
+   sessionStorage.setItem('session','seesion value')
+
+   and then close tab and open again, you can still find localStorage data but not sessionStorage data.
+
+   Cache:
+    Web cache, also called HTTP cache, is a tech for storing temporary information like web pages, images, files, scripts or other web multimedia.
+    Cache is mainly used to reduce the server lag and reduce the loading speed of web page data.
+
+  Cookies:
+    Web cookie, also named browser cookie/internet cookies/HTTP cookie, is a small amount of data that is stored on your computer by the web browser
+   when you browse a web page. Cookies are used for remembering user’s browsing activity, e.g. clicking specific items or buttons, 
+   logging in information like names, passwords, addresses, payment card numbers, visited web pages, etc
+
+47.What is app settings in web config?
+   The <appSettings> element of a web. config file is a place to store connection strings, server names, file paths, and other miscellaneous settings needed
+   by an application to perform work.
+48.What is the difference between first () and FirstOrDefault () in Linq?
+ 
+    The major difference between First and FirstOrDefault is that First() will throw an exception if there is no result data for the supplied criteria
+   whereas FirstOrDefault() will return the default value (null) if there is no result data. First() will throw an exception if there is no result data
+
+49.Differnce between Ienumerable and IQueryable
+   Link:https://www.c-sharpcorner.com/UploadFile/a20beb/ienumerable-vs-iqueryable-in-linq/
+   IEnumerable and IQueryable are used for data manipulation in LINQ from the database and collections.
+   IEnumerable:
+    1.IEnumerable exists in the System.Collections namespace.
+    2.IEnumerable is suitable for querying data from in-memory collections like List, Array and so on.
+    3.While querying data from the database, IEnumerable executes "select query" on the server-side, loads data in-memory on the client-side and then filters the data.
+    4.IQueryable is beneficial for LINQ to SQL queries.
+
+
+  IQueryable
+
+    1.IQueryable exists in the System.Linq Namespace.
+    2.Queryable is suitable for querying data from out-memory (like remote database, service) collections.
+    3.While querying data from a database, IQueryable executes a "select query" on server-side with all filters
+    4.While querying data from a database, IQueryable executes a "select query" on server-side with all filters
+
+50.What is Dependency Injection?
+
+  Link:
+    https://www.c-sharpcorner.com/UploadFile/85ed7a/dependency-injection-in-C-Sharp/
+    https://www.dotnettricks.com/learn/dependencyinjection/implementation-of-dependency-injection-pattern-in-csharp
+
+   Dependecy Injection is a Programming Technique that makes class independent of its dependencies .It acheives that by decoupling the usage of an object from its creation.This Helps
+  to follow SOLID Dependcy inversion and Single Responsibility Principles
+
+  The intent of Dependency Injection is to make code maintainble ,Dependency Injection helps to reduce the tight coupling among software componenets.Dependency Injection Reduces 
+  hard coded depencies among your classes by injecting those  dependcies at run time instead of design time techincally
+   
+  Three types of dependency Injection:
+
+   1.Constructor Injection
+   2.Property Injection
+   3.Method Injection
+
+ Advantages of Dependency Injection
+  Reduces class coupling
+  Increases code reusability
+  Improves code maintainability
+  Make unit testing possible
+
+51.Explain about Azure Devops?
+
+
+52.What is the difference between managed and unmanaged code?
+The main difference between managed and unmanaged code is listed below:
+
+  Managed Code	                                            Unmanaged Code
+ It is managed by CLR.	                                  It is not managed by CLR.
+ .NET framework is a must for execution.	          Does not require a .NET framework for the execution.
+ Memory management is done through garbage collection.	  Runtime environment takes care of memory management.
+
+53. What is a delegate in .NET?
+
+54.What is base keyword and why we use base keyword in .Net?
+  Link:https://www.javatpoint.com/c-sharp-base
+
+  In C#, base keyword is used to access fields, constructors and methods of base class.
+  
+ C# base keyword: 
+   We can use the base keyword to access the fields of the base class within derived class. It is useful if base and derived classes have the same fields.
+  If derived class doesn't define same field, there is no need to use base keyword. Base class field can be directly accessed by the derived class.
+
+  You can use base keyword within instance method, constructor or instance property accessor only. You can't use it inside the static method.
+
+
+55. What is the extension method in csharp?
+    Link:https://www.tutorialsteacher.com/csharp/csharp-extension-method
+    Extension methods, as the name suggests, are additional methods. Extension methods allow you to inject additional methods without modifying, 
+   deriving or recompiling the original class, struct or interface. Extension methods can be added to your own custom class, .NET framework classes, or third party classes or interfaces.
+
+    An extension method is actually a special kind of static method defined in a static class. To define an extension method, first of all, define a static class.
+
+    where the first parameter of the extension method specifies the type on which the extension method is applicable. We are going to use this extension method on int type.
+    So the first parameter must be int preceded with the this modifier.
+  
+  Ex:
+  Example: Define an Extension Method
+   namespace ExtensionMethods
+   {
+      public static class IntExtensions
+      {
+        public static bool IsGreaterThan(this int i, int value)
+        {
+            return i > value;
+        }
+      }
+   }
+
+
+  Example: Extension method
+  using ExtensionMethods;
+
+  class Program
+  {
+    static void Main(string[] args)
+    {
+        int i = 10;
+
+        bool result = i.IsGreaterThan(100); 
+
+        Console.WriteLine(result);
+      }
+   }
+  Note: The only difference between a regular static method and an extension method is that the first parameter of the extension method specifies the type
+   that it is going to operator on, preceded by the this keyword.
+
+56.HashTable vs Dictionary
+      Hashtable                                                            Dictionary
+ Hashtable is included in the System.Collections namespace.	        Dictionary is included in the System.Collections.Generic namespace.
+ Hashtable is a loosely typed (non-generic) collection,                  Dictionary is a generic collection. So it can store key-value pairs of specific data types.
+ this means it stores key-value pairs of any data types.
+
+ Hashtable is thread safe.	                                        Only public static members are thread safe in Dictionary.
+ Hashtable returns null if we try to find a key which does not exist.	Dictionary throws an exception if we try to find a key which does not exist.
+ Data retrieval is slower than dictionary because of boxing-unboxing.	Data retrieval is faster than Hashtable.
+
+57.authorization and authentication?
+  Authentication:
+   Authentication verifies the identity of a user or service, and authorization determines their access rights
+   Authentication is the process of verifying the identity of a user by obtaining some sort of credentials for example his username password combination,
+    and using those credentials to verify the user’s identity.
+
+  Authorization:
+
+   Authorization is the process of allowing an authenticated user to access his resources by checking whether the user has access rights to the system.
+   You can control access rights by granting or denying specific permissions to an authenticated user. So, If the authentication was successful,
+  the authorization process starts. Authentication process always proceeds to Authorization process.
+
+   JWT used for Authorization:
+    JWT is json web Tokens
+     JWT is a JSON based format of a security token which is basically a base64 url-encoded string which is used as a means of transferring 
+   secure content between two applications. They are used to secure request data in Web APIs. These are included in Authorization HTTP headers as part of 
+   the bearer authentication scheme.
+
+   OAuth is for authorization: 
+     OAuth is not an API or a service: it’s an open standard for authorization and anyone can implement it. With OAuth, you can log into 
+   third party websites with your Google, Facebook, Twitter or Microsoft accounts without having the necessity to provide your passwords. This way you can avoid creating
+   accounts and remembering passwords on each and every web application that you use on the Internet.
+
+           Authentication	                                                                                          Authorization
+Determines whether users are who they claim to be	                                             Determines what users can and cannot access
+Challenges the user to validate credentials (for example,                                            Verifies whether access is allowed through policies and rules
+through passwords, answers to security questions, or facial recognition)
+Usually done before authorization	                                                             Usually done after successful authentication
+Generally, transmits info through an ID Token	                                                     Generally, transmits info through an Access Token
+Generally governed by the OpenID Connect (OIDC) protocol	                                     Generally governed by the OAuth 2.0 framework
+Example: Employees in a company are required to authenticate                                        Example: After an employee successfully authenticates, 
+through the network before accessing their company email	                                    the system determines what information the employees are allowed to access
+the system determines what information the employees are allowed to access
+
+   //Hash the userId by HMAC-SHA-1 (Hashed Message Authentication Code) 
+            byte[] userIdByte = Encoding.ASCII.GetBytes(userId);
+            HMACSHA1 userIdHMAC = new HMACSHA1(userIdByte, true);
+58.FromBody
+
+59.put,patch,post,get
+
+60.What is Normalization ?
+  Normalization
+ 
+  Normalization is the process of organizing data into a related table; it also eliminates redundancy and increases the integrity which improves performance of the query. 
+ To normalize a database, we divide the database into tables and establish relationships between the tables.
+ 
+
+61.Temp data and view data?
+  Link:https://www.c-sharpcorner.com/blogs/viewbag-viewdata-and-tempdata-in-mvc
+   ViewBag
+  ViewBag is a dynamic object to pass the data from Controller to View. And, this will pass the data as a property of object ViewBag. 
+ And we have no need to typecast to read the data or for null checking. The scope of ViewBag is permitted to the current request and the value of ViewBag will become null while redirecting.
+
+
+  ViewData
+  ViewData is a dictionary object to pass the data from Controller to View where data is passed in the form of key-value pair. And typecasting is required to read the data in
+  View if the data is complex and we need to ensure null check to avoid null exceptions. The scope of ViewData is similar to ViewBag and it is restricted to the current request
+  and the value of ViewData will become null while redirecting.
+
+ TempData
+
+  TempData is a dictionary object to pass the data from one action to other action in the same Controller or different Controllers. Usually, TempData object will be stored in a 
+   session object. Tempdata is also required to typecast and for null checking before reading data from it. TempData scope is limited to the next request and if we want Tempdata to
+   be available even further, we should use Keep and peek.
+ 
+62.What is difference between bundling and minification?
+    Bundling and minification are two techniques you can use in ASP.NET to improve page load performance for your web application.
+    Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller payloads.
+
+
+
+63.What are the main return types supported in web API?
+  https://learn.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/action-results
+  Link:https://learn.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/action-results
+
+  It supports the following return types 
+   1.HttpResponseMessage -It will convert the Repsonse to an HTTP
+   2.IHttpActionResult -internally calls Execute Async to Create an HTTPResponseMessage
+   3.Void -It will Return Empty Content  
+   4.Other types such as string, int, etc.  
+
+
+ Return type	               How Web API creates the response
+ void	                       Return empty 204 (No Content)
+ HttpResponseMessage	       Convert directly to an HTTP response message.
+ IHttpActionResult	       Call ExecuteAsync to create an HttpResponseMessage, then convert to an HTTP response message.
+ Other type	             Write the serialized return value into the response body; return 200 (OK).
+
+    HttpResponseMessage
+   In web API version 1.0 we have type called HttpResponseMessage for receiving Http Response message from API Call
+    Ex:
+     public HttpResponseMessage Get(int id){
+
+      var product=dbcontext.Products.Get(id);
+      if(product==null)
+        return Request.CreateResponse(HttpStatusCode.NotFound);
+      
+      return Request.CreateResponse(HttpStatusCode.OK,product);
+    }
+   IHttpActionResult :
+   In web API version 2.0 ,IHttpActionResult introduce which is basically the
+  Replacement of HttpResonseMessage .It creates clean code and also simpliesfies unit testing
+
+   If a controller action returns an IHttpActionResult, Web API calls the ExecuteAsync method to create an HttpResponseMessage.
+ Then it converts the HttpResponseMessage into an HTTP response message.
+
+
+   EX:
+   public IHttpActionResult Get(int id){
+     var product=dbContext.Products.Get(id);
+
+     if(product==null)
+                 return NotFound();
+
+      return OK(product);
+    }
+   
+
+
+     ->you can create your custom types
+
+64.What is idempotent?
+   Idempotence, in programming and mathematics, is a property of some operations such that no matter how many times you execute them, you achieve the same result.
+
+65.Which HTTP method is idempotent?
+    Implemented correctly, the GET , HEAD , PUT , and DELETE methods are idempotent, but not the POST method. All safe methods are also idempotent.
+
+66.Why is HTTP POST not idempotent?
+      HTTP POST. Generally – not necessarily – POST APIs are used to create a new resource on the server. So when we invoke the same POST request N times,
+   we will have N new resources on the server. So, POST is not idempotent.
+   NON-IDEMPOTENT: If an operation always causes a change in state, like POSTing the same message to a user over and over, 
+   resulting in a new message sent and stored in the database every time, we say that the operation is NON-IDEMPOTENT.
+
+67.What is Parameter Binding in ASP.NET Web API?
+   Parameter Binding is a process that specifies that when a Web API calls a method on a controller, it must set the values for the parameters.
+
+   By Default, Web API uses the following rules to bind the parameter:
+
+  FromUri: If the parameter is of "Simple" type, the Web API tries to get the URI value. Simple Type includes.Net Primitive type like int, double, etc., DateTime, TimeSpan, GUID, string, any type which can convert from the string type.
+  FromBody: If the parameter is of "Complex" type, the Web API only binds the values from the message body.
+
+68.HTTP status Codes?
+  HTTPStatus Codes     Status            	Meaning
+  1xx	             Informational	    It specifies that the request has been received and the process is continuing.
+  2xx	             Success	            It specifies that the action was successfully received, understood, and accepted.
+  3xx	             Redirection	    It specifies that we have to take further actions to complete the request.
+  4xx	             Client Error	    It specifies that the request contains incorrect syntax or cannot be fulfilled.
+  5xx	             Server Error	    It specifies that the server failed to fulfil a valid request.
+ 
+69.HTTP verbs?
+  Link:https://www.c-sharpcorner.com/article/rest-features-in-webapi-with-verbs-getpostputdele/
+   HTTP GET
+    This verb should be used only to get information or data from database or other source. The code will look like the given code.
+  
+  HTTP POST
+  This verb should be used only to post or create new entry with information or data to database or other source. Code will look like the given below. 
+  
+  HTTP PUT
+   This verb should be used only to update the existing entry with information or data to database or other source
+
+  HTTP DELETE
+   This verb should be used only to delete existing entry within database or other source.
+
+  HTTP PATCH
+   The HTTP PATCH type should be used to update any partial resources. This verb should be used only to update the existing entry with partial data in database or other source.
+
+70.what is method overloading?
+
+  Link:https://www.tutorialspoint.com/csharp/csharp_operator_overloading.htm
+71.Design Patterns?
+   Link:https://www.dofactory.com/net/adapter-design-pattern
+   Link:https://www.c-sharpcorner.com/UploadFile/bd5be5/design-patterns-in-net/
+
+   Design patterns provide general solutions or a flexible way to solve common design problems.
+
+   Design Patterns in the object-oriented world is a reusable solution to common software design problems that occur repeatedly in real-world application development. 
+   It is a template or description of how to solve problems that can be used in many situations.
+
+   "A pattern is a recurring solution to a problem in a context."
+
+   "Each pattern describes a problem that occurs over and over again in our environment, and then describes the core of the solution to that problem, 
+  in such a way that you can use this solution a million times over, without ever doing it the same way twice.
+
+    There are three basic classifications of patterns Creational, Structural, and Behavioral patterns.
+
+  Creational Patterns
+
+  Abstract Factory : Creates an instance of several families of classes
+  Builder : Separates object construction from its representation
+  Factory Method : Creates an instance of several derived classes
+  Prototype : A fully initialized instance to be copied or cloned
+  Singleton : A class in which only a single instance can exist
+
+  Note 
+  The best way to remember Creational pattern is by remembering ABFPS (Abraham Became First President of States).
+
+  Structural Patterns
+
+  Adapter : Match interfaces of different classes .
+  Bridge : Separates an object's abstraction from its implementation.
+  Composite : A tree structure of simple and composite objects.
+  Decorator : Add responsibilities to objects dynamically.
+  Flyweight : A fine-grained instance used for efficient sharing.
+  Proxy : An object representing another object.
+
+  Note
+   To remember structural pattern best is (ABCDFFP)
+
+  Behavioral Patterns
+
+   Mediator : Defines simplified communication between classes.
+   Memento : Capture and restore an object's internal state.
+  Interpreter : A way to include language elements in a program.
+  Iterator : Sequentially access the elements of a collection.
+  Chain of Resp : A way of passing a request between a chain of objects.
+  Command : Encapsulate a command request as an object.
+  State : Alter an object's behavior when its state changes.
+  Strategy : Encapsulates an algorithm inside a class.
+  Observer : A way of notifying change to a number of classes.
+  Template Method : Defer the exact steps of an algorithm to a subclass.
+  Visitor : Defines a new operation to a class without change.
+
+  Note: Just remember Music....... 2 MICS On TV (MMIICCSSOTV).
+
+72.What is diff between design pattern and solid principles?
+  Link:https://www.linkedin.com/pulse/design-principles-vs-patterns-hallah-shahid-butt/
+  Link:https://www.tutorialsteacher.com/articles/difference-between-design-principle-and-design-pattern
+  Link:https://stackoverflow.com/questions/31317141/whats-the-difference-between-design-patterns-and-design-principles
+
+  Design Principle
+     Design principles provide high level guidelines to design better software applications. They do not provide implementation guidelines and are not bound to any programming language. 
+   The SOLID (SRP, OCP, LSP, ISP, DIP) principles are one of the most popular sets of design principles.
+
+    For example, the Single Responsibility Principle (SRP) suggests that a class should have only one reason to change. This is a high-level statement which
+   we can keep in mind while designing or creating classes for our application. SRP does not provide specific implementation steps but it's up to you 
+  how you implement SRP in your application.
+
+  Design Pattern
+
+   Design Pattern provides low-level(general reusable) solutions related to implementation, of commonly occurring object-oriented problems.
+   In other words, design pattern suggests a specific implementation for the specific object-oriented programming problem. 
+
+  For example, if you want to create a class that can only have one object at a time, then you can use the Singleton design pattern which suggests
+   the best way to create a class that can only have one object.
+
+   Design patterns are tested by others and are safe to follow, e.g. Gang of Four patterns: Abstract Factory, Factory, Singleton, Command, etc.
+
+73.What is Reflection and why we need t0 use Reflection?
+
+
+74.How the Security Works in web API?
+   Security works in Web API by using Authorization and Authentication
+
+  In our case we are using JWt Token Based Authentication for webAPI.after user Login we generte a JWT Token using practice and logged user id and save it in angular
+  and for every request we will send that JWT Token in header parmaters and in backend in api we will validate the jwt token with data which we passing i input model
+  if it matches then only we will allow the request to get data toherwise we will throw error
+
+73.Content Negotation in Web API?
+
+  Link:https://dotnettutorials.net/lesson/content-negotiation-web-api/
+  Content Negotiation Definition:
+   We can define Content Negotiation as “the process of selecting the best representation for a given response when there are multiple representations available”.
+
+  One of the standards of the REST service is that the client should have the ability to decide in which format they want the response – whether they want the response in
+  XML or JSON etc. This is called Content Negotiation.
+
+
+74.singleton Design Pattern Example
+
+public readonly HttpClient _httpClient;
+private static object object =new object();
+public static HttpClient  httpClientInstance(){
+
+ if(_lock(object )){
+
+    if(_httpClient==null){
+        _httpClient =new HttpClient();
+     }
+  }
+
+  return _httpClient ;
+
+}
+
+75.When you create an instance of a derived class which constructor is called first?
+  base constructor
+    The base constructor will be called first. You are right. But the execution starts at the derived constructor, the first thing the derived constructor
+  does is call the base constructor(if any). So it appears as if the base constructor is being called first.
+
+ public class A
+ {
+   public A(){
+
+   }
+
+ }
+ public class A:B
+ {
+   public B(){
+
+   }
+
+ }
+ public class c:B
+ {
+   public c(){
+     
+   }
+
+ }
+
+ Execute :A,B,c
+76.what is Content Negotation?
+  Link:https://dotnettutorials.net/lesson/content-negotiation-web-api/
+   https://code-maze.com/content-negotiation-web-api/
+
+    Content Negotiation as “the process of selecting the best representation for a given response when there are multiple representations available”.
+
+    One of the standards of the REST service is that the client should have the ability to decide in which format they want the response – whether they want the response 
+  in XML or JSON etc. This is called Content Negotiation.
+
+      Content negotiation is implemented by ObjectResult and the Ok() method inherits from OkObjectResult that inherits from ObjectResult .
+   That means our controller method is able to return the content negotiated response
+
+
+77.short circuting in csharp?
+  Link:https://kodify.net/csharp/if-else/short-circuit-if/
+   These && and || two logical operators also perform something called short-circuit evaluation. With short-circuit evaluation, C# stops evaluating a condition as soon as it
+  can deduce the final outcome
+ 
+  Ex:
+    Say our program evaluates the A && B expression. When A is processed and turns up false, C# knows that the A && B condition has to be false as well.
+  After all, a single false value makes the && operator return false as well. So when the first expression is false, C# short-circuits and doesn’t check the second expression.
+  Instead it simply returns false
+
+  The same thing happens with the || operator. When our program comes across the A || B expression and A evaluates to true, then we already know the outcome of A || B: 
+    that condition has to be true as well. And so C# short-circuits and simply returns true without processing the second expression.
+
+   The effect of short-circuit evaluation is that our code runs a little bit quicker. And we can also use this feature to prevent errors. 
+
+
+78.Implicit and  Explicit Interface?
+  Link:https://www.geeksforgeeks.org/c-sharp-explicit-interface-implementation/
+    There are two ways of implementing C# interfaces “Explicit” and “Implicit”.
+
+   Implicit” interface and “Explicit” interface is that in implicit the interface methods are publicly implemented while in explicit the methods are privatelyimplemented.
+
+    Explicitly telling the compiler that a particular member belongs to that particular interface is called Explicit interface implementation. 
+
+  Implict :
+
+
+  Explicit:
+   // C# Program to show the use of
+  // Explicit interface implementation
+  using System;
+
+  interface I1 {
+
+	// Property X
+	int X
+	{
+		set;
+		get;
+	}
+  }
+
+  interface I2 {
+
+	// Method X
+	int X();
+ }
+
+  class C : I1, I2 {
+
+	int x;
+
+	// Implicit implementation of
+	// the property
+	public int X
+	{
+		set { x = value; }
+		get { return x; }
+	}
+
+	// Explicit implementation of
+	// the method
+	int I2.X()
+	{
+		return 0;
+	}
+  }
+
+ // Driver Code
+ class GFG {
+
+	// Main Method
+	static void Main(string[] args)
+	{
+		C c = new C();
+		I2 i2 = new C();
+
+		// Invokes set accessor
+		c.X = 10;
+
+		// Invokes get accessor
+		Console.WriteLine("Value of x set using X"+
+							" from I1 is " + c.X);
+
+		// Call to the X method
+		Console.WriteLine("Value returned by I2.X()"+
+									" is " + i2.X());
+	}
+  }
+
+
+  
+78.why we use aysnc functionalities?
+
+
+
+79.Abstract Class?
+
+  Can we define abstract class as static?
+   If you declare a method in a class abstract to use it, you must override this method in the subclass. But, overriding is not possible with static methods.
+   Therefore, an abstract method cannot be static
+
+  Can Abstract class be Private?
+    If a method of a class is private, you cannot access it outside the current class, not even from the child classes of it. But, incase of an abstract method,
+    you cannot use it from the same class, you need to override it from subclass and use. Therefore, the abstract method cannot be private.
+
+   Can we have private methods in abstract class C#?
+    If a method of a class is private, you cannot access it outside the current class, not even from the child classes of it. But,
+    incase of an abstract method, you cannot use it from the same class, you need to override it from subclass and use. Therefore, the abstract method cannot be private.
+
+  Can an abstract class have static methods? 
+   Yes, abstract class can have Static Methods. The reason for this is Static methods do not work on the instance of the class, they are directly associated with the class itself.
+
+    Abstarct class Have constructor but interface did not have constructor
+
+
+80.Singleton design Pattern?
+ sealed class means we can canot inherit it ,so for singleton we will mention as sealed 
+
+   public sealed class clsHttpClientCalling
+    {
+        private static HttpClient _httpclient;
+        static object lockObject = new object();
+
+        //As per discussion with Kumara sir, siva and omkar Max time out it 5min. Because we are calling from ccda generation service
+        public static HttpClient getInstanceOfHttpClient()
+        {
+            int TimeOut = 5;
+            if (_httpclient == null)
+            {
+                lock (lockObject)
+                {
+                    if (_httpclient == null)
+                    {
+                        if (ConfigurationManager.AppSettings.AllKeys.Contains("TimeoutPeriodinMinits"))
+                            TimeOut = Convert.ToInt32(ConfigurationManager.AppSettings["TimeoutPeriodinMinits"]);
+
+                        _httpclient = new HttpClient();
+                        _httpclient.DefaultRequestHeaders.Clear();
+                        _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        _httpclient.Timeout = TimeSpan.FromMinutes(TimeOut);
+                    }
+                }
+            }
+            return _httpclient;
+        }
+
+  }
+
+81.what are struct types?
+ Link:https://www.tutorialsteacher.com/csharp/csharp-struct
+  struct is the value type data type that represents data structures. It can contain a parameterized constructor, static constructor, constants, fields,
+  methods, properties, indexers, operators, events, and nested types.
+
+  struct can be used to hold small data values that do not require inheritance, e.g. coordinate points, key-value pairs, and complex data structure.
+  Structs cannot have inheritance, so have only one type
+Ex:
+  struct Coordinate
+ {
+    public int x;
+    public int y;
+ }
+
+ Coordinate point = new Coordinate();
+ Console.WriteLine(point.x); //output: 0  
+ Console.WriteLine(point.y); //output: 0
+
+
+82.Nullabel Types?
+
+  Nullable types represent value-type variables that can be assigned the value of null. You cannot create a nullable type based on a reference type.
+  (Reference types already support the null value.)
+
+  So, no they're not reference types.
+
+  public int? id{get;set;}
+
+83.What is the difference between struct and class in C sharp?
+ Structs are value types while classes are reference types. Structs can be instantiated without using a new operator. A struct cannot inherit from another struct or class, 
+  and it cannot be the base of a class. All structs inherit directly from System.
+
+84.C# Tuples
+C# tuple is a data structure that is used to store sequence of elements. Tuple with n elements are known as n-tuple.
+
+ We can use Tuple for the following reasons.
+
+ To represent a single set of data
+ To provide easy access and manipulation of data
+ To return multiple values from a method without using out parameter
+ To pass multiple values to a method through a single parameter
+
+  var book = new Tuple<string, string, double>("C# in Depth", "Jon Skeet", 100.50);  
+
+ for tuple we can upto 8 items in it
+85.what is function?
+  Func is generally used for those methods which are going to return a value, or in other words, Func delegate is used for value returning methods. 
+ It can also contain parameters of the same type or of different types
+
+86.Shadowing (method hiding)?
+  Ex:https://www.c-sharpcorner.com/UploadFile/ff2f08/overriding-vs-shadowing-in-C-Sharp/
+    A method or function of the base class is available to the child (derived) class without the use of the "overriding" keyword. 
+  The compiler hides the function or method of the base class. This concept is known as shadowing or method hiding. In the shadowing or method hiding,
+  the child (derived) class has its own version of the function, the same function is also available in the base class.
+  Shadowing is a VB.Net concept. It also known as method hiding in C#. Using this concept we can provide a new implementation for the base class method without overriding it.
+ Example
+
+  Public class BaseClass
+  {
+     public string GetMethodOwnerName()
+     {
+       return "Base Class";
+     }
+  }
+  public class ChildClass : BaseClass
+  {
+    public new string GetMethodOwnerName()
+    {
+       return "ChildClass";
+     }
+  }
+C#
+ Test Code
+
+ static void Main(string[] args)
+ {
+    ChildClass c = new ChildClass();
+    Console.WriteLine(c.GetMethodOwnerName());
+ }
+
+87.what is IDisposable?
+
+  IDisposable is an interface that contains a single method, Dispose(), for releasing unmanaged resources, like files, streams, database connections and so on.
+
+ public class SimpleCleanup : IDisposable
+ {
+    // some fields that require cleanup
+    private SafeHandle handle;
+    private bool disposed = false; // to detect redundant calls
+
+    public SimpleCleanup()
+    {
+        this.handle = /*...*/;
+    }
+    
+   public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+    protected virtual void Dispose(bool disposing)
+    {
+       
+            if (disposing)
+            {
+                // Dispose managed resources.
+                if (handle != null)
+                {
+                    handle.Dispose();
+                }
+            }
+
+            // Dispose unmanaged managed resources.
+                
+    }
+
+  
+ }
+
+88.What we need using Block?
+  Link:https://www.twilio.com/blog/c-8-making-use-of-using-declarations
+ https://dotnetpattern.com/csharp-using-statement
+  In C#, the using keyword has two purposes: The first is the using directive, which is used to import namespaces at the top of a code file.
+   The second is the using statement. C# 8 using statements ensure that classes that implement the IDisposable interface call their dispose method.
+  It guarantees that the dispose method will be called, even if the code throws an exception.
+
+  C# provides a special "using" statement to call Dispose method explicitly. using statement gives you a proper way to call the Dispose method on the object. 
+
+ using statement provides some unique features.
+
+ Manage Scope: It also manages the scope of the object. At the end of using block, using calls the Dispose method and in the method, object release all its
+  resources and should not be available further.
+ Instantiate the object as read-only: Object instantiates in the using statement are read-only and you can not modify or reassigned the object. 
+ This feature ensures Dispose method is called on the object which is instantiated.
+ Ensures Dispose method will always be called: using statement also ensures Dispose method will always be called whether any exception was occurred or not.
+
+89.Why do we need static constructor in C#?
+ Link:https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-constructors
+    A static constructor is used to initialize any static data, or to perform a particular action that needs to be performed only once. 
+  It is called automatically before the first instance is created or any static members are referenced.
+
+ Static constructors have the following properties:
+
+ A static constructor doesn't take access modifiers or have parameters.
+ A class or struct can only have one static constructor.
+ Static constructors cannot be inherited or overloaded.
+ A static constructor cannot be called directly and is only meant to be called by the common language runtime (CLR). It is invoked automatically.
+ The user has no control on when the static constructor is executed in the program.
+  A field declared as static readonly may only be assigned as part of its declaration or in a static constructor. 
+  Ex:
+
+  class SimpleClass
+  {
+    // Static variable that must be initialized at run time.
+     static readonly long baseline;
+
+     // Static constructor is called at most one time, before any
+     // instance constructor is invoked or member is accessed.
+     static SimpleClass()
+     {
+        baseline = DateTime.Now.Ticks;
+     }
+  }
+
+
+  Can static class have private constructor in C#?
+  A static class can only have a static constructor and public/private does not apply since your code can never call this constructor (the CLR does).
+ 
+  Can we have static constructor in non static class in C#?
+   Also, you can have a static constructor in a static class or a non-static class. A static constructor is used to initialize the static members of a class. 
+   The static constructor of a class is invoked the first time a static member of the class is accessed
+
+  Can static constructor initialize non-static variable?
+    Static constructor can initialize only static variable but non-static constructor can initialize both static and non-static variable.
+  
+ Can we change value of static variable in non static method?
+  In the non-static method, the method can access static data members and static methods as well as non-static members and method of another class or same class, 
+  also can change the values of any static data member.
+
+90.What is Searlization?
+  Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file. 
+  Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
+
+ Tap in 
+liskov substistution principle
+
+ngonchanges or ngdocheck will execute first
+
+
+abstract class

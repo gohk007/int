@@ -1,0 +1,631 @@
+Database
+
+Data Definition Language(DDL)
+DML(Data Manipulation Language): 
+
+DELETE operations (DML) can be rolled back (undone), while DROP(DDL) and TRUNCATE(DDL) operations cannot be rolled back
+
+1.Primary key and unique key differnces ?
+     Primary key                                                                  Unique Key
+  In the case of a primary key, we cannot save NULL values.                 In the case of a unique key, we can save a null value, however, only one NULL value is supported.
+  The primary key tends to generate a clustered index by default.           The unique key tends to generate a non-clustered index.
+  Each table holds just one primary key.                                    A table can hold more than one unique key.
+  It is used to recognize specific records in the table.                    It anticipates storing duplicate entries in a column except for a NULL value.
+  The primary key is accepted as a unique or sole identifier for            When the primary key is not present in the table, then the unique key is also used as a unique
+   every record in the table.                                                identifier for records
+   
+
+2.Explain about Indexers in sql
+  Indexes are used to retrieve data from the database more quickly than otherwise. The users cannot see the indexes, they are just used to speed up searches/queries.
+
+  ex : “In simple words suppose we want to search the topic in to book we go to index page of that book and search the topic which we want.Just like that to search the 
+  values from the table when indexing is there you need not use the full table scan.”
+
+  SQL Indexes are nothing but way of reducing the cost of the query.More the cost of the query less the performance of the query.The main task of query tuner is to 
+  reduce the cost of the query using indexing,Reduce the Full table scans,reduce the time to fetch the records from the query.
+
+  Clustered Indexes:
+
+  1.The clustered indexes are indexes which are physically stored in order means it stores in ascending or descending order in Database.
+
+  2.Clustered indexes are created one for each table.
+
+  3.When primary key is created then clustered index has been automatically created in the table.
+
+  4.If table is under heavy data modifications the clustered indexes are preferable to use.
+
+  Non Clustered Indexes:
+
+  1.The clustered indexes are used for searching purpose as we can create clustered indexes where primary is is defined.But Non clustered indexes are indexes which will be 
+  created on the multiple joining conditions,multiple filters used in query.
+
+  2.We can create 0 to 249 non-clustered indexes on single table.
+
+  3.Foreign keys should be non clustered.When user wants to retrieve heavy data from fields other than primary key the non clustered indexes are useful.
+
+  I have explained the Basic concept of SQL Indexes here.In upcoming articles i will explain how the indexing works in detailed description with Example.Please comment if you want
+   copy of this article or if you have any questions.Hope you like article of SQL Indexes.
+
+  USE [319_XpertEMR] 
+  GO 
+ 
+  /****** Object:  Index [INX_tbl_Documents_Fillable_HTML_Templates_PatientData_DOS]    Script Date: 9/27/2022 10:45:20 PM ******/ 
+  CREATE NONCLUSTERED INDEX [INX_tbl_Documents_Fillable_HTML_Templates_PatientData_DOS] ON [dbo].[tbl_Documents_Fillable_HTML_Templates_PatientData] 
+  ( 
+     [DOS] ASC, 
+     [Fillable_HTML_DocumentTemplateID] ASC 
+  ) 
+  INCLUDE([Documents_Fillable_HTML_Templates_PatientData_InActive])  
+  WHERE ([Documents_Fillable_HTML_Templates_PatientData_InActive]=(0)) 
+  WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY] 
+  GO 
+
+3.sql No Log and normal database differnces
+   In Sql NO Log Database we cannot maintain log for Tables but in sql database we can log everey table
+
+4.Why we use NOLOCk in Sql ?
+  The NOLOCK hint allows SQL to read data from tables by ignoring any locks and therefore not get blocked by other processes.
+  This can improve query performance by removing the blocks, but introduces the possibility of dirty reads.
+  EX: SELECT * FROM Person.Contact WITH (NOLOCK) WHERE ContactID < 20 
+  Lock Types
+   MD - metadata lock
+   DB - database lock
+   TAB - table lock
+   PAG - page lock
+ Mode
+  S - Shared access
+  Sch-S - Schema stability makes sure the schema is not changed while object is in use
+  IS - Intent shared indicates intention to use S locks
+  Issues with NOLOCK
+      We mentioned above how you can get dirty reads using the NOLOCK hint. These are also other terms you may encounter for this hint.
+
+   Dirty Reads - this occurs when updates are done, so the data you select could be different.
+   Nonrepeatable Reads - this occurs when you need to read the data more than once and the data changes during that process
+   Phantom Reads - occurs where data is inserted or deleted and the transaction is rolled back. So for the insert you will get more records and for the delete you will get less records.
+ 
+5.What is deadlock in SQL?
+
+  In terms of SQL Server, a deadlock occurs when two (or more) processes lock the separate resource. Under these circumstances, each process cannot continue and begins to wait 
+  for others to release the resource.
+
+ 6.What is dirty read in SQL?
+    Dirty Reads A dirty read occurs when a transaction reads data that has not yet been committed. For example, suppose transaction 1 updates a row. Transaction 2 r
+   eads the updated row before transaction 1 commits the update
+
+7.Group by ,foregin key ,order by,left join ,partion keys?
+
+      GROUP BY	                                                                                          ORDER BY
+  1.Group by statement is used to group the rows that have the same value.	 1.Whereas Order by statement sort the result-set either in ascending or in descending order.
+  2.In select statement, it is always used before the order by keyword.          2.While in select statement, it is always used after the group by keyword.
+  3.It may be allowed in CREATE VIEW statement.	                                 3.While it does not use in CREATE VIEW statement.
+
+       Group By Syntax –                                                               Order By Syntax –
+
+   SELECT function_Name(column_1), column_2                                    SELECT column_1, column_2, column_3...........
+   FROM Table_Name                                                             FROM Table_Name
+   WHERE condition                                                              ORDER BY column_1, column_2, column_3....... ASC|DESC;
+   GROUP BY column_1, column_2
+   ORDER BY column_1, column_2;                                                 
+8.foreign key ,unique key primary key,partion key ?
+ Foreign keys in SQL are used to create a link between two tables. It is a column that creates a relationship between the tables by taking a reference
+ from another table in the same database using the primary key. The foreign key may contain null and duplicate values
+
+9.Sql Joins
+  SQL Join statement is used to combine data or rows from two or more tables based on a common field between them. Different types of Joins are as follows: 
+
+    INNER JOIN
+    LEFT JOIN
+    RIGHT JOIN
+    FULL JOIN
+
+ A. INNER JOIN
+  The INNER JOIN keyword selects all rows from both the tables as long as the condition is satisfied.
+  This keyword will create the result-set by combining all rows from both the tables where the condition satisfies i.e value of the common field will be the same. 
+
+  Syntax: 
+
+  SELECT table1.column1,table1.column2,table2.column1,....
+  FROM table1 
+  INNER JOIN table2
+  ON table1.matching_column = table2.matching_column;
+B. LEFT JOIN
+  This join returns all the rows of the table on the left side of the join and matches rows for the table on the right side of the join. 
+ For the rows for which there is no matching row on the right side, the result-set will contain null. LEFT JOIN is also known as LEFT OUTER JOIN.
+
+  Syntax: 
+
+  SELECT table1.column1,table1.column2,table2.column1,....
+  FROM table1 
+  LEFT JOIN table2
+  ON table1.matching_column = table2.matching_column;
+
+ C. RIGHT JOIN
+
+  RIGHT JOIN is similar to LEFT JOIN. This join returns all the rows of the table on the right side of the join and matching rows for the table on the left side of the join. 
+  For the rows for which there is no matching row on the left side, the result-set will contain null. RIGHT JOIN is also known as RIGHT OUTER JOIN. 
+ Syntax: 
+
+ SELECT table1.column1,table1.column2,table2.column1,....
+ FROM table1 
+ RIGHT JOIN table2
+ ON table1.matching_column = table2.matching_column;
+
+ D. FULL JOIN
+ FULL JOIN creates the result-set by combining results of both LEFT JOIN and RIGHT JOIN. The result-set will contain all the rows from both 
+ For the rows for which there is no matching, the result-set will contain NULL values.
+
+ Syntax:  
+
+ SELECT table1.column1,table1.column2,table2.column1,....
+ FROM table1 
+ FULL JOIN table2
+ ON table1.matching_column = table2.matching_column;
+
+
+10.Find the nth highest salary?
+  Select * from (select empName,Salary,denseRank() over (order by salary desc )r from eployess) where r=&n 
+
+11.What is an index in SQL?
+ An index contains keys built from one or more columns in the table or view. These keys are stored in a structure (B-tree) that enables SQL Server to find the row or rows 
+ associated with the key values quickly and efficiently. SQL Server documentation uses the term B-tree generally in reference to indexes
+
+12.Create Stored Procedure
+   A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again. 
+  So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+
+
+  Create PROC [dbo].[usp_EasyForms_SP]
+ (
+   @return          INT =Null OUTPUT,
+   @errorID         INT =Null OUTPUT,
+   @errorMessage    varchar(2048)=NULL OUTPUT,
+   @LoggerUserID    INT 
+ )
+ AS
+/*SET NOCOUNT ON STATEMENT INTO STORE PROCEDURES CAN REDUCE NETWORK TRAFFIC,
+BECAUSE CLIENT WILL NOT RECEIVE THE MESSAGE INDICATING THE NUMBER OF ROWS AFFECTED BY T-SQL STATEMENT. */
+ SET NOCOUNT ON
+ BEGIN Try
+    SELECT * from tbl_EasyForms_GcloudStorage_patientData_SignedURL_Info tbl
+     where tbl.LocalTempOriginalURL LIKE '%Temp%'
+
+ End Try
+
+ BEGIN Catch
+   SELECT 
+     @return=-1,
+     @errorID=ERROR_NUMBER(),
+     @errorMessage=ERROR_MESSAGE()
+	 Exec usp_common_errorlog_insert @errorID,@errorMessage,'[usp_EasyForms_SP]',@LoggerUserID
+
+   RETURN -1
+
+  End Catch
+  -- Makes the number of row count enable   
+SET NOCOUNT OFF
+
+13.Differnce between having and where clause?
+1. WHERE Clause: 
+   WHERE Clause is used to filter the records from the table or used while joining more than one table.Only those records will be extracted who are satisfying the specified condition 
+  in WHERE clause. It can be used with SELECT, UPDATE, DELETE statements. 
+  Consider the Query: 
+
+ SELECT S_Name, Age FROM Student 
+  WHERE Age >=18
+
+ HAVING Clause: 
+ HAVING Clause is used to filter the records from the groups based on the given condition in the HAVING Clause. 
+ Those groups who will satisfy the given condition will appear in the final result. HAVING Clause can only be used 
+   with SELECT statement.
+  SELECT Age, COUNT(Roll_No) AS No_of_Students 
+  FROM Student GROUP BY Age
+  HAVING COUNT(Roll_No) > 1
+SR.NO.   	WHERE Clause	                                                               HAVING Clause
+1.	WHERE Clause is used to filter the records from the table based 	          HAVING Clause is used to filter record from the groups based on the specified condition.
+         on the specified condition.
+2.	WHERE Clause can be used without GROUP BY Clause	                          HAVING Clause cannot be used without GROUP BY Clause
+3.	WHERE Clause implements in row operations	                                  HAVING Clause implements in column operation
+4.	WHERE Clause cannot contain aggregate function	                                  HAVING Clause can contain aggregate function
+5.	WHERE Clause can be used with SELECT, UPDATE, DELETE statement.	                  HAVING Clause can only be used with SELECT statement.
+6.	WHERE Clause is used before GROUP BY Clause	                                  HAVING Clause is used after GROUP BY Clause
+7.	WHERE Clause is used with single row function like UPPER, LOWER etc.              HAVING Clause is used with multiple row function like SUM, COUNT etc.
+ 
+14.user defined question in sql ?
+    The UDF or User Defined Functions in SQL Server are like methods in any other programming language that accepts the parameters, performs complex calculations,
+   and returns the result value.
+
+15.System defind function in sql?
+  The functions that are defined by the system are known as "system defined functions". In other words, all the 
+  built-in functions supported by the SQL server are referred to as system defined functions. Usage of the built-in functions
+  saves much development time while performing certain tasks.
+
+  1.Scalar Function
+  Scalar functions operate on a single value and return a single value. Below is the list of some useful SQL Server Scalar functions.
+
+  Scalar Function	Description
+  abs(-10.67)	        This returns an absolute number of the given number means 10.67.
+  rand(10)	        This will generate a random number of 10 characters.
+  round(17.56719,3)	This will round off the given number to 3 places of decimal meaning 17.567
+  upper('dotnet')	This will return the upper case of the given string meaning 'DOTNET'
+  lower('DOTNET')	This will returns the lower case of the given string means 'dotnet'
+  ltrim(' dotnet')	This will remove the spaces from the left-hand side of the 'dotnet' string.
+  convert(int, 15.56)	This will convert the given float value to integer means 15.
+
+ 2.Aggregate Function
+   Aggregate functions operate on a collection of values and return a single value. Below is the list of some useful SQL Server Aggregate functions.
+  System Aggregate Function
+  Aggregate Function	Description
+  max()	                This returns the maximum value from a collection of values.
+  min()         	This returns the minimum value from a collection of values.
+  avg()	                This returns an average of all values in a collection.
+  count()	       This returns no of counts from a collection of values.
+
+16.union ,union all 
+   The only difference between Union and Union All is that Union extracts the rows that are being specified in the query while Union All extracts all the rows 
+  including the duplicates (repeated values) from both the queries.
+      Union	                                                                                         Union All
+  It combines the result set from multiple tables with eliminating the duplicate records	 It combines the result set from multiple tables without eliminating the duplicate records
+  It performs a distinct on the result set.	                                                 It does not perform distinct on the result set
+  We need to specify Union operator                                                            We need to specify Union All Operator
+  SQL Union All gives better performance in query execution in comparison to SQL Union      It gives better performance in comparison with SQL Union Operator
+
+
+17.what is a view in sql?
+
+   In SQL, a view is a virtual table based on the result-set of an SQL statement. A view contains rows and columns, just like a real table.
+   The fields in a view are fields from one or more real tables in the database.
+
+
+ CREATE VIEW [Brazil Customers] AS
+ SELECT CustomerName, ContactName
+ FROM Customers
+ WHERE Country = 'Brazil';
+ other Questions
+
+18.Explain about sql profiler?
+    SQL Server Profiler is an interface to create and manage traces and analyze and replay trace results. 
+  Events are saved in a trace file that can later be analyzed or used to replay a specific series of steps when diagnosing a problem.
+  SQL Trace and SQL Server Profiler are deprecated. The Microsoft. SqlServe
+
+19.sql procedure and function differnces
+
+20.Create Function in Sql?
+
+CREATE FUNCTION [schema_name.]function_name (parameter_list)
+RETURNS data_type AS
+BEGIN
+    statements
+    RETURN value
+END
+
+
+Ex:
+CREATE FUNCTION sales.udfNetSale(
+    @quantity INT,
+    @list_price DEC(10,2),
+    @discount DEC(4,2)
+)
+RETURNS DEC(10,2)
+AS 
+BEGIN
+    RETURN @quantity * @list_price * (1 - @discount);
+END;
+
+CREATE Function Sales.udfcube(
+  @number INT,
+)
+RETURNS INT
+AS
+BEGIN
+   RETURN @number*@number*@number
+END
+
+21.Based on Two Columns how to insert unique date
+ CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT UC_Person UNIQUE (ID,LastName)
+);
+
+22.What is Composite Key in Sql?
+   A composite key in SQL can be defined as a combination of multiple columns, and these columns are used to identify all the rows that are involved uniquely.
+  Even though a single column can't identify any row uniquely, a combination of over one column can uniquely identify any record
+
+22.Composite Primary Key?
+  What is the purpose of a composite primary key?
+     A composite primary key is a combination of 2 or more columns used to create a unique primary key. 
+ The term key can refer to a unique key, which can be designated and used as primary key or non-unique key, 
+ which can be used as a search key for an index for a distinct view.
+
+23.what is Cross Join ?
+
+ CROSS JOIN is used to combine each row of the first table with each row of the second table. 
+ It is also known as the Cartesian join since it returns the Cartesian product of the sets of rows from the joined tables.
+ Ex:
+  SELECT ColumnName_1, 
+       ColumnName_2, 
+       ColumnName_N
+  FROM [Table_1]
+     CROSS JOIN [Table_2]
+
+ or
+  SELECT ColumnName_1, 
+       ColumnName_2, 
+       ColumnName_N
+  FROM [Table_1],[Table_2]
+
+24.What is query and sub query in SQL?
+  A query is an operation that retrieves data from one or more tables or views. In this reference, a top-level SELECT statement is called a query, 
+  and a query nested within another SQL statement is called a subquery.
+
+ select * from Employee
+   where Employee.DepartmentID IN(select * from Department)
+
+25.Linq Query and Sql Query
+
+  select * from Employee
+  Inner Join Department on Department.DepartmentID==Employee.DepartmentID
+
+
+ (from Emp in Employee
+  join Department in DepartmentTable  on 
+   Department.DepartmentID equals Employee.DepartmentID
+   Select Emp).ToList()
+
+26.Joins is faster or subquery is faster?
+  The advantage of a join includes that it executes faster. The retrieval time of the query using joins almost always will be faster than that of a subquery. 
+ By using joins, you can maximize the calculation burden on the database i.e., instead of multiple queries using one join query.
+
+27.Which is faster LINQ or SQL?
+       More importantly: when it comes to querying databases, LINQ is in most cases a significantly more productive querying language than SQL. 
+  Compared to SQL, LINQ is simpler, tidier, and higher-level. It's rather like comparing C# to C++.
+
+28.What is the use of coalesce?
+   The COALESCE function returns the first non-NULL value from a series of expressions. The expressions are evaluated in the order in which 
+  they are specified, and the result of the function is the first value that is not null.
+
+29.Which is better coalesce or Isnull?
+       advantage that COALESCE has over ISNULL is that it supports more than two inputs, whereas ISNULL supports only two. Another advantage of COALESCE is
+    that it's a standard function (namely, defined by the ISO/ANSI SQL standards), whereas ISNULL is T-SQL–specific.
+
+30.Select second highest salary from a table?
+  select Top 2
+   EmployeeID,Salary from Employee
+   order by salary Desc
+
+31.update Gender in Employee Table if male equal to female and female to Male
+  UPDATE [EMPDATA] 
+  SET GENDER = (CASE WHEN GENDER ='MALE' THEN 'FEMALE'
+                  WHEN GENDER = 'FEMALE' THEN 'MALE'
+                END )
+
+35.Group by
+ Select EmployeeID,Salary
+ from Employee
+ Inner Join Department Department.DepartmentID=Employee.DepartmentID
+ GroupBy Department.DepartmentID
+
+36.Functions vs procedures
+
+37.Convert json into Table in sql?
+
+ Link:https://learn.microsoft.com/en-us/sql/relational-databases/json/convert-json-data-to-rows-and-columns-with-openjson-sql-server?view=sql-server-ver16
+ Link:https://visualstudiomagazine.com/articles/2017/08/01/returning-json.aspx
+ DECLARE @json NVARCHAR(MAX)
+
+ SET @json='{"name":"John","surname":"Doe","age":45,"skills":["SQL","C#","MVC"]}';
+
+ SELECT *
+ FROM OPENJSON(@json);
+
+ 1.Return select list as json
+
+  Select FirstName As FName 
+  From Customers
+  Where Id = 1 
+  FOR JSON AUTO
+
+  The JSON result reflects the alias:
+
+   "[{""FName"":""Peter""}]"
+
+38.differnce between truncate and delete?
+
+     The delete statement is used to remove single or multiple records from an existing table depending on the specified condition. 
+   The truncate command removes the complete data from an existing table but not the table itself. It preserves the table structure or schema.
+
+
+39.CTE vs SQL?
+  Link:https://www.dotnettricks.com/learn/sqlserver/difference-between-cte-and-temp-table-and-table-variable
+
+ CTE stands for Common Table Expressions. It was introduced with SQL Server 2005. It is a temporary result set and typically it may be a result of complex sub-query. 
+  Unlike the temporary table, its life is limited to the current query. It is defined by using WITH statement. CTE improves readability and ease in maintenance of complex queries 
+ and sub-queries. Always begin CTE with a semicolon.
+
+ ;With CTE1(Address, Name, Age)--Column names for CTE, which are optional
+ AS
+ (
+ SELECT Addr.Address, Emp.Name, Emp.Age from Address Addr
+ INNER JOIN EMP Emp ON Emp.EID = Addr.EID
+ )
+ SELECT * FROM CTE1 --Using CTE 
+ WHERE CTE1.Age > 50
+ ORDER BY CTE1.NAME
+
+
+ Why is CTE better than subquery?
+ CTE can be reusable: One advantage of using CTE is CTE is reusable by design. Instead of having to declare the same subquery in every place you need to use it,
+  you can use CTE to define a temporary table once, then refer to it whenever you need it.
+
+ How many CTE can be used in SQL?
+ two CTEs
+ Using two independent CTEs in one SQL query. Using two CTEs where the second CTE refers to the first. Using two CTEs where one CTE is recursive
+
+
+ When to use temp table and CTE is SQL?
+    As far as when to use each, they have very different use cases. If you will have a very large result set, or need to refer to it more than once, put it in a #temp table.
+   If it needs to be recursive, is disposable, or is just to simplify something logically, a CTE is preferred.
+
+
+  Looking at SQL Profiler results from these queries (each were run 10 times and averages are below) we can see that the CTE just slightly outperforms both the temporary table 
+  and table variable queries when it comes to overall duration. The CTE also uses less CPU than the other two options and performs fewer reads (significant fewer reads that the 
+  table variable query).
+
+ Query Type	Reads	Writes	CPU	Duration (ms)
+ CTE	         1378	0	47	497
+ Temp table	2146	51	109	544
+ Table variable	133748	51	297	578
+
+40.sql Execution plan and Sql profiler and Trace ?
+  
+  link:https://www.careerride.com/SQL-Server-Execution-Plan-Profiler.aspx
+  What is an execution plan?
+  An Execution plan is most useful when a SQL query runs slowly. An execution plan gives details of the SQL Server query optimizer.
+  It consists of set of steps that describes the information of the relational database. Since one query can be executed in several ways,
+  execution plan provides a mechanism to manually analyze the performance.
+
+ What is SQL Profiler?
+  SQL Profiler is used to monitor events of SQL server. The profiler has a user friendly GUI that allows selected events to be traced and monitored.
+   It is most useful when queries are performing slowly, debugging stored procedures, reviewing of all activities that took place on the server.
+
+41.if we create clusteredd index without createing primary key for a table
+   Can I create Clustered index without Primary key? Yes, you can create. The main criteria is that the column values should be unique and not null. 
+  Indexing improves the performance in case of huge data and has to be mandatory for quick retrieval of data.
+
+
+42.what is Transcation?
+  Link:https://www.tutorialspoint.com/sql/sql-transactions.html
+   A transaction in SQL Server is a sequential group of statements or queries to perform single or multiple tasks in a database. Each transaction may have single read, write,
+   update, or delete operations or a combination of all these operations.
+
+  Transaction Control
+  The following commands are used to control transactions.
+
+  COMMIT − to save the changes.
+
+  ROLLBACK − to roll back the changes.
+ 
+  SAVEPOINT − creates points within the groups of transactions in which to ROLLBACK.
+
+  SET TRANSACTION − Places a name on a transaction.
+
+43.What are the transaction types in SQL?
+   SQL Server can operate 3 different transactions modes and these are: Auto-commit transactions. Implicit transactions. Explicit transactions
+
+43.VarCHAR(MAX)?
+  nvarchar [ ( n | max ) ],VarChar Max size is upto 2GB
+
+  n defines the string size in byte-pairs, and can be a value from 1 through 4,000. max indicates that the maximum storage size is 2^30-1 characters (2 GB)
+  The key difference between varchar and nvarchar is the way they are stored, varchar is stored as regular 8-bit data(1 byte per character) and nvarchar stores data 
+  at 2 bytes per character. Due to this reason, nvarchar can hold upto 4000 characters and it takes double the space as SQL varchar.
+  
+44.What is Trigger ?
+
+   A trigger is a special type of stored procedure that automatically runs when an event occurs in the database server. DML triggers run when a user
+  tries to modify data through a data manipulation language (DML) event. DML events are INSERT, UPDATE, or DELETE statements on a table or view.
+
+  In SQL Server we can create four types of triggers 
+  Data Definition Language (DDL) triggers, 
+  Data Manipulation Language (DML) triggers, 
+  CLR triggers, and 
+  Logon triggers
+
+45.How many types of DML triggers are present in SQL Server?
+   There are two types of DML triggers: AFTER or FOR trigger and INSTEAD OF trigger. The AFTER trigger will be fired and executed after performing the INSERT, 
+  UPDATE or DELETE action that fires it successfully.
+
+  Can we use commit in trigger?
+  Trigger should not commit and cannot commit. Committing in a trigger usually raises an exception unless it happens into autonomous transaction
+
+46.What is schema in SQL?
+   What is Schema in SQL? In a SQL database, a schema is a list of logical structures of data. A database user owns the schema, 
+  which has the same name as the database manager. As of SQL Server 2005, a schema is an individual entity (container of objects) distinct from the user who constructs the object.
+
+47.What are the 3 types of schema?
+ Image result
+   Schema is of three types: Logical Schema, Physical Schema and view Schema. 
+  Logical Schema – It describes the database designed at logical level. 
+  Physical Schema – It describes the database designed at physical level.
+  View Schema – It defines the design of the database at the view level.
+
+48.what is sql cursor?
+ Ex:https://www.geeksforgeeks.org/what-is-cursor-in-sql
+  https://www.javatpoint.com/cursor-in-sql-server
+
+  Cursor is a Temporary Memory or Temporary Work Station. It is Allocated by Database Server at the Time of Performing DML(Data Manipulation Language) 
+  operations on Table by User. Cursors are used to store Database Tables. There are 2 types of Cursors: Implicit Cursors, and Explicit Cursors.
+
+ These are explained as following below.
+ Implicit Cursors:
+  Implicit Cursors are also known as Default Cursors of SQL SERVER. These Cursors are allocated by SQL SERVER when the user performs DML operations.
+
+ Explicit Cursors :
+  Explicit Cursors are Created by Users whenever the user requires them. Explicit Cursors are used for Fetching data from Table in Row-By-Row Manner.
+
+
+ 1. Declare Cursor
+    DECLARE s1 CURSOR FOR SELECT * FROM studDetails 
+ 2 Open Cursor
+    OPEN s1
+ 3. Fetch Cursor
+     FETCH FIRST FROM s1
+     FETCH LAST FROM s1
+     FETCH NEXT FROM s1
+     FETCH PRIOR FROM s1
+     FETCH ABSOLUTE 7 FROM s1
+     FETCH RELATIVE -2 FROM s1
+ 4.Close Cursor
+     CLOSE s1
+ 5. Deallocate Cursor
+      DEALLOCATE s1
+
+ How can we avoid cursors?
+   Using the SQL while loop
+   User-defined functions
+   Using Joins
+
+
+Sql Querires:
+
+1.To Get Records from two Tables
+SELECT Orders.order_id,Customers.customer_id,Customers.first_name,Customers.last_name 
+FROM Orders
+Inner Join Customers on Customers.customer_id= Orders.customer_id
+
+
+
+2.To get unique records and sum of the orders amount 
+select Customers.first_name,Customers.last_name,SUM(Orders.amount)
+FROM Customers
+Left Join orders on Customers.customer_id = Orders.customer_id
+Group By Customers.first_name,Customers.last_name
+
+3.To get Distinct Records and Count 
+
+Select Distinct Orders.item ,Count(Orders.item)
+from Orders
+Group By Orders.item
+
+4.Create and Insertion  into tables
+  CREATE TABLE 
+  (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+     Age int,
+     CONSTRAINT UC_Person UNIQUE (ID,LastName) 
+   );
+
+Insert into Persons
+   (ID,
+   LastName,
+   FirstName,
+   Age)
+ values
+  (
+   2,
+   "Test",
+  "user2",
+   1)

@@ -1,0 +1,900 @@
+Angular
+1.How we can pass data to parent to child in angular
+   1.by using @Input decorator we will send parent to child
+   2.by using @Output decorator and Event emitter we will send child to parent
+   3.by using @ViewChild we can acces the child component in parnet component and uses the child component data and function
+   4.without parent and child realtion we can share data between component using services,we can import one service in parent and child components and by using that 
+   service we can transfer data
+Explain about Angular ?
+
+  Angular is a development platform, built on TypeScript. As a platform, Angular includes: A component-based framework for building scalable web applications. 
+ A collection of well-integrated libraries that cover a wide variety of features, including routing, forms management, client-server communication, and more.
+
+
+
+2.which version ur using in angular
+
+   8.3.8 - @angular/cli - npm
+  Angular 8 supports the TypeScript 3.4 or above version
+  The latest version of RxJS is v6. It is version 6
+  Node.js 12
+
+
+Latest version:
+ Angular 14, the latest version of the Google-developed, TypeScript-based web application framework, made its way on 2nd June 2022,
+ CLI 14
+ TypeScript 4.7
+
+.NET Latest versions
+
+ .NET Framework 4.8
+
+  Net 6 is the latest version of . Net Core with the latest APIs
+
+3.Explain about promise and observables
+  Link:https://stackoverflow.com/questions/37364973/what-is-the-difference-between-promises-and-observables
+
+  Both observables and promises help us work with asynchronous functionality in JavaScript. Promises deal with one asynchronous event at a time,
+  while observables handle a sequence of asynchronous events over a period of time.
+
+ Here are the differences in concept between Observables and Promises.
+  Observables	                                                 Promises
+  Emit multiple values over a period of time.                 Emit a single value at a time.
+
+  Are lazy: they’re not executed until we subscribe          Are not lazy: execute immediately after creation.
+   to them using the subscribe() method.      
+               
+  Have subscriptions that are cancellable using the
+  unsubscribe() method, which stops the listener from         Are not cancellable.
+
+  Provide the map, filter, reduce, retry, retryWhen,
+  and so many other RxJS operators, that makes it easy        Don’t provide any operations.
+  to deal with Observables.  
+  Deliver errors to the subscribers.                          Push errors to the child promises.
+
+  receiving further values.	
+
+4.explain about angular hook cycle?
+ Link : https://www.cuelogic.com/blog/angular-lifecycle
+ https://indepth.dev/posts/1494/complete-guide-angular-lifecycle-hooks
+ Each Angular component goes through 8 phases in its lifecycle. When it is initialized, it creates and presents its root components. It is designed and it produces its heirs. 
+ For the components that get loaded during application development, it keeps checking when the data binding properties are getting changed and updated. When the component is not 
+ used anymore, it approaches the death phase and is decimated and expelled from the DOM.
+  1.Constructor
+ 
+  ngOnChanges − When the value of a data bound property changes, then this method is called.
+
+  ngOnInit − This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
+
+  ngDoCheck − This is for the detection and to act on changes that Angular can't or won't detect on its own.
+
+  ngAfterContentInit − This is called in response after Angular projects external content into the component's view.
+
+  ngAfterContentChecked − This is called in response after Angular checks the content projected into the component.
+
+  ngAfterViewInit − This is called in response after Angular initializes the component's views and child views.
+
+  ngAfterViewChecked − This is called in response after Angular checks the component's views and child views.
+
+  ngOnDestroy − This is the cleanup phase just before Angular destroys the directive/component.
+
+5.Explain abount ng destroy in angular
+  What is the use of ngOnDestroy?
+    When should you use ngOnDestroy? Using ngOnDestroy makes sense when you want to implement customized behavior when a component is destroyed.
+   ngOnDestroy can be helpful when you need to unsubscribe from observables or perform any other clean up when destroying a component
+
+6.How the Application works in Angular ?
+  main.ts ->App Module (bootstrap Module)->AppComponent->index.html
+  Main.ts is main Entry point of angular compiler, When we fire Command ng serve , the execution comes to main.ts file. and there angular bootstrap or loads default app.module.ts. 
+    Then in app.module.ts we bootstrap app.component using bootstrap : [AppComponent] in @NgModule.
+
+  index.html, Now comes to this part. in app.component.ts see selector have app-root and that is first component defined in body tag of index.html like this <app-root> </app-root> . 
+  This way every other Components and Modules are loaded in app-root in index.html. When request fires to angular app from browser after angular compiler finishes execution,
+ first index.html response comes to client from server with all component files are downloaed to client side , and when user clicks any of the part of the page all content loaded from 
+  already downloaded content rather than to download each time, thats the nature of Single Page Application.
+
+
+7.Http Interceptor and work flow?
+   Link:https://www.c-sharpcorner.com/article/using-http-interceptor-service-in-angular-app/#:~:text=HTTP%20Interceptors%20is%20a%20special,interceptor%20wants%20only%20HTTP%20requests.
+ 
+  HTTP Interceptors is a special type of angular service that we can implement. It's used to apply custom logic to the central point between the client-side and 
+  server-side outgoing/incoming HTTP request and response. Keep in mind that the interceptor wants only HTTP requests.
+  Command :Execute this CLI command to add an interceptor service: ng generate interceptor headers
+
+  Note
+  This HTTP interceptor is most used when authentication and authorization are applied in the application.
+
+  ExampleLink:https://medium.com/javarevisited/what-are-http-interceptors-and-how-to-use-them-in-angular-59fcb4efc235
+   this.token = this.facadeService.getUserToken();
+    if (this.token || this.skipInterceptor) {
+      const tokenizedReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.token) });
+      return next.handle(tokenizedReq).pipe(map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          if (event.status === 401) {
+            this.facadeService.userLoggedOut();
+            this.router.navigateByUrl('core/login');
+          }
+        }
+        return event;
+      }));
+8..Map,.Filter,Index Of ,Examples 
+   https://www.c-sharpcorner.com/article/simplify-map-reduce-and-filter-in-typescript/
+
+  map():
+ Link:https://www.tektutorialshub.com/angular/angular-observable-map-operator/
+  It is an array function that transforms the array according to the applied function and returns the updated array. It works on each element of an array.
+  Syntax
+ 
+   array.map(callback[,object])
+  EX:
+  calculate cube of each element with the help of map. 
+    function cube(n){  
+      return n*n*n;  
+   }  
+   var arr=new Array(1,2,3,4)  
+   var newArr=arr.map(cube); 
+
+Ex2:
+
+srcArray = from([1, 2, 3, 4]); from is used to convert array to observble
+ multiplyBy2() {
+    this.srcArray
+    .pipe(map(val => { return val * 2}))
+    .subscribe(val => { console.log(val)})
+  }
+ 
+  console.log(newArr)  // Output : [1,8,27,64]
+
+   filter()
+      As the name suggests it can filter out the data/array elements on the basis of condition and return the result as a list.
+     Basically, this function pushes the current element into a new array when the callback functions return true.
+ 
+   Syntax
+     array.map(callback[,object])
+
+  Examples
+   //Calculate a list of even elements from an array :    
+   arr = new Array(1, 2, 3, 6, 5, 4)  
+   var newArr = arr.filter(function(record) {  
+      return record % 2 == 0;  
+   }); // output => [2,6,4]    
+ 
+  
+  
+9.Directives and Component differnces ?
+  directive used to Mainpulate DOM Content while Component used is used to Bindings,functions etc
+
+    Components                                                                                          Directives
+  The Component is used to break up the application into smaller components.             The Directive is used to design reusable components, which are more behavior-oriented
+  That is why components are widely used in later versions of Angular to make 
+  things easy and build a total component-based model.
+
+  Although the Components make it easier to write simple, effective code,                The directives can be utilized for manipulating DOM objects.
+  it has a simpler configuration than plain directives, it is optimized for 
+  component-based architecture. A Component does not support “compile” and
+  “pre-link” functions.
+
+  Only one component can be present per DOM element.                                     There can be more than one directive in a DOM element,
+
+  Components should never modify any data or DOM that is out of their                    Directives have isolated scopes, by default the child inherits the scope from its parent.
+  own scope.
+
+  To register components, we use @Component meta-data annotation.                        For directive, we use @Directive meta-data annotation. 
+
+ 
+10.Differences bettween ng serve and ng build
+
+  ng build command builds the angular application and generates the build artifacts which are saved under the /dist folder in the application directory.
+  ng serve command builds the angular application in the memory, without saving the artifacts to any external folder and runs the application on the web server.
+
+           ng serve                                                                                      	ng build
+   The ng serve command is intentionally for fast, local and iterative developments                The ng build command is intentionally for building the apps and deploying the                                                     
+   and also for builds, watches and serves the application from a local CLI development            build artifacts
+   server.
+
+   The command does not generate an output folder.                                                  The output folder is – dist/.
+
+   The ng serve builds artifacts from memory instead for a faster development experience            The ng build command generates output files just once and doesn’t serve them.
+
+11.AOT and JIT Compiler differnces?
+           JIT                                                                                           AOT
+
+   JIT downloads the compiler and compiles code exactly before Displaying                   AOT has already complied with the code while building your application, 
+    in the browser.                                                                         so it doesn’t have to compile at runtime
+
+   Loading in JIT is slower than the AOT because it needs to compile your                  Loading in AOT is much quicker than the JIT because it already has compiled 
+   application at runtime                                                                   your code at build time.
+
+   JIT is more suitable for development mode                                               Bundle size optimized in AOT, in results AOT bundle size is half the size of JIT bundles.
+
+
+   You can run your app in JIT with this command:                                          To run your app in AOT you have to provide –aot at the end like:
+   ng build OR ng serve                                                                     ng build --aot OR ng serve --aot
+
+   You can catch template binding error at display time.                                   You can catch the template error at building your application.
+
+12.What is pipes in angular ?
+ https://stackoverflow.com/questions/39285550/what-is-an-impure-pipe-in-angular
+ https://www.geeksforgeeks.org/explain-pure-and-impure-pipe-in-angular/
+   Pipes are simple functions to use in template expressions to accept an input value and return a transformed value.
+   Pipes are useful because you can use them throughout your application, while only declaring each pipe once.
+
+    A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe. 
+    An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes.
+
+13.What is lazy loading in Angular?
+   Lazy loading is a technique in Angular that allows you to load JavaScript components asynchronously when a specific route is activated. It improves 
+   the speed of the application load time by splitting the application into several bundles. When the user navigates through the app, the bundles are loaded as required.
+
+14. In angular how drop down list value assign and selecting
+        <kendo-dropdownlist style="width:100%" name="txtAccessInformationSelectMonth"
+            id='txtAccessInformationSelectMonth'
+            [data]="dataAccessInformationMonthList" [valuePrimitive]="true"
+            [textField]="'MonthDesc'" [valueField]="'MonthID'"
+            tabindex="03" [(ngModel)]='AccessInformationMonthsList'
+            [defaultItem]="defaultAccessInformationMonthsList">
+
+15.Ag grid declartion?
+
+ <ag-grid-angular #AccessInformationGrid tabindex="03"
+        style="width: 100%;height: 130px !important;font-size: 14px;"
+        class="ag-theme-balham UncustomizedGrigHeightClass" [enableSorting]="true" [rowData]="AccessInformationrowData"
+        [columnDefs]="AccessInformationColumnDefs" rowSelection="multiple" [gridOptions]="AccessInformationGridOptions"
+        [overlayNoRowsTemplate]="overlayNoRowsTemplate" [enableColResize]="true">
+      </ag-grid-angular>
+
+15.Explain how ajax and http request works ?
+    AJAX Request
+    Asynchronous JavaScript and XML. AJAX is a technique for creating fast and dynamic web pages. 
+    AJAX allows web pages to be updated asynchronously by exchanging small amounts of data with the server behind the scenes.
+    This means that it is possible to update parts of a web page, without reloading the whole page.
+
+     HTTP Request
+    An HTTP request is made by a client, to a named host, which is located on a server.
+    The aim of the request is to access a resource on the server. To make the request, the client uses components 
+    of a URL (Uniform Resource Locator), which includes the information needed to access the resource
+
+16.Explain how the Logins window Works?
+
+17.In angular how to call from one application to another application?
+
+18.What is Angular Single Page Application?
+   Single Page Applications are web applications that load a single HTML page and .In the SPA the whole page is not reloaded every time, only every time the view will be change.
+Advantages of SPA:
+
+ No page flicker. Native application feel.
+ Client-side routing and data rendering on the client side.
+ Data from server is in JSON format.
+
+19.What is router Link and hyperlink and what is differnes between them?
+  
+   Href is the basic attribute provided by Html to navigate through pages which reloads the page on click.
+
+   routerLink is the attribute provided by angular to navigate to different components without reloading the page.
+
+   Major difference between both is that href kills the state of the current page where routerLink doesnt lose the state of the page.
+
+   For Eg. if an input text box is present in the page, the routerLink will retains its value after navigation.
+
+   The routerLink can be considered as the custom attribute of href in angular by overriding some of the features like Page reloading
+
+20.What is the difference between [routerLink] and routerLink ? How should you use each one? 
+ They're the same directive. You use the first one to pass a dynamic value, and the second one to pass a static path as a string.
+
+21.What is Json?
+
+   A JSON ( JavaScript object notation )format is a standard format to store and exchange data. Initially, 
+   JSON file is only used to exchange the data between the web application and server. Now, it is used for many purposes such as to take and restore the data backup.
+   Users can create a JSON file with the .json extension
+
+22.Explaind @ViewChild() using Component
+ @ViewChild() can be used for component communication. A component will get instance of another component inside it using @ViewChild(). 
+  In this way parent component will be able to access the properties and methods of child component. The child component selector will be used in parent component HTML template.
+
+23.Observables creation Types and from and of differnces?
+Link:https://www.tektutorialshub.com/angular/rxjs-observable-using-create-of-from-in-angular/
+There are a number of functions that are available which you can use to create new observables. 
+These operators help us to create observable from an array, string, promise, any iterable, etc.
+Here are some of the operators
+create
+defer
+empty
+from
+fromEvent
+interval
+of
+range
+throw 
+
+Create
+The Create method is one of the easiest. The create method calls the observable constructor behind the scene.
+ Create is a method of the observable object, Hence you do not have to import it.  
+EX:ngOnInit() {
+const obsUsingCreate = Observable.create( observer => {
+     observer.next( '1' )
+     observer.next( '2' )
+     observer.next( '3' )
+ 
+     observer.complete()
+   })
+  obsUsingCreate
+      .subscribe(val => console.log(val),
+              error=> console.log("error"),
+              () => console.log("complete"))
+
+}
+****Output *****
+1
+2
+3
+Complete
+ 
+Of Operator
+The Of creates the observable from the arguments that you pass into it. 
+You can pass any number of arguments to the Of. Each argument emitted separately and one after the other. It sends the Complete signal in the end.
+EX:
+ngOnInit() {
+  const array1=[1,2,3,4,5,6,7]
+  const array2=['a','b','c','d','e','f','g']  
+  const obsof2=of(array1,array2 );
+  obsof2.subscribe(val => console.log(val),
+           error=> console.log("error"),
+          () => console.log("complete"))
+ 
+}
+ 
+ 
+**** Output ***
+[1, 2, 3, 4, 5, 6, 7]
+['a','b','c','d','e','f','g']
+complete
+
+
+From Operator:
+From Operator takes only one argument that can be iterated and converts it into an observable.
+
+You can use it to convert
+
+an Array,
+anything that behaves like an array
+Promise
+any iterable object
+collections
+any observable like object
+It converts almost anything that can be iterated to an Observable.
+
+EX:
+ngOnInit() {
+ 
+    const array3 = [1, 2, 3, 4, 5, 6, 7]
+    const obsfrom1 = from(array3);
+    obsfrom1.subscribe(val => console.log(val),
+      error => console.log("error"),
+      () => console.log("complete"))
+ 
+}
+ 
+*** Output ****
+1
+2
+3
+4
+5
+6
+7
+complete
+24.Differnce between var,let,constant?
+ Link:https://www.educative.io/answers/difference-between-var-let-and-const-keyword-in-javascript
+var is function scoped
+  The variables declared using var inside the function are available only within that function. 
+ If we declare them outside the function, then they are available everywhere i.e. they are a global variable
+
+let & const is block scoped
+The variables declared using let or const are block-scoped. They are scoped to the block in which they are declared i.e. 
+inside the if/try/catch/while/for or any code block (enclosed in curly parentheses).
+              var	                                                                     let	                                   const
+scope          Variables declared with var are in the function scope. 	Variables declared as let are in the block scope.	Variables declared as const are in the block scope.
+Hoisting       Allowed Not                                                             allowed                                      	Not allowed
+Reassign       Allowed	                                                              Allowed	                                         Not allowed
+redeclaration  Allowed	                                                               Not allowed	                                Not allowed
+
+25.What are the types of directives?
+  Link:https://www.javatpoint.com/angular-8-directives
+   
+ Directives are used to manipulate the DOM. By using Angular directives, you can change the appearance, behavior or a layout of a DOM element. It also helps you to extend HTML.
+ 
+ Directives can be classified in 3 categories based on how they behave:
+
+  Component Directives: Component directives are used in main class. They contain the detail of how the component should be processed, instantiated and used at runtime.
+ 
+ Structural Directives: Structural directives start with a * sign. These directives are used to manipulate and change the structure of the DOM elements. 
+  
+ 
+  *ngIf Directive: The ngIf allows us to Add/Remove DOM Element.
+  *ngSwitch Directive: The *ngSwitch allows us to Add/Remove DOM Element. It is similar to switch statement of C#.
+  *ngFor Directive: The *ngFor directive is used to repeat a portion of HTML template once per each item from an iterable list (Collection).
+
+
+ Attribute Directives: Attribute directives are used to change the look and behavior of the DOM elements. 
+  For example: ngClass directive, and ngStyle directive etc.
+ ngClass Directive: The ngClass directive is used to add or remove CSS classes to an HTML element.
+ ngStyle Directive: The ngStyle directive facilitates you to modify the style of an HTML element using the expression. 
+ You can also use ngStyle directive to dynamically change the style of your HTML element.
+
+
+26.Explain ngmodule Properties list ?
+   Link: https://www.code-sample.com/2018/04/ngmodule-metadata-properties.html
+
+ The NgModule’s important metadata properties are as follows –
+  1.          providers
+  2.          declarations
+  3.          imports
+  4.          exports
+  5.          entryComponents
+  6.          bootstrap
+  7.          schemas
+  8.          id
+
+
+  
+The @NgModule class with the decorator and metadata properties -
+@NgModule({
+  providers?: Provider[]
+  declarations?: Array<Type<any> | any[]>
+  imports?: Array<Type<any> | ModuleWithProviders | any[]>
+  exports?: Array<Type<any> | any[]>
+  entryComponents?: Array<Type<any> | any[]>
+  bootstrap?: Array<Type<any> | any[]>
+  schemas?: Array<SchemaMetadata | any[]>
+  id?: string
+})
+
+ @Component({
+  selector: 'app-component-overview',
+  templateUrl: './component-overview.component.html',
+  styleUrls: ['./component-overview.component.css']
+})
+
+Popupopening code
+const dialogRef = this.dialogService.open({
+      // title: 'Add Customization Information',
+      content: AddTaskCustomizationInformationComponent,
+
+      height: 680,
+      width: 850,
+      appendTo: this.containerRef
+    });
+ dialogRef.result.subscribe((result) => {
+   
+      if (result instanceof DialogCloseResult) {
+        return;
+      } else {
+        this.GetTaskCustomizationListBasedOnUserNames();
+        this.getUserNamesOnTaskSelectDataSource = [];
+      }
+
+    
+    });
+ Directives Decortor
+  @Directive({
+   selector: '[integer]'
+  })
+
+  For services we user
+   @Injectable() decorator
+
+this._router.navigate(['/home', { outlets: outletObj }]); we can navigate from one component to another
+1.RouterLink   >directive
+2.Router.navigate ->In component we will use it to load other components
+3.Router.navigateByURL ->Based on the url we will navigate 
+https://www.digitalocean.com/community/tutorials/angular-navigation-routerlink-navigate-navigatebyurl
+
+
+27.Differnt Types of Data Bindings in Angular?
+  Link:https://www.javatpoint.com/data-binding-in-angular-8
+  What is data binding?
+ 
+    Data binding is a process that creates a connection between the application’s UI and the data. When the data changes its value,
+   the UI elements that are bound to the data will also change
+  Angular provides four types of data binding and they are different on the way of data flowing.
+
+  String Interpolation
+  Property Binding
+  Event Binding
+  Two-way binding
+
+  1.One-way databinding
+      One way databinding is a simple one way communication where HTML template is changed when we make changes in TypeScript code.
+     Angular Interpolation / String Interpolation, Property Binding, and Event Binding are the example of one-way databinding.
+
+  2.Two way Databinding
+     In two-way databinding, automatic synchronization of data happens between the Model and the View. Here, change is reflected in both components.
+    Whenever you make changes in the Model, it will be reflected in the View and when you make changes in View, it will be reflected in Model
+
+ 1. String interpolation
+     String Interpolation is a one-way databinding technique which is used to output the data from a TypeScript code to HTML template (view).
+    It uses the template expression in double curly braces to display the data from the component to the view.
+ 
+       
+   Syntax:
+   {{ data }}
+
+      For example: 
+  <li>Name: {{ user.name }}</li>  
+  <li>Email: {{ user.email }}</li>  
+
+ 2. Property Binding
+      Property Binding is also a one-way data binding technique. In property binding, we bind a property of a DOM element to a field which is a defined property 
+   in our component TypeScript code.
+  For example:
+    <img [src]="imgUrl"/>
+    <input type="email" [value]="user.email">  
+ 3.Event Binding
+    In Angular 8, event binding is used to handle the events raised from the DOM like button click, mouse move etc. When the DOM event happens (eg. click, change, keyup), 
+    it calls the specified method in the component. In the following example, the cookBacon() method from the component is called when the button is clicked:
+  For example:
+     <button (click)="cookBacon()"></button>  
+ 4.Two-way Data Binding
+   We have seen that in one-way data binding any change in the template (view) were not be reflected in the component TypeScript code. 
+  To resolve this problem, Angular provides two-way data binding. The two-way binding has a feature to update data from component to view and vice-versa.
+
+  In two way data binding, property binding and event binding are combined together.
+
+  Syntax:
+ 
+  [(ngModel)] = "[property of your component]"  
+
+  
+28.What is the DOM and why is it used?
+
+The DOM (Document Object Model) is an interface that represents how your HTML and XML documents are read by the browser. It allows a language (JavaScript) to manipulate, 
+ structure, and style your website.
+
+29.What are primitive and non-primitive data types in JavaScript?
+  Image result for primitive data types in javascript
+   Primitive data types are number, string, boolean, NULL, Infinity and symbol. Non-primitive data types is the object.
+
+30.what is Lazy Loading?
+ Link:https://angular.io/guide/lazy-loading-ngmodules
+
+ Lazy loading is an important Angular feature that helps to reduce the initial load time since it loads only the necessary files first. 
+ Other required modules are loaded on demand when you navigate to their particular route. Now, you can take advantage of this feature to improve your app's load time.
+
+ AppRoutingModule (excerpt)
+ content_copy
+ const routes: Routes = [
+  {
+    path: 'items',
+    loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+  }
+ ];
+
+
+
+
+ In the lazy-loaded module's routing module, add a route for the component.
+
+ Routing module for lazy loaded module (excerpt)
+ content_copy
+ const routes: Routes = [
+  {
+    path: '',
+    component: ItemsComponent
+  }
+ ];
+
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+forRoot() and forChild()
+forRoot() is used only on App.routing.module.ts and forchild() is used in child modules
+31.Differnet Types of Components?
+  app.component.html
+  app.component.css
+  app.component.ts
+  app.component.spec.ts
+
+32.why we use http interceptor ,how you used in your project?
+  In our Application we are using http interceptor to assign jwt token in request headers for every request
+
+33.Angular projects create comand
+  ng new LoginApplication >To create new application
+
+  ng g c appcomponent >Component adding
+
+34.Pure pipe and impure pipe?
+
+  https://www.geeksforgeeks.org/explain-pure-and-impure-pipe-in-angular/
+  https://stackoverflow.com/questions/39285550/what-is-an-impure-pipe-in-angular
+
+  Pipes are simple functions to use in template expressions to accept an input value and return a transformed value. 
+  Pipes are useful because you can use them throughout your application, while only declaring each pipe once. 
+
+  BuiltInPipes:
+  DatePipe: Formats a date value according to locale rules.
+  UpperCasePipe: Transforms text to all upper case.
+  LowerCasePipe: Transforms text to all lower case.
+  CurrencyPipe: Transforms a number to a currency string, formatted according to locale rules.
+  DecimalPipe: Transforms a number into a string with a decimal point, formatted according to locale rules.
+  PercentPipe: Transforms a number to a percentage string, formatted according to locale rules.
+
+  A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe.
+
+  An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes.
+
+
+  Deafult pipe in angular is pure pipe
+  Ex:
+  @Pipe({
+  name: 'sort',
+  pure: false //true makes it pure and false makes it impure
+  })
+  export class myPipe implements PipeTransform {
+
+  transform(value: any, args?: any): any {
+     //your logic here and return the result
+  }
+
+ }
+
+  Ex:
+  <p>The hero's birthday is {{ birthday | date:"MM/dd/yy" }} </p>
+
+
+35.What is Enacpsulation in Angular?
+    View encapsulation defines whether the template and styles defined within the component can affect the whole application or vice versa. 
+  Angular provides three encapsulation strategies:
+ Emulated (default) - styles from main HTML propagate to the component. Styles defined in this component's @Component decorator are scoped to this component only.
+ ShadowDom - styles from main HTML do not propagate to the component. Styles defined in this
+         component's @Component decorator are scoped to this component only.
+
+   None - styles from the component propagate back to the main HTML and therefore are visible to all components on the page.
+  Be careful with apps that have None and Native components in the application. All components with None encapsulation will have their styles duplicated in all components
+  with Native encapsulation.
+  EX:
+    @Component({
+    // ...
+    encapsulation: ViewEncapsulation.None,
+   styles: [
+   // ... ]
+  })
+  export class HelloComponent {
+  // ...
+  }
+36.Filters in Angular?
+     Filter is an important part in AngularJS as well as Angular 2 or Angular 4. It is basically used to filter an item from a group of items, 
+which are there in an array or an object array. It selects a subset of the items from an array and returns it as a new array and this item is displayed on UI.
+
+@angular/core of Angular 4 or 2 module library provides two moduels - Piple and PipeTransform for the filtering feature.
+
+37.What is RXJS and Methods?
+
+  Link:https://angular.io/guide/rx-library37.RxJSCommands
+  Link:https://www.sitepoint.com/rxjs-functions-with-examples/
+  RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables that makes it easier to compose asynchronous or callback-based code
+
+  1.Map
+  2.Filter
+  3.Reduce
+  4.Take
+  5.TakeWhile
+  6.Tap:
+
+   Tap is used for logging and it returns the original source value
+   
+  Link:https://www.tektutorialshub.com/angular/tap-operator-in-angular-observable/#:~:text=The%20Angular%20Tap%20RxJs%20operator,perform%20any%20other%20side%20effects.
+    The Angular Tap RxJs operator returns an observable that is identical to the source. It does not modify the stream in any way. Tap operator is useful for logging the value,
+   debugging the stream for the correct values, or perform any other side effects.
+
+38.Dependency Injection in Angular?
+    Dependency injection, or DI, is one of the fundamental concepts in Angular. DI is wired into the Angular framework and allows classes with Angular decorators, 
+ such as Components, Directives, Pipes, and Injectables, to configure dependencies that they need.
+
+39.TypeScript vs Javascript?
+     TypeScript is known as an Object-oriented programming language whereas JavaScript is a prototype based language. TypeScript has a feature known as Static typing 
+  but JavaScript does not support this feature. TypeScript supports Interfaces but JavaScript does not
+
+   In terms of software development, TypeScript offers many advantages over JavaScript: Optional static typing. JavaScript is a dynamically typed language,
+   which means that types are checked, and data type errors are only detected at runtime. This can be very dangerous and can create errors during production.
+
+40.RouteGuards,AuthRouteGuards?
+  There are a lot of use cases when it comes to access to an Angular route. There are times when you want to limit access to a route, limit access to only some specific users,
+  or want before leaving a route to alert the user or even retrieve data before accessing a route.
+ 
+  Angular Auth Guards add authentication layer which helps in preventing loading of components in various scenarios like Login authentication, 
+ permission-based authentication etc. We can add checks before loading components using Angular guards which are of four types
+
+ Thankfully there are a lot of guards in Angular that we can use to protect routes and provide the right page for the right user.
+  For sharing data with a guard consider using route.paramMap.get('attribut')
+  Guards are processed in the following order:
+
+ canDeactivate
+ canLoad
+ canActivateChild
+ canActivate
+ resolve
+
+CanActivate: Checks route navigation before the component is loaded.
+
+CanActivateChild: Checks route children navigation before the component is loaded.
+
+CanDeactivate: Checks navigation from the current route eg leaving the partially filled form.
+
+Resolve: Resolve loads/ retrieves data before the route is activated.
+
+Ex:
+ const routes: Routes = [
+  { path:'', redirectTo:'home',pathMatch:'full'},
+  { path:'home', component: HomeComponent},
+  { 
+    path:'details/:imbdid', 
+    component: DetailsComponent,
+    canActivate:[FooGuardService],
+    resolve:{
+      movie:FooResolveService
+    }
+  }
+Ex2.
+ RouterModule.forChild([
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            canActivateChild: [AuthGuard],
+            children: [
+              { path: 'crises', component: ManageCrisesComponent },
+              { path: 'heroes', component: ManageHeroesComponent },
+              { path: '', component: AdminDashboardComponent }
+            ]
+          }
+        ]
+      }
+    ])
+
+
+ CanLoad:
+ The CanLoad Guard prevents the loading of the Lazy Loaded Module. We generally use this guard when we do not want to unauthorized user to navigate to any of the routes of
+  the module and also stop then even see the source code of the module.
+      path: "admin", loadChildren:'./admin/admin.module#AdminModule', canLoad:[AuthGuardService]},
+   
+ CanActivate:
+  The Angular provides canActivate Guard, which prevents unauthorized user from accessing the route. But it does not stop the module from being downloaded. 
+ The user can use the chrome developer console to see the source code. The CanLoad Guard prevents the module from being downloaded.
+
+
+41.What is an Auth guard?
+   AuthGuard is a class which implements the interface CanActivate , to decide whether the user has access/permission to view specific page / route / path in the application or not. 
+  This will be useful when we need authentication/authorization based control over the application.
+
+  
+
+41.we can use two structural directives on the same element.?
+  InAngular, we cannot use two structural directives on the same element.
+
+  i.e., we cannot place *ngFor,*ngIf together on same element.
+
+  <div *ngIf="shouldShow" *ngFor="let order of orders">
+  <li></li>
+  </div>
+
+42.forroot and forchild in angular diff?
+  The forRoot() method creates an NgModule that contains all the directives, the given routes, and the Router service itself.
+  The forChild() method creates an NgModule that contains all the directives and the given routes, but does not include the Router service.
+
+ The forRoot Static Method:
+
+ RouterModule.forRoot(routes)
+ The forRoot static method is the method that configures the root routing module for your app. When you call RouterModule.forRoot(routes), 
+ you are asking Angular to instantiate an instance of the Router class globally. Just like Angular creates a new base AppModule to import all of your feature modules,
+ it also provides the AppRoutingModule to import all of your child routes.
+  the forRoot method is actually already being used inside of the app-routing.module.ts
+
+ Child Routes:
+
+ RouterModule.forChild(routes)
+  When you are using the forChild static method, you are basically telling Angular,
+ "There is already a Router instance available in the app so please just register all of these routes with that instance."
+  The forChild method is the method that you will call to register routes throughout your app and you will use it inside of the child, routing modules that you create.
+43.What is session Management?
+
+  Session management refers to the process of securely handling multiple requests to a web-based application or service from a single user or entity. 
+   Websites and browsers use HTTP to communicate, and a session is a series of HTTP requests and transactions initiated by the same user.
+
+   For eg. When a User logs into your website, not matter on which web page he visits after logging in, his credentials will be with the server, until he logs out. 
+ So this is managed by creating a session. Session Management is a mechanism used by the Web container to store session information for a particular user.
+44. what types of Decorators?
+   Link: https://www.pluralsight.com/guides/defining-metadata-with-a-decorator-in-angular
+  There are four types of decorators in Angular:
+
+ Class Decorators
+   Class Decorators are the top-level decorators that are used to define the purpose for the classes. They provide information to Angular that a particular class is a component, 
+  or module. 
+  @Component,@NgModule
+
+ Property Decorators
+  Property decorators are used to decorate the specific properties within the classes. Take a look at 
+  @Input(),@Output
+
+ Method Decorators
+    A Method Decorator decorates specific methods within your class with functionality. This is declared just before a method declaration.
+    @HostListener
+
+ Parameter Decorators
+   Parameter decorators are used to decorate parameters in your class constructors. It tells Angular that what you want that parameter to be initiated with.
+ For example- @Inject
+
+45.How many Types of Forms in Angular?
+ Link:https://www.tutorialspoint.com/angular8/angular8_forms.html
+ https://erpsolutions.oodles.io/developer-blogs/Types-of-form-in-angular/
+   Angular 8 supports two types of forms. They are Template driven forms and Reactive forms.
+
+ Template driven Forms:
+
+ The template-driven form is a form that makes use of the form module and most of the logic is driven by the template. 
+ Template-driven form is asynchronous in nature. It follows the approach of two-way binding.
+
+  In Module File we have mention it : import { FormsModule } from '@angular/forms'; 
+ test.component.html
+
+ <form #userName="ngForm" (ngSubmit)="onClickSubmit(userName.value)"> 
+   <input type="text" name="username" placeholder="username" ngModel> 
+   <br/> 
+   <br/> 
+   <input type="submit" value="submit"> 
+ </form>
+
+ In component we write below function when submit button clicks
+ onClickSubmit(result) {
+      console.log("You have entered : " + result.username); 
+   }
+ Reactive Forms:
+
+ Reactive form is a form that makes use of reactive form modules and most of the logic is driven by the typescript code. Reactive form is synchronous in nature.
+
+
+   Reactive Forms is created inside component class so it is also referred as model driven forms. Every form control will have an object
+  in the component and this provides greater control and flexibility in the form programming. Reactive Form is based on structured data model. 
+  Let’s understand how to use Reactive forms in angular.
+
+  In Module File we have mention it : Ex:import { ReactiveFormsModule } from '@angular/forms';
+ In coponent We have to import: import { FormGroup, FormControl } from '@angular/forms';
+
+ Create Reactive forms
+  Before moving to create Reactive forms, we need to understand about the following concepts,
+
+  FormControl − Define basic functionality of individual form control
+ 
+  FormGroup − Used to aggregate the values of collection form control
+
+  FormArray − Used to aggregate the values of form control into an array
+
+  ControlValueAccessor − Acts as an interface between Forms API to HTML DOM elements
+ 
+ Component:
+ export class TestComponent implements OnInit {
+   userName; 
+   formdata;
+   ngOnInit() { 
+      this.formdata = new FormGroup({ 
+         userName: new FormControl("Tutorialspoint")
+      }); 
+   } 
+   onClickSubmit(data) {this.userName = data.userName;}
+ }
+
+ Html:
+ <div> 
+   <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)" > 
+      <input type= text"  name="userName" placeholder="userName" 
+         formControlName = "userName"> 
+      <br/>
+      <br/>
+      <input type="submit"  value="Click here"> 
+   </form>
+ </div> 
+ <p> Textbox result is: {{userName}} </p>
