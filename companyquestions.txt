@@ -7,3 +7,10 @@ MEthod overloading
 Lifecycle Hooks
 ngondestroy
 Angular Page from Leaving 
+
+2)Starmark
+Configure vs configure services
+array find second highest Element
+selecxt * from  employe where 2=2
+indexing in table
+abstarct class
