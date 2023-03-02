@@ -1,0 +1,9 @@
+1)Tech Mahindra
+Trasient Scoped singel top
+reverse String
+Can we have more than one interceptor
+Child to parent Data transfer
+MEthod overloading
+Lifecycle Hooks
+ngondestroy
+Angular Page from Leaving 
