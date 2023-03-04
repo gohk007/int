@@ -41,3 +41,37 @@ class C:A,B
 10)How To Pass Data To Partial View
 11) What are the operations not Prformed by Functions
 12)What is the Use of Cte over Temp Table
+
+HCL
+SQL Find Table Delete multiple Records other that one
+Indexing on Tables
+Es6 Latest Featuers
+Interfaces
+Why Multiple Interface not used in c#
+sealed key word
+Jqury keyup,keydown
+let const var with example
+Pass data from Parent To child
+In a Table find the Row Data on edit or delete 
+
+Answers
+with cte (
+select column ,row_number() over (Partition by column order by id) as rn
+from tabl_name
+)
+delete from cte where rn>1
+
+
+
+Simems 
+How doest angular Application Works
+Directives Complete
+Decorators
+Custom Pipes
+How to create custom pipes with Decorators
+Types Of Data binding
+LifeCycle Hooks Deep Concept
+Routes
+How To Fetch Routes from Params
+ngtemplates
+Autentication Autorization
