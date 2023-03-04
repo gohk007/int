@@ -14,3 +14,30 @@ array find second highest Element
 selecxt * from  employe where 2=2
 indexing in table
 abstarct class
+
+3)jillella group
+Oops
+1)Interface->
+interface A{
+tet();
+tets1();
+}
+interface B{
+tet();
+tets1();
+}
+class C:A,B
+{
+   which Test method is called InterfaceA or Interface B
+}
+2)Abstarct-Can we have we have objects in abstact class without declaring Abstract
+3)When do we use @html.Begin and when to use Jquery 
+4)Whic is used to Form submit ->input=Submit,
+5)When you pass data from from ajax if models are different->
+6)Hot To Pass Data into Partial View 
+7)How does asyncronous call happens with jquery and how to call all async calls to sync and get the data
+8)what is async=false and Async=true in jquery
+9)How To Make Genric Partial View when you have only one View
+10)How To Pass Data To Partial View
+11) What are the operations not Prformed by Functions
+12)What is the Use of Cte over Temp Table
