@@ -75,3 +75,4 @@ Routes
 How To Fetch Routes from Params
 ngtemplates
 Autentication Autorization
+Pass Data from Parent To Child
