@@ -148,3 +148,38 @@ dependency injection, routing, observables, forms, and state management librarie
 What are views
 MAterialised views
 function vs stored proceduers
+
+7)---------Sapiens-------
+Explain OOps
+Explain Inheritance in Oops
+Solid Principels ->Live Examples
+Base Class Derived Class Example
+Number of Count Of Characters in letter
+Quick Sort
+ ------------------------
+8)CMC
+C#
+Nullable Type
+Filters
+MVC Works
+Virtual Method
+Layout 
+Partial View
+
+
+Sql
+Union vs Union All
+Rank Function
+Truncate vs Delete
+Views
+
+-------------
+9)ASSURECARE
+abstract class
+ng lif cycle hook
+two subscribe functions angular
+call two proceduers
+can we create a override properties of one class with interface
+(we can use new Key word,we can use virtual class and override)
+find the count in letters (interview)
+pass data  parent to child with out service 
