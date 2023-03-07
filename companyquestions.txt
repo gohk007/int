@@ -42,7 +42,7 @@ class C:A,B
 11) What are the operations not Prformed by Functions
 12)What is the Use of Cte over Temp Table
 
-HCL
+3)HCL
 SQL Find Table Delete multiple Records other that one
 Indexing on Tables
 Es6 Latest Featuers
@@ -63,7 +63,7 @@ delete from cte where rn>1
 
 
 
-Simems 
+4)Simems 
 How doest angular Application Works
 Directives Complete
 Decorators
@@ -78,7 +78,7 @@ Autentication Autorization
 Pass Data from Parent To Child
 
 
-ABB
+5)ABB
 C#
 Permormance ui 
 Solid PRincipels
