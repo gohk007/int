@@ -128,3 +128,23 @@ Clusters
 Kubernates connectivity 
 api creation 
 Load Balancing
+
+6)Colins AeroSpace
+
+http status codes
+http post,get,put,path,delete
+Autenitcation autorization
+middewares
+how do you autorise
+
+Angular
+how are password send when login in api
+Template driven forms vs Reactive forms
+Reactive formupdate dat imediately
+How to secure angular application
+How do you handel state in angular application 
+dependency injection, routing, observables, forms, and state management libraries like NgRx.
+
+What are views
+MAterialised views
+function vs stored proceduers
