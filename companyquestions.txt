@@ -76,3 +76,54 @@ How To Fetch Routes from Params
 ngtemplates
 Autentication Autorization
 Pass Data from Parent To Child
+
+
+C#
+Permormance ui 
+Solid PRincipels
+Design Pattern
+Programs
+Interface/Abstarct
+http status codes
+IOC Container
+Middle wares
+Custom Middle Wares
+
+
+Angular
+Directives
+Pipes/How To Create Custom Pipes
+Interface in Angular
+Parent to child
+Viewchild vs 
+How do you handel differerent Screen Size in Angular->answer(@media query)
+css
+custom Pipes
+Directives and how to impletement ->Syntax
+Lazy Loading with Example
+Routes
+Autentication
+Rxjs Operators
+Tesing in Angular
+stop Leakage in angular
+Differenace between css and Scss
+Angular Hooks
+Ng-Templates
+Custom Pipes
+Observabels and Promises
+
+
+
+SQl
+Primay Keys
+Forien Key
+Joins
+SQl vs No SQl
+
+Docker
+what is Docker
+Docker Compose
+Clusters 
+Kubernates connectivity 
+api creation 
+Load Balancing
