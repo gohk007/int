@@ -195,3 +195,11 @@ How to hide methods in c#
 ArrayList example
 Ienumerable vs Iqueryable
 static vs const
+
+11)CG
+Proceduers vs Triggers
+What are Views
+What is use of Reflection in c#
+Delegates in c#
+ViewBag and ViewData
+CTE in sql
