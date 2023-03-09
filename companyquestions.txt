@@ -183,3 +183,15 @@ can we create a override properties of one class with interface
 (we can use new Key word,we can use virtual class and override)
 find the count in letters (interview)
 pass data  parent to child with out service 
+
+10)Prodapt
+How to improve Sql Optimization
+Update Query 
+Http Status codes
+Differenace between indexing and Property
+Dotnet core Structure
+How to Perform Autorization in Dotnet
+How to hide methods in c#
+ArrayList example
+Ienumerable vs Iqueryable
+static vs const
